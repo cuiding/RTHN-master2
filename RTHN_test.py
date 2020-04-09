@@ -244,7 +244,7 @@ def run():
                     if step % 5 == 0:
                         print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                         print("begin save!")
-                        saver.save(sess, "./run_2/model.ckpt")
+                        saver.save(sess, "./run_2/model.ckpt", max_to_keep=4)
                     step = step + 1
 
         #         '''*********Test********'''
