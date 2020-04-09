@@ -122,13 +122,14 @@ if __name__ == '__main__':
     # print (test)
 
     # reload训练好的模型
-    sess = tf.Session()
+    sess = tf.compat.v1.Session
 
     saver = tf.train.import_meta_graph('./run/model.ckpt.meta', clear_devices=True)
     saver.restore(sess, tf.train.latest_checkpoint('./run'))
 
     graph = tf.get_default_graph()
 
+    print("11111111")
     # x = graph.get_tensor_by_name("x:0")
     # word_dis = graph.get_tensor_by_name("word_dis:0")
     # sen_len = graph.get_tensor_by_name("sen_len:0")
