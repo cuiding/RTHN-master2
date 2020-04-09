@@ -2,7 +2,7 @@ import sys
 import main_window
 from main_window import Ui_MainWindow
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 import random
 import linecache
 
@@ -73,7 +73,13 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
         self.cause_edt.setPlainText("原因子句")
 
     def Ecc(self):
-        self.cause_edt.setPlainText('Hello PyQt5!\n单击按钮')
+        clause = self.clause_edt.toPlainText()
+        if clause == "":
+            QMessageBox.warning(self, "警告", "请输入句子")
+        else:
+            self.cause_edt.setPlainText(clause)
+
+
 
 
 if __name__ == '__main__':
