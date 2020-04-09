@@ -193,7 +193,7 @@ def run():
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
 
-    saver = tf.train.Saver()
+    saver = tf.train.Saver(max_to_keep=4)
 
     with tf.Session(config=tf_config) as sess:
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
@@ -242,6 +242,8 @@ def run():
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     if step % 5 == 0:
                         print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                        print("begin save!")
+                        saver.save(sess, "./run_final/model.ckpt")
                     step = step + 1
 
                 '''*********Test********'''
@@ -284,9 +286,6 @@ def run():
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
         print("f1_score in 10 fold: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
-
-        print("begin save!")
-        saver.save(sess, "./run/model.ckpt")
 
         return p, r, f1
 
