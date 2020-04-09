@@ -122,10 +122,10 @@ if __name__ == '__main__':
     # print (test)
 
     # reload训练好的模型
-    sess = tf.compat.v1.Session
+    sess = tf.Session
 
-    saver = tf.train.import_meta_graph('./run/model.ckpt.meta', clear_devices=True)
-    saver.restore(sess, tf.train.latest_checkpoint('./run'))
+    saver = tf.train.import_meta_graph('./run_2/model.ckpt.meta', clear_devices=True)
+    saver.restore(sess, tf.train.latest_checkpoint('./run_2/model.ckpt'))
 
     graph = tf.get_default_graph()
 

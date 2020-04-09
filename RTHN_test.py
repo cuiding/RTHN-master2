@@ -210,7 +210,7 @@ def run():
 
             sess.run(tf.global_variables_initializer())
             print('############# fold {} ###############'.format(fold))
-            # fold += 1
+            fold += 1
             max_f1 = 0.0
             print('train docs: {}    test docs: {}'.format(len(tr_y), len(te_y)))
 
@@ -243,6 +243,8 @@ def run():
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     if step % 5 == 0:
                         print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                        print("begin save!")
+                        saver.save(sess, "./run_2/model.ckpt")
                     step = step + 1
 
         #         '''*********Test********'''
