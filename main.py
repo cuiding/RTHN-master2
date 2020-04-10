@@ -64,14 +64,14 @@ FLAGS = tf.app.flags.FLAGS
 #         # keep_prob1 = graph.get_tensor_by_name("keep_prob1:0")
 #         # keep_prob2 = graph.get_tensor_by_name("keep_prob2:0")
 #         # y = graph.get_tensor_by_name("y:0")
-#         # pred_y_op = graph.get_tensor_by_name("pred_y_op:0")
+#         # pred_op = graph.get_tensor_by_name("pred_op:0")
 #         #
 #         # placeholders = [x, word_dis, sen_len, doc_len, keep_prob1, keep_prob2, y]
 #         #
 #         # #将测试集传入模型进行训练
 #         # with tf.Session as sess:
 #         #     id = sess.run(
-#         #     [pred_y_op], feed_dict=dict(zip(placeholders, test)))
+#         #     [pred], feed_dict=dict(zip(placeholders, test)))
 #
 #         #通过训练结果找出原因子句
 #
@@ -124,8 +124,9 @@ if __name__ == '__main__':
     # reload训练好的模型
     sess = tf.Session
 
-    saver = tf.train.import_meta_graph('./run_2/model.ckpt.meta', clear_devices=True)
-    saver.restore(sess, tf.train.latest_checkpoint('./run_2/model.ckpt'))
+    saver = tf.train.import_meta_graph('run_final/model.ckpt.meta')
+    model_file = tf.train.latest_checkpoint('run_final/')
+    saver.restore(sess, model_file)
 
     graph = tf.get_default_graph()
 
