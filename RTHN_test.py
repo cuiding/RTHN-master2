@@ -178,7 +178,7 @@ def run():
                 optimizer_assist = tf.train.AdamOptimizer(learning_rate=FLAGS.lr_main).minimize(loss_assist_list[i])
             optimizer_assist_list.append(optimizer_assist)
 
-    true_y_op = tf.argmax(y, 2)
+    true_y_op = tf.argmax(y, 2,name = "true_y_op")
     pred_y_op = tf.argmax(pred, 2,  name = "pred_y_op")
     pred_y_assist_op_list = []
     for i in range(FLAGS.n_layers - 1):
@@ -317,7 +317,7 @@ def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
     pred = tf.matmul(s, w) + b
     pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
     pred = tf.nn.softmax(pred)
-    pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class])
+    pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name='pred')
     reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
     return pred, reg
 
