@@ -158,6 +158,7 @@ def run():
     placeholders = [x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
 
     pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2)
+    print(pred)
 
     with tf.name_scope('loss'):
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
@@ -177,8 +178,10 @@ def run():
                 optimizer_assist = tf.train.AdamOptimizer(learning_rate=FLAGS.lr_main).minimize(loss_assist_list[i])
             optimizer_assist_list.append(optimizer_assist)
 
-    true_y_op = tf.argmax(y, 2)
+    true_y_op = tf.argmax(y, 2,name = "true_y_op")
     pred_y_op = tf.argmax(pred, 2,  name = "pred_y_op")
+    print("true_y_op:{}".format(true_y_op))
+    print("pred_y_op:{}".format(pred_y_op))
     pred_y_assist_op_list = []
     for i in range(FLAGS.n_layers - 1):
         pred_y_assist_op = tf.argmax(pred_assist_list[i], 2)
@@ -243,7 +246,7 @@ def run():
                     if step % 5 == 0:
                         print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                         print("begin save!")
-                        saver.save(sess, "./run_final/model.ckpt")
+                        saver.save(sess, "./run_final/model.ckpt",global_step=step)
                     step = step + 1
 
                 '''*********Test********'''
@@ -289,12 +292,6 @@ def run():
 
         return p, r, f1
 
-#调用该函数前需要tf.reset_default_graph()
-def reload():
-    saver = tf.train.import_meta_graph("run/model.ckpt.meta")
-    with tf.Session() as sess:
-        saver.restore(sess, "./run/model.ckpt")
-
 def print_training_info():
     print('\n\n>>>>>>>>>>>>>>>>>>>>TRAINING INFO:\n')
     print('batch-{}, learning_rate-{}, keep_prob1-{}, num_heads-{}, n_layers-{}'.format(
@@ -316,7 +313,7 @@ def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
     pred = tf.matmul(s, w) + b
     pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
     pred = tf.nn.softmax(pred)
-    pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class])
+    pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name='pred')
     reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
     return pred, reg
 
