@@ -46,11 +46,13 @@ tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside mai
 def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
     x = tf.nn.embedding_lookup(word_embedding, x)#选取wordembedding中x对应的元素
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
+    print("word_dis:{}".format(word_dis))
     word_dis = tf.nn.embedding_lookup(pos_embedding, word_dis)
     sh2 = 2 * FLAGS.n_hidden
 
     inputs = tf.nn.dropout(inputs, keep_prob=keep_prob1)
     sen_len = tf.reshape(sen_len, [-1])
+    print("sen_len:{}".format(sen_len))
     with tf.name_scope('word_encode'):
         wordEncode = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer')
     wordEncode = tf.reshape(wordEncode, [-1, FLAGS.max_sen_len, sh2])
@@ -61,7 +63,11 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         w2 = func.get_weight_varible('word_att_w2', [sh2, 1])
         senEncode = func.att_var(wordEncode, sen_len, w1, b1, w2)
     senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, sh2])
+
+    print("word_dis:{}".format(word_dis))
     word_dis = tf.reshape(word_dis[:, :, 0, :], [-1, FLAGS.max_doc_len, FLAGS.embedding_dim_pos])
+    print("word_dis:{}".format(word_dis))
+    print("senEncode:{}".format(senEncode))
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
@@ -131,15 +137,17 @@ def run():
     localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("***********localtime: ", localtime)
     #func.load_data()：return x, y, sen_len, doc_len, relative_pos, embedding, embedding_pos
+    #需要将word_distance改为自己计算的结果
     x_data, y_data, sen_len_data, doc_len_data, word_distance, word_embedding, pos_embedding = func.load_data()
 
-    # print("x_data.shape:{}\n".format(x_data.shape))
-    # print("y_data.shape:{}\n".format(y_data.shape))
-    # print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
-    # print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
-    # print("word_distance.shape:{}\n".format(word_distance.shape))
-    # print("word_embedding.shape:{}\n".format(word_embedding.shape))
-    # print("pos_embedding.shape:{}\n".format( pos_embedding.shape))
+    print("x_data.shape:{}\n".format(x_data.shape))
+    print("y_data.shape:{}\n".format(y_data.shape))
+    print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
+    print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
+    print("word_distance.shape:{}\n".format(word_distance.shape))
+    print("word_embedding.shape:{}\n".format(word_embedding.shape))
+    print("pos_embedding.shape:{}\n".format(pos_embedding.shape))
+    print("pos_embedding:{}\n".format(pos_embedding[1]))
 
     word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
     pos_embedding = tf.constant(pos_embedding, dtype=tf.float32, name='pos_embedding')
@@ -198,6 +206,7 @@ def run():
 
     saver = tf.train.Saver(max_to_keep=4)
 
+    tf_config = tf.ConfigProto(device_count={'GPU': 0})
     with tf.Session(config=tf_config) as sess:
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
@@ -245,9 +254,9 @@ def run():
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     if step % 5 == 0:
                         print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
-                        print("begin save!")
-                        saver.save(sess, "./run_final/model.ckpt",global_step=step)
                     step = step + 1
+                print("begin save!")
+                saver.save(sess, "./run_final/model.ckpt", global_step=step)
 
                 '''*********Test********'''
                 test = [te_x, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
