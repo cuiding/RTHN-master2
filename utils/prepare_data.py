@@ -26,7 +26,8 @@ def load_w2v(embedding_dim, embedding_dim_pos, train_file_path, embedding_path):
         words.extend([emotion] + clause.split())
     inputFile1.close()
     words = set(words)  # 所有不重复词的集合
-    word_idx = dict((c, k + 1) for k, c in enumerate(words)) #给所有词编号
+    word_idx = dict((c, k + 1) for k, c in enumerate(words)) #给所有词编号(字典)
+    # print("word_idx:{}".format(word_idx))
 
     w2v = {}
     inputFile2 = codecs.open(embedding_path, 'r', 'utf-8')
@@ -45,16 +46,20 @@ def load_w2v(embedding_dim, embedding_dim_pos, train_file_path, embedding_path):
         else:
             vec = list(np.random.rand(embedding_dim) / 5. - 0.1)  # 从均匀分布[-0.1,0.1]中随机取
         embedding.append(vec)
-    print('w2v_file: {}\nall_words: {} hit_words: {}'.format(
-        embedding_path, len(words), hit))
+    # print('w2v_file: {}\nall_words: {} hit_words: {}'.format(
+    #     embedding_path, len(words), hit))
 
     embedding_pos = [list(np.zeros(embedding_dim_pos))]
+    embedding_pos_a = [list(np.zeros(embedding_dim_pos))]
     embedding_pos.extend([list(np.random.normal(
         loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(-68, 34)])
+    embedding_pos_a.extend([list(np.random.normal(
+        loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(1, 75)])
     # embedding.extend([list(np.random.normal(loc=0.0, scale=0.1, size=embedding_dim)) for i in range(-68,34)])
-    embedding, embedding_pos = np.array(embedding), np.array(embedding_pos)
+    embedding, embedding_pos, embedding_pos_a = np.array(embedding), np.array(embedding_pos), np.array(embedding_pos_a)
     pk.dump(embedding, open(path + 'embedding.txt', 'wb'))
     pk.dump(embedding_pos, open(path + 'embedding_pos.txt', 'wb'))
+    pk.dump(embedding_pos, open(path + 'embedding_pos_a.txt', 'wb'))
 
     print("embedding.shape: {} embedding_pos.shape: {}".format(
         embedding.shape, embedding_pos.shape))
@@ -65,9 +70,9 @@ def load_w2v(embedding_dim, embedding_dim_pos, train_file_path, embedding_path):
 #load_data(path + 'clause_keywords.csv', word_dict)
 def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
     print('load data...')
-    relative_pos, x, y, sen_len, doc_len = [], [], [], [], []
+    relative_pos, relative_pos_a, x, y, sen_len, doc_len = [], [], [], [], [], []
 
-    y_clause_cause, clause_all, tmp_clause_len, relative_pos_all = np.zeros((max_doc_len, 2)), [], [], []
+    y_clause_cause, clause_all, tmp_clause_len, relative_pos_all, relative_pos_all_a = np.zeros((max_doc_len, 2)), [], [], [], []
     next_ID = 2
     outputFile3 = codecs.open(input_file, 'r', 'utf-8')
     #n_clause:子句数量
@@ -94,19 +99,26 @@ def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen
                 clause_all.append(np.zeros((max_sen_len,)))
                 tmp_clause_len.append(0)
                 relative_pos_all.append(np.zeros((max_sen_len,)))
+                relative_pos_all_a.append(np.zeros((max_sen_len,)))
             relative_pos.append(relative_pos_all)
+            relative_pos_a.append(relative_pos_all_a)
             x.append(clause_all)
             y.append(y_clause_cause)
             sen_len.append(tmp_clause_len)
-            y_clause_cause, clause_all, tmp_clause_len, relative_pos_all = np.zeros((max_doc_len, 2)), [], [], []
+            y_clause_cause, clause_all, tmp_clause_len, relative_pos_all, relative_pos_all_a = np.zeros((max_doc_len, 2)), [], [], [], []
             next_ID = senID + 1
 
         clause = [0] * max_sen_len
         relative_pos_clause = [0] * max_sen_len
+        relative_pos_clause_a = [0] * max_sen_len
         for i, word in enumerate(words.split()):
             clause[i] = int(word_idx[word])
+            # print("clause[{}]:{}".format(i,clause[i]))
             relative_pos_clause[i] = word_pos
+            relative_pos_clause_a[i] = clause_idx
+        # print("clause.shape:{}".format(len(clause)))clause:每个子句中词的编号
         relative_pos_all.append(np.array(relative_pos_clause))
+        relative_pos_all_a.append(np.array(relative_pos_clause_a))
         clause_all.append(np.array(clause))
         tmp_clause_len.append(len(words.split()))
         if cause == 'no': #不是原因子句
@@ -117,18 +129,19 @@ def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen
             y_clause_cause[clause_idx - 1] = [0, 1]
 
     outputFile3.close()
-    relative_pos, x, y, sen_len, doc_len = map(np.array, [relative_pos, x, y, sen_len, doc_len])
+    relative_pos, relative_pos_a, x, y, sen_len, doc_len = map(np.array, [relative_pos, relative_pos_a, x, y, sen_len, doc_len])
 
-    pk.dump(relative_pos, open(path + 'relative_pos.txt', 'wb'))
+    pk.dump(relative_pos, open(path + 'relative_pos.txt', 'wb'))#相对位置
+    pk.dump(relative_pos_a, open(path + 'relative_pos_a.txt', 'wb'))  # 绝对位置
     pk.dump(x, open(path + 'x.txt', 'wb'))#所有子句
     pk.dump(y, open(path + 'y.txt', 'wb'))#是否为原因子句
     pk.dump(sen_len, open(path + 'sen_len.txt', 'wb'))
     pk.dump(doc_len, open(path + 'doc_len.txt', 'wb'))
 
-    print('relative_pos.shape {}\nx.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
-        relative_pos.shape, x.shape, y.shape, sen_len.shape, doc_len.shape
+    print('relative_pos.shape {}\nrelative_pos_a.shape {}\nx.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
+        relative_pos.shape, relative_pos_a.shape, x.shape, y.shape, sen_len.shape, doc_len.shape
     ))
-    print('n_clause {}, yes_clause {}, no_clause {}, n_cut {}'.format(n_clause, yes_clause, no_clause, n_cut))
+    # print('relative_pos {}'.format(relative_pos[0][0]))
     print('load data done!\n')
     return x, y, sen_len, doc_len
 
