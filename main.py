@@ -35,12 +35,15 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
         self.clause_edt.setPlainText(the_line)
 
         # 生成测试集
-        x_data, y_data, sen_len_data, doc_len_data, word_distance, word_embedding, pos_embedding = func.load_data()
+        #func.load_data()：return x, y_position, y, sen_len, doc_len, relative_pos, relative_pos_a, embedding, embedding_pos
+        x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_embedding, pos_embedding = func.load_data()
 
         print("senID:{}\n".format(senID))
 
         te_x = x_data[senID]
         te_x = te_x[np.newaxis, :]
+        te_pos = y_position_data[senID]
+        te_pos = te_pos[np.newaxis, :]
         te_y = y_data[senID]
         te_y = te_y[np.newaxis, :]
         te_sen_len = sen_len_data[senID]
@@ -49,14 +52,16 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
         te_word_dis = word_distance[senID]
         te_word_dis = te_word_dis[np.newaxis, :]
 
-        # print("te_x.shape:{}\n".format(te_x.shape))
-        # print("te_y.shape:{}\n".format(te_y.shape))
-        # print("te_sen_len.shape:{}\n".format(te_sen_len.shape))
-        # print("te_doc_len:{}\n".format(te_doc_len))
-        # print("te_doc_len.shape:{}\n".format(te_doc_len.shape))
-        # print("te_word_dis.shape:{}\n".format(te_word_dis.shape))
+        print("te_x.shape:{}\n".format(te_x.shape))
+        print("te_pos.shape:{}\n".format(te_pos.shape))
+        print("te_y.shape:{}\n".format(te_y.shape))
+        print("te_sen_len.shape:{}\n".format(te_sen_len.shape))
+        print("te_doc_len:{}\n".format(te_doc_len))
+        print("te_doc_len.shape:{}\n".format(te_doc_len.shape))
+        print("te_word_dis.shape:{}\n".format(te_word_dis.shape))
 
-        test = [te_x, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
+        test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
+        # test = [te_x, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
         # print (test)
         tf.reset_default_graph()
 
@@ -75,43 +80,69 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
             doc_len = graph.get_tensor_by_name("doc_len:0")
             keep_prob1 = graph.get_tensor_by_name("keep_prob1:0")
             keep_prob2 = graph.get_tensor_by_name("keep_prob2:0")
+            y_position = graph.get_tensor_by_name("y_position:0")
             y = graph.get_tensor_by_name("y:0")
-            pred = graph.get_tensor_by_name("pred_3:0")
-            true_y_op = graph.get_tensor_by_name("true_y_op:0")
+            # pred = graph.get_tensor_by_name("pred_3:0")
+            # true_y_op = graph.get_tensor_by_name("true_y_op:0")
             pred_y_op = graph.get_tensor_by_name("pred_y_op:0")
+            pred_pos_op = graph.get_tensor_by_name("pred_pos_op:0")
 
-            placeholders = [x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
+            placeholders = [x, y_position, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
+            # placeholders = [x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
 
             # 将测试集传入模型进行训练
-            pred_y,true_y, pred = sess.run([pred_y_op, true_y_op, pred], feed_dict=dict(zip(placeholders, test)))
+            # pred_y,true_y, pred = sess.run([pred_y_op, true_y_op, pred], feed_dict=dict(zip(placeholders, test)))
+            pred_pos, pred_y = sess.run([pred_pos_op, pred_y_op], feed_dict=dict(zip(placeholders, test)))
+            print(pred_pos.shape)
             print(pred_y.shape)
             pred_y = pred_y.reshape(75, )
+            pred_pos = pred_pos.reshape(75, )
             print(pred_y)
             cla_ind = np.argwhere(pred_y == 1)[:, 0]
+            emo_ind = np.argwhere(pred_pos == 1)[:, 0]
             # cla_ind = int(cla_ind)
-            print(cla_ind)
+            print("cla_ind:{}".format(cla_ind))
+            print("emo_ind:{}".format(emo_ind))
             cau_num = len(cla_ind)
-            print(cau_num)
+            emo_num = len(emo_ind)
+            print("cau_num:{}".format(cau_num))
+            print("emo_num:{}".format(emo_num))
+
             if cau_num == 0:
                 self.cause_edt.setPlainText("该句子中不存在原因子句")
             else:
                 # 通过训练结果找出原因子句
-                inputFile = codecs.open('./data/clause_keywords.csv', 'r', 'utf-8')
+                inputFile1 = codecs.open('./data/clause_keywords.csv', 'r', 'utf-8')
                 i = 0
-                sen_id_all, cla_id_all, clause_all = [], [], []
-                for line in inputFile.readlines():
+                clause_all = []
+                for line in inputFile1.readlines():
                     line = line.strip().split(',')
                     sen_id, cla_id, clause = int(line[0]), int(line[1]), line[-1]
                     if sen_id == senID:
                         for i in range(0, cau_num):
-                            if cla_id == cla_ind[i]:
+                            if cla_id == cla_ind[i]+1:
                                 clause_all.append(clause.replace(' ', ''))
                                 self.cause_edt.setPlainText(clause.replace(' ', ''))
-                # clause_all = np.array(clause_all)
-                # print(sen_id_all.shape)
-                # print(cla_id_all.shape)
                 print(clause_all)
-                inputFile.close()
+                inputFile1.close()
+
+            if emo_num == 0:
+                self.emotion_edt.setPlainText("该句子中不存在情感子句")
+            else:
+                # 通过训练结果找出情感子句
+                inputFile2 = codecs.open('./data/clause_keywords.csv', 'r', 'utf-8')
+                i = 0
+                clause_e_all = []
+                for line in inputFile2.readlines():
+                    line = line.strip().split(',')
+                    sen_id, cla_id, clause = int(line[0]), int(line[1]), line[-1]
+                    if sen_id == senID:
+                        for j in range(0, emo_num):
+                            if cla_id == emo_ind[i]+1:
+                                clause_e_all.append(clause.replace(' ', ''))
+                                self.emotion_edt.setPlainText(clause.replace(' ', ''))
+                print(clause_e_all)
+                inputFile2.close()
 
     # def Ecc(self):
     #     clause = self.clause_edt.toPlainText()
@@ -137,4 +168,3 @@ if __name__ == '__main__':
     MainWindow = MainWindow()
     MainWindow.show()
     sys.exit(app.exec_())
-

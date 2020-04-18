@@ -26,8 +26,10 @@ def load_data():
     relative_pos_a = pk.load(open(path + 'relative_pos_a.txt', 'rb'))
     embedding = pk.load(open(path + 'embedding.txt', 'rb'))
     embedding_pos = pk.load(open(path + 'embedding_pos.txt', 'rb'))
-    print('x.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\nrelative_pos.shape {}\nembedding_pos.shape {}'.format(x.shape, y.shape, sen_len.shape, doc_len.shape, relative_pos.shape, embedding_pos.shape))
-    return x, y_position, y, sen_len, doc_len, relative_pos,relative_pos_a,  embedding, embedding_pos
+    embedding_pos_a = pk.load(open(path + 'embedding_pos_a.txt', 'rb'))
+    # embedding_pos_e = pk.load(open(path + 'embedding_pos_e.txt', 'rb'))
+    print('x.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\nrelative_pos.shape {}\nrelative_pos_a.shape {}\nembedding_pos.shape {}'.format(x.shape, y.shape, sen_len.shape, doc_len.shape, relative_pos.shape, relative_pos_a.shape, embedding_pos.shape))
+    return x, y_position, y, sen_len, doc_len, relative_pos,relative_pos_a,  embedding, embedding_pos, embedding_pos_a
 
 
 def acc_prf(pred_y, true_y, doc_len):

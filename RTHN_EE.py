@@ -54,7 +54,7 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
 
     inputs = tf.nn.dropout(inputs, keep_prob=keep_prob1)
     sen_len = tf.reshape(sen_len, [-1])
-    print("sen_len:{}".format(sen_len))
+    # print("sen_len:{}".format(sen_len))
     with tf.name_scope('word_encode'):
         wordEncode = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer')
     wordEncode = tf.reshape(wordEncode, [-1, FLAGS.max_sen_len, sh2])
@@ -77,21 +77,30 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         pred_pos = tf.reshape(pred_pos, [-1, FLAGS.max_doc_len, FLAGS.n_class])
 
     # 形成相对位置向量
+    # word_dis是绝对位置向量
+    print("word_dis:{}".format(word_dis))
+    word_dis = tf.reshape(word_dis[:, :, 0], [-1, FLAGS.max_doc_len])
+    print("word_dis:{}".format(word_dis))
+
     pred_y_pos_op = tf.argmax(pred_pos, 2)  # shape=(?, 75)
     cla_ind = tf.argmax(pred_y_pos_op, 1)#shape=(?,)
     cla_ind = tf.to_int32(cla_ind)
-    print("cla_ind.shape:{}".format(cla_ind))
-    # cla_ind.expand(-1,75)
     cla_ind = tf.reshape(cla_ind, [-1, 1])
     print("cla_ind.shape:{}".format(cla_ind))
+    cla_ind_add = tf.tile(cla_ind, [1,75])
+    print("cla_ind_add.shape:{}".format(cla_ind_add))
 
-    i = tf.Variable([x for x in range(0 + 69, FLAGS.max_doc_len + 69)], dtype=tf.int32)
-    print("i:{}".format(i))
-    i = tf.reshape(i, [1, 75])
-    print("改变之后i:{}".format(i))
-    print("乘数tf.ones_like(cla_ind):{}".format(tf.ones_like(cla_ind)))
-    pos = tf.matmul(tf.ones_like(cla_ind), i)
-    pos = tf.ones_like(pos)
+    tf.ones_like(word_dis)
+
+    # i = tf.Variable([x for x in range(0 + 69,FLAGS.max_doc_len + 69)], dtype=tf.int32)
+    # print("i:{}".format(i))
+    # i = tf.reshape(i, [1, 75])
+    # print("改变之后i:{}".format(i))
+    # print("乘数tf.ones_like(cla_ind):{}".format(tf.ones_like(cla_ind)))
+    # # pos = tf.subtract(tf.matmul(tf.ones_like(cla_ind), i) , cla_ind_add)
+    # # pos = tf.ones_like(pos)
+
+    pos = tf.subtract(word_dis , cla_ind_add)
     print("结果:{}".format(pos))
 
     print("word_dis1:{}".format(word_dis))
@@ -167,15 +176,16 @@ def run():
     tf.reset_default_graph()
     localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("***********localtime: ", localtime)
-    #func.load_data()：return x, y, sen_len, doc_len, relative_pos, embedding, embedding_pos
+    #func.load_data()：return x, y_position, y, sen_len, doc_len, relative_pos, relative_pos_a,  embedding, embedding_pos, embedding_pos_a
     #需要将word_distance改为自己计算的结果
-    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_embedding, pos_embedding = func.load_data()
+    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_embedding, pos_embedding, pos_embedding_a = func.load_data()
 
     print("x_data.shape:{}\n".format(x_data.shape))
     print("y_data.shape:{}\n".format(y_data.shape))
     print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
     print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
     print("word_distance.shape:{}\n".format(word_distance.shape))
+    print("word_distance_a.shape:{}\n".format(word_distance_a.shape))
     print("word_embedding.shape:{}\n".format(word_embedding.shape))
     print("pos_embedding.shape:{}\n".format(pos_embedding.shape))
     print("pos_embedding:{}\n".format(pos_embedding[1]))
@@ -254,9 +264,9 @@ def run():
         p_pos_list, r_pos_list, f1_pos_list = [], [], []
         for train, test in kf.split(x_data):
             tr_x, tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis = map(lambda x: x[train],
-                [x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance])
+                [x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance_a])
             te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis = map(lambda x: x[test],
-                [x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance])
+                [x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance_a])
             precision_list, recall_list, FF1_list = [], [], []
             pre_list, true_list, pre_list_prob = [], [], []
             precision_pos_list, recall_pos_list, FF1_pos_list = [], [], []
@@ -395,10 +405,10 @@ def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
     s = tf.nn.dropout(s, keep_prob=FLAGS.keep_prob2)
     w = func.get_weight_varible(w_varible, [n_feature, FLAGS.n_class])
     b = func.get_weight_varible(b_varible, [FLAGS.n_class])
-    print("s:{}".format(s))
-    print("w:{}".format(w))
+    # print("s:{}".format(s))
+    # print("w:{}".format(w))
     pred = tf.matmul(s, w) + b
-    print("matmul(s, w):{}".format(pred))
+    # print("matmul(s, w):{}".format(pred))
     pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
     pred = tf.nn.softmax(pred)
     pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name='pred')

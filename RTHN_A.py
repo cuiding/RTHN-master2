@@ -37,7 +37,7 @@ tf.app.flags.DEFINE_float('lr_main', 0.001, 'learning rate')
 tf.app.flags.DEFINE_float('keep_prob1', 0.5, 'word embedding training dropout keep prob')
 tf.app.flags.DEFINE_float('keep_prob2', 1.0, 'softmax layer dropout keep prob')
 tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
-tf.app.flags.DEFINE_integer('run_times', 10, 'run times of this model')
+tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
 
@@ -137,14 +137,14 @@ def run():
     localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("***********localtime: ", localtime)
     #func.load_data()： return x, y, sen_len, doc_len, relative_pos,relative_pos_a,  embedding, embedding_pos
-    #需要将word_distance改为自己计算的结果
-    x_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_embedding, pos_embedding = func.load_data()
+    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_embedding, pos_embedding, pos_embedding_a = func.load_data()
 
     print("x_data.shape:{}\n".format(x_data.shape))
     print("y_data.shape:{}\n".format(y_data.shape))
     print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
     print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
     print("word_distance.shape:{}\n".format(word_distance.shape))
+    print("word_distance_a.shape:{}\n".format(word_distance_a.shape))
     print("word_embedding.shape:{}\n".format(word_embedding.shape))
     print("pos_embedding.shape:{}\n".format(pos_embedding.shape))
     print("pos_embedding:{}\n".format(pos_embedding[1]))

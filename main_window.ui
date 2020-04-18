@@ -105,7 +105,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QTextEdit" name="textEdit">
+         <widget class="QTextEdit" name="emotion_edt">
           <property name="font">
            <font>
             <pointsize>12</pointsize>

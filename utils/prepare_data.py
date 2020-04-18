@@ -51,18 +51,23 @@ def load_w2v(embedding_dim, embedding_dim_pos, train_file_path, embedding_path):
 
     embedding_pos = [list(np.zeros(embedding_dim_pos))]
     embedding_pos_a = [list(np.zeros(embedding_dim_pos))]
+    # embedding_pos_e = [list(np.zeros(embedding_dim_pos))]
     embedding_pos.extend([list(np.random.normal(
         loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(-68, 34)])
+    # embedding_pos_e.extend([list(np.random.normal(
+    #     loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(13, 145)])
     embedding_pos_a.extend([list(np.random.normal(
         loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(1, 75)])
     # embedding.extend([list(np.random.normal(loc=0.0, scale=0.1, size=embedding_dim)) for i in range(-68,34)])
+    # embedding, embedding_pos, embedding_pos_e, embedding_pos_a = np.array(embedding), np.array(embedding_pos), np.array(embedding_pos_e), np.array(embedding_pos_a)
     embedding, embedding_pos, embedding_pos_a = np.array(embedding), np.array(embedding_pos), np.array(embedding_pos_a)
     pk.dump(embedding, open(path + 'embedding.txt', 'wb'))
     pk.dump(embedding_pos, open(path + 'embedding_pos.txt', 'wb'))
-    pk.dump(embedding_pos, open(path + 'embedding_pos_a.txt', 'wb'))
+    pk.dump(embedding_pos_a, open(path + 'embedding_pos_a.txt', 'wb'))
+    # pk.dump(embedding_pos_e, open(path + 'embedding_pos_e.txt', 'wb'))
 
-    print("embedding.shape: {} embedding_pos.shape: {}".format(
-        embedding.shape, embedding_pos.shape))
+    print("embedding.shape: {} embedding_pos.shape: {} embedding_pos_a.shape: {}".format(
+        embedding.shape, embedding_pos.shape, embedding_pos_a.shape))
     print("load embedding done!\n")
     return word_idx, embedding, embedding_pos
 
