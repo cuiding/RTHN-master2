@@ -139,7 +139,7 @@ def run():
     print("***********localtime: ", localtime)
     #func.load_data()：return x, y, sen_len, doc_len, relative_pos, embedding, embedding_pos
     #需要将word_distance改为自己计算的结果
-    x_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_embedding, pos_embedding = func.load_data()
+    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_embedding, pos_embedding, pos_embedding_a = func.load_data()
 
     print("x_data.shape:{}\n".format(x_data.shape))
     print("y_data.shape:{}\n".format(y_data.shape))
