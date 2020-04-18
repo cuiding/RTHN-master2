@@ -18,6 +18,7 @@ max_sen_len = 45
 
 def load_data():
     x = pk.load(open(path + 'x.txt', 'rb'))
+    y_position = pk.load(open(path + 'y_position.txt', 'rb'))
     y = pk.load(open(path + 'y.txt', 'rb'))
     sen_len = pk.load(open(path + 'sen_len.txt', 'rb'))
     doc_len = pk.load(open(path + 'doc_len.txt', 'rb'))
@@ -26,7 +27,7 @@ def load_data():
     embedding = pk.load(open(path + 'embedding.txt', 'rb'))
     embedding_pos = pk.load(open(path + 'embedding_pos.txt', 'rb'))
     print('x.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\nrelative_pos.shape {}\nembedding_pos.shape {}'.format(x.shape, y.shape, sen_len.shape, doc_len.shape, relative_pos.shape, embedding_pos.shape))
-    return x, y, sen_len, doc_len, relative_pos,relative_pos_a,  embedding, embedding_pos
+    return x, y_position, y, sen_len, doc_len, relative_pos,relative_pos_a,  embedding, embedding_pos
 
 
 def acc_prf(pred_y, true_y, doc_len):

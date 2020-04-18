@@ -70,9 +70,9 @@ def load_w2v(embedding_dim, embedding_dim_pos, train_file_path, embedding_path):
 #load_data(path + 'clause_keywords.csv', word_dict)
 def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
     print('load data...')
-    relative_pos, relative_pos_a, x, y, sen_len, doc_len = [], [], [], [], [], []
+    relative_pos, relative_pos_a, x, y, y_position, sen_len, doc_len = [], [], [], [], [], [], []
 
-    y_clause_cause, clause_all, tmp_clause_len, relative_pos_all, relative_pos_all_a = np.zeros((max_doc_len, 2)), [], [], [], []
+    y_clause_cause, y_clause_emotion, clause_all, tmp_clause_len, relative_pos_all, relative_pos_all_a = np.zeros((max_doc_len, 2)), np.zeros((max_doc_len, 2)), [], [], [], []
     next_ID = 2
     outputFile3 = codecs.open(input_file, 'r', 'utf-8')
     #n_clause:子句数量
@@ -103,9 +103,10 @@ def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen
             relative_pos.append(relative_pos_all)
             relative_pos_a.append(relative_pos_all_a)
             x.append(clause_all)
+            y_position.append(y_clause_emotion)
             y.append(y_clause_cause)
             sen_len.append(tmp_clause_len)
-            y_clause_cause, clause_all, tmp_clause_len, relative_pos_all, relative_pos_all_a = np.zeros((max_doc_len, 2)), [], [], [], []
+            y_clause_cause, y_clause_emotion, clause_all, tmp_clause_len, relative_pos_all, relative_pos_all_a = np.zeros((max_doc_len, 2)), np.zeros((max_doc_len, 2)), [], [], [], []
             next_ID = senID + 1
 
         clause = [0] * max_sen_len
@@ -127,19 +128,26 @@ def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen
         else: #是原因子句
             yes_clause += 1
             y_clause_cause[clause_idx - 1] = [0, 1]
+        if sen_pos == 0:#是情感子句
+            y_clause_emotion[clause_idx - 1] = [0, 1]
+        else:#不是情感子句
+            y_clause_emotion[clause_idx - 1] = [1, 0]
+
 
     outputFile3.close()
-    relative_pos, relative_pos_a, x, y, sen_len, doc_len = map(np.array, [relative_pos, relative_pos_a, x, y, sen_len, doc_len])
+    relative_pos, relative_pos_a, x, y_position, y, sen_len, doc_len = map(np.array, [relative_pos, relative_pos_a, x, y_position, y, sen_len, doc_len])
+    #print(y_position[0])
 
     pk.dump(relative_pos, open(path + 'relative_pos.txt', 'wb'))#相对位置
     pk.dump(relative_pos_a, open(path + 'relative_pos_a.txt', 'wb'))  # 绝对位置
     pk.dump(x, open(path + 'x.txt', 'wb'))#所有子句
+    pk.dump(y_position, open(path + 'y_position.txt', 'wb'))  # 是否为情感子句
     pk.dump(y, open(path + 'y.txt', 'wb'))#是否为原因子句
     pk.dump(sen_len, open(path + 'sen_len.txt', 'wb'))
     pk.dump(doc_len, open(path + 'doc_len.txt', 'wb'))
 
-    print('relative_pos.shape {}\nrelative_pos_a.shape {}\nx.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
-        relative_pos.shape, relative_pos_a.shape, x.shape, y.shape, sen_len.shape, doc_len.shape
+    print('relative_pos.shape {}\nrelative_pos_a.shape {}\nx.shape {} \ny_position.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
+        relative_pos.shape, relative_pos_a.shape, x.shape, y_position.shape, y.shape, sen_len.shape, doc_len.shape
     ))
     # print('relative_pos {}'.format(relative_pos[0][0]))
     print('load data done!\n')

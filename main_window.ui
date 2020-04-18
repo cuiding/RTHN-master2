@@ -49,7 +49,22 @@
          </font>
         </property>
         <property name="text">
-         <string>句子</string>
+         <string>原句</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>情感子句</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -81,10 +96,31 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QTextEdit" name="clause_edt"/>
+         <widget class="QTextEdit" name="clause_edt">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QTextEdit" name="cause_edt"/>
+         <widget class="QTextEdit" name="textEdit">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="cause_edt">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
