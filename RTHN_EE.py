@@ -256,7 +256,7 @@ def run():
 
     saver = tf.train.Saver(max_to_keep=4)
 
-    tf_config = tf.ConfigProto(device_count={'GPU': 0})
+    tf_config = tf.ConfigProto(device_count={'GPU': 1})
     with tf.Session(config=tf_config) as sess:
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
