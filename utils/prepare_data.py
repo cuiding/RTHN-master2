@@ -55,12 +55,13 @@ def load_w2v(embedding_dim, embedding_dim_pos, train_file_path, embedding_path):
     embedding_pos.extend([list(np.random.normal(
         loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(-68, 34)])
     embedding_pos_e.extend([list(np.random.normal(
-        loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(-75, max_doc_len)])
+        loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range( 0, 140 )])
     embedding_pos_a.extend([list(np.random.normal(
         loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(1, max_doc_len)])
     # embedding.extend([list(np.random.normal(loc=0.0, scale=0.1, size=embedding_dim)) for i in range(-68,34)])
     # embedding, embedding_pos, embedding_pos_e, embedding_pos_a = np.array(embedding), np.array(embedding_pos), np.array(embedding_pos_e), np.array(embedding_pos_a)
     embedding, embedding_pos, embedding_pos_a, embedding_pos_e = np.array(embedding), np.array(embedding_pos), np.array(embedding_pos_a), np.array(embedding_pos_e)
+    # print(embedding_pos_e)
     pk.dump(embedding, open(path + 'embedding.txt', 'wb'))
     pk.dump(embedding_pos, open(path + 'embedding_pos.txt', 'wb'))
     pk.dump(embedding_pos_a, open(path + 'embedding_pos_a.txt', 'wb'))
@@ -160,8 +161,8 @@ def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen
     print('relative_pos.shape {}\nrelative_pos_a.shape {}\nrelative_pos_e.shape {}\nx.shape {} \ny_position.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
         relative_pos.shape, relative_pos_a.shape, relative_pos_e.shape, x.shape, y_position.shape, y.shape, sen_len.shape, doc_len.shape
     ))
-    # print('relative_pos_e {}'.format(relative_pos_e[0][0]))
-    # print('relative_pos_e {}'.format(relative_pos_e[0][1]))
+    print('relative_pos {}'.format(relative_pos[0][0]))
+    print('relative_pos {}'.format(relative_pos[0][1]))
     # word_dis = np.reshape(relative_pos_e[:, :, 0], [-1, max_doc_len])
     # print('word_dis {}'.format(word_dis[0]))
     # print('word_dis {}'.format(word_dis[1]))
