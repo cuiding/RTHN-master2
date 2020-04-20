@@ -200,7 +200,7 @@ def run():
 
 
     word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
-    pos_embedding_e = tf.constant(pos_embedding_a, dtype=tf.float32, name='pos_embedding_e')
+    pos_embedding_e = tf.constant(pos_embedding_e, dtype=tf.float32, name='pos_embedding_e')
     print('build model...')
 
     start_time = time.time()
