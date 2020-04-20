@@ -55,7 +55,7 @@ def load_w2v(embedding_dim, embedding_dim_pos, train_file_path, embedding_path):
     embedding_pos.extend([list(np.random.normal(
         loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(-68, 34)])
     embedding_pos_e.extend([list(np.random.normal(
-        loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range( 0, 140 )])
+        loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range( 0, 145 )])
     embedding_pos_a.extend([list(np.random.normal(
         loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(1, max_doc_len)])
     # embedding.extend([list(np.random.normal(loc=0.0, scale=0.1, size=embedding_dim)) for i in range(-68,34)])
