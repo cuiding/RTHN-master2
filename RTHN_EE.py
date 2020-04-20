@@ -79,16 +79,15 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         b_pos = func.get_weight_varible('softmax_b_pos', [FLAGS.n_class])
         pred_pos = tf.nn.softmax(tf.matmul(s1, w_pos) + b_pos)
         pred_pos = tf.reshape(pred_pos, [-1, FLAGS.max_doc_len, FLAGS.n_class])
+
     # 形成相对位置向量
-    # word_dis是绝对位置向量
     print("word_dis:{}".format(word_dis))
     word_dis = tf.reshape(word_dis[:, :, 0], [-1, FLAGS.max_doc_len]) # shape=(?, 75)
     print("word_dis:{}".format(word_dis))
 
     pred_y_pos_op = tf.argmax(pred_pos, 2)  # shape=(?, 75)
     cla_ind = tf.argmax(pred_y_pos_op, 1)# shape=(?,)
-    cla_ind = tf.to_int32(cla_ind)
-    cla_ind = tf.reshape(cla_ind, [-1, 1])
+    cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
     cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
     print("cla_ind.shape:{}".format(cla_ind))
     # m_69 = 69 * tf.ones_like(cla_ind)
@@ -312,11 +311,11 @@ def run():
                 step = 1
                 #train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
                 for train, _ in get_batch_data(tr_x,  tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
-                    _, loss, pred_pos, ture_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch = sess.run(
+                    _, loss, pred_y_pos, ture_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch = sess.run(
                         [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                    acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_pos, ture_pos, doc_len_batch)
+                    acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, ture_pos, doc_len_batch)
                     if step % 5 == 0:
                         print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                         print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
@@ -326,7 +325,7 @@ def run():
 
                 '''*********Test********'''
                 test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
-                loss, pred_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob = sess.run(
+                loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob = sess.run(
                     [loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos], feed_dict=dict(zip(placeholders, test)))
 
                 end_time = time.time()
@@ -336,12 +335,12 @@ def run():
                 pre_list_prob.append(pred_prob)
 
                 true_pos_list.append(true_pos)
-                pre_pos_list.append(pred_pos)
+                pre_pos_list.append(pred_y_pos)
                 pre_pos_list_prob.append(pred_pos_prob)
 
                 #计算精确率准确率召回率和F值
                 acc, p, r, f1 = func.acc_prf(pred_y, true_y, te_doc_len)
-                acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_pos, ture_pos, doc_len_batch)
+                acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, ture_pos, doc_len_batch)
 
                 precision_list.append(p)
                 recall_list.append(r)
@@ -375,7 +374,7 @@ def run():
                     prob_list_pr.append(pred_prob[i][j][1])
                     y_label.append(true_y[i][j])
 
-            for i in range(pred_pos.shape[0]):
+            for i in range(pred_y_pos.shape[0]):
                 for j in range(te_doc_len[i]):
                     prob_pos_list_pr.append(pred_pos_prob[i][j][1])
                     pos_label.append(true_pos[i][j])
