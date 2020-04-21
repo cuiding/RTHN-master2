@@ -42,8 +42,8 @@ def acc_prf(pred_y, true_y, doc_len):
     for i in range(pred_y.shape[0]):
         print("doc_len[{}]:{}".format(i, doc_len[i]))
         for j in range(doc_len[i]):
-            print("pred_y[{}][{}]:{}".format(i, j, pred_y[i][j]))
-            print("true_y[{}][{}]:{}".format(i, j, true_y[i][j]))
+            # print("pred_y[{}][{}]:{}".format(i, j, pred_y[i][j]))
+            # print("true_y[{}][{}]:{}".format(i, j, true_y[i][j]))
             tmp1.append(pred_y[i][j])
             tmp2.append(true_y[i][j])
     y_pred, y_true = np.array(tmp1), np.array(tmp2)
