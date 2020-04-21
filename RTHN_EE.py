@@ -312,11 +312,11 @@ def run():
                 step = 1
                 #train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
                 for train, _ in get_batch_data(tr_x,  tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
-                    _, loss, pred_y_pos, ture_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch = sess.run(
+                    _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch = sess.run(
                         [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                    acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, ture_pos, doc_len_batch)
+                    acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, true_pos, doc_len_batch)
                     if step % 5 == 0:
                         print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                         print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
@@ -341,7 +341,7 @@ def run():
 
                 #计算精确率准确率召回率和F值
                 acc, p, r, f1 = func.acc_prf(pred_y, true_y, te_doc_len)
-                acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, ture_pos, te_doc_len)
+                acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, true_pos, te_doc_len)
 
                 precision_list.append(p)
                 recall_list.append(r)
