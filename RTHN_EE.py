@@ -90,8 +90,8 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
     cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
     cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
     print("cla_ind.shape:{}".format(cla_ind))
-    m_69 = 69 * tf.ones_like(cla_ind)
-    cla_ind =  tf.subtract(cla_ind , m_69)
+    m_75 = 75 * tf.ones_like(cla_ind)
+    cla_ind =  tf.subtract(cla_ind , m_75)
     cla_ind_add_1 = tf.multiply(cla_ind , word_dis)
     print("cla_ind_add_1.shape:{}".format(cla_ind_add_1))
 
@@ -187,6 +187,7 @@ def run():
     x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_embedding, pos_embedding, pos_embedding_a, pos_embedding_e = func.load_data()
 
     print("x_data.shape:{}\n".format(x_data.shape))
+    print("y_position_data.shape:{}\n".format(y_position_data.shape))
     print("y_data.shape:{}\n".format(y_data.shape))
     print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
     print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
