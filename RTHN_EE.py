@@ -340,7 +340,7 @@ def run():
 
                 #计算精确率准确率召回率和F值
                 acc, p, r, f1 = func.acc_prf(pred_y, true_y, te_doc_len)
-                acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, ture_pos, doc_len_batch)
+                acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, ture_pos, te_doc_len)
 
                 precision_list.append(p)
                 recall_list.append(r)
