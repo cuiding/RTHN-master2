@@ -421,7 +421,7 @@ def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
     # print("matmul(s, w):{}".format(pred))
     pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
     pred = tf.nn.softmax(pred)
-    pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name='pred')
+    pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class])
     reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
     return pred, reg
 
