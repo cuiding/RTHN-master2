@@ -35,10 +35,7 @@ def load_data():
 
 def acc_prf(pred_y, true_y, doc_len):
     tmp1, tmp2 = [], []
-    print("pred_y.shape[0]:{}".format(pred_y.shape[0]))
-    print("pred_y.shape[1]:{}".format(pred_y.shape[1]))
-    print("true_y.shape[0]:{}".format(true_y.shape[0]))
-    print("true_y.shape[1]:{}".format(true_y.shape[1]))
+    print("pred_y.shape[0]:{}  pred_y.shape[1]:{}  true_y.shape[0]:{}  true_y.shape[1]:{}".format(pred_y.shape[0], pred_y.shape[1], true_y.shape[0], true_y.shape[1]))
     for i in range(pred_y.shape[0]):
         print("doc_len[{}]:{}".format(i, doc_len[i]))
         for j in range(doc_len[i]):
