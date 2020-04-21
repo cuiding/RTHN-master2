@@ -241,12 +241,12 @@ def run():
 
     true_y_op = tf.argmax(y, 2,name = "true_y_op")
     pred_y_op = tf.argmax(pred, 2,  name = "pred_y_op")
-    true_pos_op = tf.argmax(y_position, 2, name="true_y_op")
-    pred_pos_op = tf.argmax(pred_pos, 2, name="pred_y_op")
-    print("true_y_op:{}".format(true_y_op))
-    print("pred_y_op:{}".format(pred_y_op))
-    print("true_pos_op:{}".format(true_pos_op))
-    print("pred_pos_op:{}".format(pred_pos_op))
+    true_pos_op = tf.argmax(y_position, 2, name="true_pos_op")
+    pred_pos_op = tf.argmax(pred_pos, 2, name="pred_pos_op")
+    # print("true_y_op:{}".format(true_y_op))
+    # print("pred_y_op:{}".format(pred_y_op))
+    # print("true_pos_op:{}".format(true_pos_op))
+    # print("pred_pos_op:{}".format(pred_pos_op))
     pred_y_assist_op_list = []
 
     for i in range(FLAGS.n_layers - 1):
