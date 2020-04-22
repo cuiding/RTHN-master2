@@ -200,7 +200,7 @@ def run():
     print("pos_embedding_e.shape:{}\n".format(pos_embedding_e.shape))
     # print("pos_embedding:{}\n".format(pos_embedding[1]))
 
-    # word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
+    word_em_data = tf.constant(word_em_data, dtype=tf.float32)
     pos_embedding_e = tf.constant(pos_embedding_e, dtype=tf.float32, name='pos_embedding_e')
     print('build model...')
     start_time = time.time()
@@ -297,7 +297,8 @@ def run():
                 for i in range(training_iter):
                     step = 1
                     # train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
-                    for train, _ in get_batch_data(tr_x, tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, word_em_data, FLAGS.batch_size):
+                    for train, _ in get_batch_data(tr_x, tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
+                        train.append(word_em_data)
                         _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
                             [optimizer_assist_list[layer], loss_assist_list[layer], pred_y_assist_op_list[layer], true_y_op, pred_assist_list[layer], doc_len],
                             feed_dict=dict(zip(placeholders, train)))
@@ -310,7 +311,8 @@ def run():
             for epoch in range(FLAGS.training_iter):
                 step = 1
                 #train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
-                for train, _ in get_batch_data(tr_x,  tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, word_em_data, FLAGS.batch_size):
+                for train, _ in get_batch_data(tr_x,  tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
+                    train.append( word_em_data )
                     _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch = sess.run(
                         [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
@@ -405,9 +407,9 @@ def print_training_info():
     print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
 
 
-def get_batch_data(x, pos, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2,  word_em_data, batch_size, test=False):
+def get_batch_data(x, pos, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2,  batch_size, test=False):
     for index in func.batch_index(len(y), batch_size, test):
-        feed_list = [x[index], pos[index], y[index], sen_len[index], doc_len[index], word_dis[index],  keep_prob1, keep_prob2, word_em_data]
+        feed_list = [x[index], pos[index], y[index], sen_len[index], doc_len[index], word_dis[index],  keep_prob1, keep_prob2]
         yield feed_list, len(index)
 
 
