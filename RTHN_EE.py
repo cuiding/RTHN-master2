@@ -319,11 +319,11 @@ def run():
                     if step % 5 == 0:
                         print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                         print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
-                    print("begin save!")
-                    saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
+                    # print("begin save!")
+                    # saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
                     step = step + 1
-                # print("begin save!")
-                # saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
+                print("begin save!")
+                saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
 
                 '''*********Test********'''
                 test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.,word_em_data]
