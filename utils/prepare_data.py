@@ -161,8 +161,8 @@ def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen
     print('relative_pos.shape {}\nrelative_pos_a.shape {}\nrelative_pos_e.shape {}\nx.shape {} \ny_position.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
         relative_pos.shape, relative_pos_a.shape, relative_pos_e.shape, x.shape, y_position.shape, y.shape, sen_len.shape, doc_len.shape
     ))
-    print('relative_pos {}'.format(relative_pos[0][0]))
-    print('relative_pos {}'.format(relative_pos[0][1]))
+    # print('relative_pos {}'.format(relative_pos[0][0]))
+    # print('relative_pos {}'.format(relative_pos[0][1]))
     # word_dis = np.reshape(relative_pos_e[:, :, 0], [-1, max_doc_len])
     # print('word_dis {}'.format(word_dis[0]))
     # print('word_dis {}'.format(word_dis[1]))
