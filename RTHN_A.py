@@ -201,12 +201,11 @@ def run():
     prob_list_pr, y_label = [], []
     # Training Code Block
     print_training_info()
-    tf_config = tf.ConfigProto()
+    tf_config = tf.ConfigProto(device_count={'GPU': 2})
     tf_config.gpu_options.allow_growth = True
 
     saver = tf.train.Saver(max_to_keep=4)
 
-    tf_config = tf.ConfigProto(device_count={'GPU': 2})
     with tf.Session(config=tf_config) as sess:
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
