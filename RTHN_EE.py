@@ -200,7 +200,7 @@ def run():
     print("pos_embedding_e.shape:{}\n".format(pos_embedding_e.shape))
     # print("pos_embedding:{}\n".format(pos_embedding[1]))
 
-    word_em_data = tf.constant(word_em_data, dtype=tf.float32)
+    # word_em_data = tf.constant(word_em_data, dtype=tf.float32)
     pos_embedding_e = tf.constant(pos_embedding_e, dtype=tf.float32, name='pos_embedding_e')
     print('build model...')
     start_time = time.time()
