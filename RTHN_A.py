@@ -13,6 +13,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
+os.environ["CUDA_VISIBLE_DEVICES"] = '2'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -201,7 +202,7 @@ def run():
     prob_list_pr, y_label = [], []
     # Training Code Block
     print_training_info()
-    tf_config = tf.ConfigProto(device_count={'GPU': 2})
+    tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
 
     saver = tf.train.Saver(max_to_keep=4)
