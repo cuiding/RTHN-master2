@@ -1,11 +1,739 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/main.py" line="23" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/main.py" line="49" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b1fa0fb-6b9c-4e38-acf0-38461c949b91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/RTHN_test.py" afterDir="false" />
+    <list default="true" id="5b1fa0fb-6b9c-4e38-acf0-38461c949b91" name="Default Changelist" comment="1111">
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/.idea/ECPE-master.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/Ind-BiLSTM.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/P_cause.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/P_emotion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/all_data_pair.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/clause_keywords.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/clause_keywords_emotion.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold10_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold10_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold1_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold1_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold2_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold2_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold3_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold3_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold4_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold4_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold5_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold5_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold6_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold6_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold7_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold7_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold8_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold8_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold9_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/data_combine/fold9_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/pair.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/utils/prepare_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECPE-master/utils/tf_funcs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/.idea/ECextraction-master.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/code/ACNN.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/code/data_helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/code/train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/data/HLTEmotionml.eml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/data/data_included.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/data/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/data/train_data.list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/ECextraction-master/data/train_data.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/RRHN.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/RTHN.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/data/clause_keywords.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/data/datacsv_2105.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/data/w2v_200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/transformer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/utils/prepare_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CODE/RTHN-master/utils/tf_funcs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/.idea/ECPE-master.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/Ind-BiLSTM.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/P_cause.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/P_emotion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data/w2v_200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/all_data_pair.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/clause_keywords.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/clause_keywords_emotion.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold10_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold10_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold1_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold1_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold2_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold2_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold3_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold3_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold4_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold4_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold5_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold5_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold6_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold6_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold7_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold7_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold8_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold8_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold9_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/data_combine/fold9_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/pair.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/utils/prepare_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/utils/tf_funcs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/easy-install.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/EGG-INFO/PKG-INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/EGG-INFO/SOURCES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/EGG-INFO/dependency_links.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/EGG-INFO/entry_points.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/EGG-INFO/not-zip-safe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/EGG-INFO/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/__main__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/build_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/cli/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/cli/autocompletion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/cli/base_command.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/cli/cmdoptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/cli/main_parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/cli/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/cli/status_codes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/check.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/completion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/configuration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/download.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/freeze.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/hash.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/help.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/install.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/search.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/show.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/uninstall.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/commands/wheel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/configuration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/download.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/index.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/locations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/models/candidate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/models/format_control.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/models/index.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/models/link.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/operations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/operations/check.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/operations/freeze.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/operations/prepare.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/pep425tags.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/pyproject.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/req/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/req/constructors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/req/req_file.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/req/req_install.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/req/req_set.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/req/req_tracker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/req/req_uninstall.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/resolve.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/appdirs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/deprecation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/encoding.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/filesystem.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/glibc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/hashes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/logging.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/misc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/outdated.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/packaging.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/setuptools_build.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/temp_dir.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/typing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/utils/ui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/vcs/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/vcs/bazaar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/vcs/git.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/vcs/mercurial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/vcs/subversion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_internal/wheel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/appdirs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/_cmd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/adapter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/caches/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/caches/file_cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/caches/redis_cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/filewrapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/heuristics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/serialize.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/cachecontrol/wrapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/certifi/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/certifi/__main__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/certifi/cacert.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/certifi/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/big5freq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/big5prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/chardistribution.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/charsetgroupprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/charsetprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/cli/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/cli/chardetect.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/codingstatemachine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/cp949prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/enums.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/escprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/escsm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/eucjpprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/euckrfreq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/euckrprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/euctwfreq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/euctwprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/gb2312freq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/gb2312prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/hebrewprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/jisfreq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/jpcntx.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/langbulgarianmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/langcyrillicmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/langgreekmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/langhebrewmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/langhungarianmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/langthaimodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/langturkishmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/latin1prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/mbcharsetprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/mbcsgroupprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/mbcssm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/sbcharsetprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/sbcsgroupprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/sjisprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/universaldetector.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/utf8prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/chardet/version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/colorama/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/colorama/ansi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/colorama/ansitowin32.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/colorama/initialise.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/colorama/win32.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/colorama/winterm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/_backport/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/_backport/misc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/_backport/shutil.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/_backport/sysconfig.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/_backport/sysconfig.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/_backport/tarfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/database.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/index.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/locators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/manifest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/markers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/metadata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/resources.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/scripts.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/t32.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/t64.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/w32.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/w64.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distlib/wheel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/distro.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/_ihatexml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/_inputstream.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/_tokenizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/_trie/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/_trie/_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/_trie/datrie.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/_trie/py.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/filters/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/filters/alphabeticalattributes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/filters/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/filters/inject_meta_charset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/filters/lint.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/filters/optionaltags.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/filters/sanitizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/filters/whitespace.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/html5parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/serializer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treeadapters/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treeadapters/genshi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treeadapters/sax.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treebuilders/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treebuilders/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treebuilders/dom.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treebuilders/etree.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treebuilders/etree_lxml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treewalkers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treewalkers/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treewalkers/dom.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treewalkers/etree.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treewalkers/etree_lxml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/html5lib/treewalkers/genshi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/idna/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/idna/codec.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/idna/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/idna/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/idna/idnadata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/idna/intranges.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/idna/package_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/idna/uts46data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/ipaddress.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/lockfile/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/lockfile/linklockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/lockfile/mkdirlockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/lockfile/pidlockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/lockfile/sqlitelockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/lockfile/symlinklockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/msgpack/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/msgpack/_version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/msgpack/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/msgpack/fallback.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/packaging/__about__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/packaging/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/packaging/_compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/packaging/_structures.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/packaging/markers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/packaging/requirements.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/packaging/specifiers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/packaging/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/packaging/version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pep517/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pep517/_in_process.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pep517/build.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pep517/check.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pep517/colorlog.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pep517/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pep517/envbuild.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pep517/wrappers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pkg_resources/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pkg_resources/py31compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/progress/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/progress/bar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/progress/counter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/progress/helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/progress/spinner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pyparsing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pytoml/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pytoml/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pytoml/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pytoml/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pytoml/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/pytoml/writer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/__version__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/_internal_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/adapters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/certs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/cookies.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/help.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/hooks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/packages.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/sessions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/status_codes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/structures.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/requests/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/retrying.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/six.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/_collections.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/connection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/connectionpool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/_appengine_environ.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/_securetransport/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/_securetransport/bindings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/_securetransport/low_level.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/appengine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/ntlmpool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/pyopenssl.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/securetransport.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/contrib/socks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/fields.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/filepost.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/packages/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/packages/backports/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/packages/backports/makefile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/packages/six.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/packages/ssl_match_hostname/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/packages/ssl_match_hostname/_implementation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/poolmanager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/request.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/response.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/connection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/queue.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/request.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/response.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/retry.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/ssl_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/timeout.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/url.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/urllib3/util/wait.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/webencodings/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/webencodings/labels.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/webencodings/mklabels.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/webencodings/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/pip-19.0.3-py3.6.egg/pip/_vendor/webencodings/x_user_defined.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/setuptools-40.8.0-py3.6.egg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/site-packages/setuptools.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Lib/tcl8.6/init.tcl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/Activate.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_asyncio.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_bz2.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_ctypes.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_ctypes_test.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_decimal.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_distutils_findvs.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_elementtree.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_hashlib.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_lzma.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_msi.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_multiprocessing.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_overlapped.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_socket.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_sqlite3.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_ssl.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_testbuffer.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_testcapi.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_testconsole.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_testimportmultiple.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_testmultiphase.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/_tkinter.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/activate" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/activate.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-console-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-datetime-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-debug-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-errorhandling-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-file-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-file-l1-2-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-file-l2-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-handle-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-heap-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-interlocked-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-libraryloader-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-localization-l1-2-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-memory-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-namedpipe-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-processenvironment-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-processthreads-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-processthreads-l1-1-1.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-profile-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-rtlsupport-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-string-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-synch-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-synch-l1-2-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-sysinfo-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-timezone-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-core-util-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-conio-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-convert-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-environment-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-filesystem-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-heap-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-locale-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-math-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-multibyte-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-private-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-process-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-runtime-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-stdio-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-string-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-time-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/api-ms-win-crt-utility-l1-1-0.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/concrt140.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/deactivate.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/easy_install-3.6-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/easy_install-3.6.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/easy_install-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/easy_install.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/msvcp140.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/msvcp140_1.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/msvcp140_2.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/pip-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/pip.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/pip3-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/pip3.6-script.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/pip3.6.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/pip3.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/pyexpat.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/python.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/python3.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/python36.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/pythonw.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/select.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/tcl86t.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/tk86t.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/ucrtbase.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/unicodedata.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/vccorlib140.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/vcomp140.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/vcruntime140.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/Scripts/winsound.pyd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECPE-master2/venv/pyvenv.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECextraction-master2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECextraction-master3/code/.ipynb_checkpoints/data_helpers.py-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECextraction-master3/code/data_helpers.py.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECextraction-master3/data/HLTEmotionml.eml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECextraction-master3/data/data_included.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECextraction-master3/data/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECextraction-master3/data/train_data.list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ECextraction-master3/data/train_data.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../README.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/clause_keywords.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/datacsv_2105.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/doc_len.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/embedding.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/embedding_pos.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/relative_pos.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/sen_len.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/w2v_200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/x.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/data/y.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/.ipynb_checkpoints/Untitled1-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/.ipynb_checkpoints/prepare_data-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/.ipynb_checkpoints/prepare_data_2-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/Untitled.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/Untitled1.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/prepare_data.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/prepare_data_2.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run/checkpoint" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run/model.ckpt.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run/model.ckpt.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run/model.ckpt.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/checkpoint" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-260.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-260.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-260.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-270.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-270.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-270.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-280.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-280.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-280.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-290.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-290.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RTHN-master_test/utils/run_2/model.ckpt-290.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shiyanlou/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shiyanlou/Untitled.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/201_session/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/201_session/.ipynb_checkpoints/session-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/201_session/Untitled.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/201_session/session.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/202_placeholder/.ipynb_checkpoints/placeholder-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/202_placeholder/placeholder.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/203_variable/.ipynb_checkpoints/variable-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/203_variable/variable.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/204_activation/.ipynb_checkpoints/activation-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/204_activation/activation.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/301_simple_regression/.ipynb_checkpoints/simple_regression-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/301_simple_regression/simple_regression.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/302_simple_classification/.ipynb_checkpoints/simple_classification-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/302_simple_classification/simple_classification.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/303_save_reload/.ipynb_checkpoints/save_reload-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/303_save_reload/checkpoint" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/303_save_reload/params.data-00000-of-00001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/303_save_reload/params.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/303_save_reload/save_reload.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/403_RNN_regression/.ipynb_checkpoints/RNN_regression-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tensorflow class/403_RNN_regression/RNN_regression.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/.ipynb_checkpoints/demo-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/demo.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/final_data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/stop_words.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/test.tsv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test/train.tsv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../untitled/.idea/untitled.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter1/.ipynb_checkpoints/Income Classification Based on DecisionTree (DecisionTree)-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter1/.ipynb_checkpoints/富人还是穷人？用决策树模型完成特征为分类数据的分类问题-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter1/DecisionTree.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter1/video_1.8_Income Classification Based on DecisionTree (DecisionTree).ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter1/富人还是穷人？用决策树模型完成特征为分类数据的分类问题.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter2/.ipynb_checkpoints/Boston House Price Prediction based on RandomForestRegressor-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter2/.ipynb_checkpoints/Boston House Price Prediction based on RegressionTree (RegressionTree)-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter2/.ipynb_checkpoints/Iris Classification based on DecisionTree (DecisionTree2)-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter2/.ipynb_checkpoints/是哪一种鸢尾花？对有连续值特征的数据进行决策树分类(鸢尾花数据集)-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter2/video_2.5_Boston House Price Prediction based on RegressionTree (RegressionTree).ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter2/video_2.5_Iris Classification based on DecisionTree (DecisionTree2).ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter2/是哪一种鸢尾花？对有连续值特征的数据进行决策树分类(鸢尾花数据集).ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/Chapter2/波士顿房价预测-普通回归树与随机森林.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/HOMEWORK_Medical_Cost_Analysis_and_Modeling_Estimation_Based_on_Random Forest/.ipynb_checkpoints/Health Care Cost Analysis Modeling Based on RandomForest-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/HOMEWORK_Medical_Cost_Analysis_and_Modeling_Estimation_Based_on_Random Forest/.ipynb_checkpoints/医疗费用分析与建模预估-随机森林解决回归问题-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/HOMEWORK_Medical_Cost_Analysis_and_Modeling_Estimation_Based_on_Random Forest/insurance.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Decision Tree决策树/Tree_model/HOMEWORK_Medical_Cost_Analysis_and_Modeling_Estimation_Based_on_Random Forest/医疗费用分析与建模预估-随机森林解决回归问题.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/Model-ensemble-model_based on pima indian diabetes/.ipynb_checkpoints/Model_ensemble-example-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/Model-ensemble-model_based on pima indian diabetes/pima-indians-diabetes.data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/Model-ensemble-model_based on pima indian diabetes/video_3.5_Model_ensemble-example.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/.ipynb_checkpoints/presidential-elections-analysis_part1_中文-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/.ipynb_checkpoints/presidential-elections-analysis_part2_中文-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/.ipynb_checkpoints/presidential-elections-analysis_思路1-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/.ipynb_checkpoints/presidential-elections-analysis_思路2-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/input/US_County_Level_Presidential_Results_12-16.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/input/county_facts.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/input/county_facts_dictionary.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/input/presidential_polls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/input/votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/presidential-elections-analysis_solution1.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/US presidential elections analysis/presidential-elections-analysis_solution2.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/feature_engineering_based on Kaggle Titanic/.ipynb_checkpoints/feature_engineering_and_selection-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/feature_engineering_based on Kaggle Titanic/.ipynb_checkpoints/feature_engineering_template_notebook-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/feature_engineering_based on Kaggle Titanic/car_data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/feature_engineering_based on Kaggle Titanic/feature_engineering_template_notebook.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/feature_engineering_based on Kaggle Titanic/test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/feature_engineering_based on Kaggle Titanic/train.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Feature_Engineering_and_Model_Tuning/Feature_Engineering_and_Model_Tuning/feature_engineering_based on Kaggle Titanic/video_2.2_2.3_2.4_feature_engineering_and_selection.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/.ipynb_checkpoints/01_第1章_分享案例_Scikit-Learn机器学习算法一览-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/images/03_03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/images/03_06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/images/03_07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/images/03_08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/images/03_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/images/03_15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/images/03_18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/images/03_20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Introduction_of_machine_learning/Introduction_of_machine_learning/video_1.8_Classical_machine_learning_algorithm_based_on_Scikit-Learn.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Linear Regreesion and Logistic Regression/linear_regression/.ipynb_checkpoints/linear_regression_example-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Linear Regreesion and Logistic Regression/linear_regression/linear_regression_data1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Linear Regreesion and Logistic Regression/linear_regression/video_1.7_linear_regression_example.ipynb.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Linear Regreesion and Logistic Regression/logistic_regression/.ipynb_checkpoints/logistic_regression_example-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Linear Regreesion and Logistic Regression/logistic_regression/data1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Linear Regreesion and Logistic Regression/logistic_regression/data2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Linear Regreesion and Logistic Regression/logistic_regression/video_1.8_logistic_regression_example.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter1_EM/.ipynb_checkpoints/Derivation_of_EM_and_the_implementation_based_on_Python-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter1_EM/.ipynb_checkpoints/EM的推导及Python实现-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter1_EM/Derivation_of_EM_and_the_implementation_based_on_Python.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter2_Naive_Bayesian_based_on_Python/.ipynb_checkpoints/Naive_Bayesian_based_on_Python-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter2_Naive_Bayesian_based_on_Python/.ipynb_checkpoints/朴素贝叶斯算法的Python实现-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter2_Naive_Bayesian_based_on_Python/Naive_Bayesian_based_on_Python.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter3_HMM/.ipynb_checkpoints/HMM-based_part-of-speech_tagging-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter3_HMM/.ipynb_checkpoints/基于HMM的词性标注-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter3_HMM/HMM-based_part-of-speech_tagging.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter4_LDA_Model_Application-Secrets_in_Hillary's_emails/.ipynb_checkpoints/LDA_Model_Application-Secrets_in_Hillary's_emails-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter4_LDA_Model_Application-Secrets_in_Hillary's_emails/.ipynb_checkpoints/LDA模型应用：一眼看穿希拉里的邮件-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter4_LDA_Model_Application-Secrets_in_Hillary's_emails/.ipynb_checkpoints/[Homework]Using_LDA_model_to_determine_the_themes_of_Hillary's_Twitters-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter4_LDA_Model_Application-Secrets_in_Hillary's_emails/HillaryTwitter.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter4_LDA_Model_Application-Secrets_in_Hillary's_emails/LDA_Model_Application-Secrets_in_Hillary's_emails.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter4_LDA_Model_Application-Secrets_in_Hillary's_emails/[Homework]Using_LDA_model_to_determine_the_themes_of_Hillary's_Twitters.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/Probabilistic_machine_learning_model/Chapter4_LDA_Model_Application-Secrets_in_Hillary's_emails/input/HillaryEmails.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/unsupervised learning/.ipynb_checkpoints/Digital_Clustering_Based_on_K-means(full_version)-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/unsupervised learning/.ipynb_checkpoints/PCA+exercise+based+on+MNIST+digital+data+set+(full+version)-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/unsupervised learning/Digital_Clustering_Based_on_K-means(full_version).ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/unsupervised learning/PCA+exercise+based+on+MNIST+digital+data+set+(full+version).ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/unsupervised learning/commodity association rule mining.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/.ipynb_checkpoints/.ipynb_checkpoints/【子豪兄】15行代码搞定Kaggle电影评论情感分析-checkpoint-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/.ipynb_checkpoints/【子豪兄】15行代码搞定Kaggle电影评论情感分析-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/final_data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/final_data.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/ppt及文稿/TF-IDF公式.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/ppt及文稿/【子豪兄】15行代码搞定Kaggle电影评论情感分析.pptx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/stop_words.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/test.tsv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/train.tsv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zihaomachinelearning-master/【子豪兄机器学习】15行代码搞定Kaggle电影评论情感分析/【子豪兄】15行代码搞定Kaggle电影评论情感分析.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../整理pandas操作 - hylas - 博客园.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/[修正版]本科生毕业设计（论文）书写范例（修订版2019.6.10）.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/任务书.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/哈尔滨工业大学本科生毕业论文撰写规范.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/学校 关于本科生毕业设计（论文）的若干规定.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/学生去教材科购买材料清单.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/学生毕业设计上交资料清单（20170621修改）.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/毕业设计（论文）中期报告.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/毕业设计（论文）开题报告.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/毕业设计（论文）的外文文献翻译.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/计算机学院本科生校外毕业设计申请.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/评语.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/16级毕业设计相关规定及规范/阶段检查记录表.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/开题/崔丁洁-开题答辩.pptx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/开题/开题PPT-周辉.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/开题/毕业设计开题报告-崔丁洁.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/开题/江婷开题报告.doc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/结题/~$江婷毕业答辩.pptx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../毕业设计/结题/江婷毕业答辩.pptx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/08625499.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/Emotion-cause Pair Extraction A New Task to Emotion Analysis in Texts.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/Event-driven Emotion Cause Extraction with Corpus Construction.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/NLPCC2014EmotionCauseDetectionwithLinguisticConstruction.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/Who Feels What and Why. Annotation of a Literature Corpus with Semantic Roles of Emotions.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/中文文本情绪原因发现研究_胡健楠 .caj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/事件驱动的文本情绪原因发现研究_吴冬茵.caj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/基于E-CNN的情绪原因识别方法_withMarginNotes.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/基于情绪认知常识库的文本情绪原因发现_王赵煜 (1).caj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/基于深度学习的文本情感原因发现方法的研究与实现.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/跨语言文本情感原因发现研究_高清红.caj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../论文/面向理解的文本情感分析研究_桂林.caj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RTHN_A.py" beforeDir="false" afterPath="$PROJECT_DIR$/RTHN_A.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/embedding.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/embedding.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/embedding_pos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/embedding_pos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/x.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/x.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_window.ui" beforeDir="false" afterPath="$PROJECT_DIR$/main_window.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_2/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/checkpoint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-40.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-40.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-40.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-45.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-45.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-45.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-50.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-50.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-50.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-55.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-55.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-55.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-60.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-60.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final/model.ckpt-60.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final_ee/checkpoint" beforeDir="false" afterPath="$PROJECT_DIR$/run_final_ee/checkpoint" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_final_ee/model.ckpt-12.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/run_final_ee/model.ckpt-12.data-00000-of-00001" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,57 +741,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/RTHN.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="144">
-                    <caret line="155" column="54" selection-end-line="369" />
-                    <folding>
-                      <element signature="e#103#121#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/main.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="479">
-                    <caret line="67" column="26" lean-forward="true" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
-                    <folding>
-                      <element signature="e#0#10#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/prepare_data.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2299">
-              <caret line="126" selection-start-line="126" selection-end-line="126" />
+            <state relative-caret-position="75">
+              <caret line="138" column="44" lean-forward="true" selection-end-line="402" />
               <folding>
-                <element signature="e#103#116#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#5543#5775#0" />
               </folding>
             </state>
           </provider>
@@ -72,29 +759,60 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main_window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="44" column="43" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
+            <state relative-caret-position="307">
+              <caret line="110" column="19" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RRHN.py">
+        <entry file="file://$PROJECT_DIR$/utils/prepare_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
+            <state relative-caret-position="235">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
               <folding>
-                <element signature="e#74#92#0" expanded="true" />
+                <element signature="e#103#116#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/RTHN_test.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/tf_funcs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3767">
-              <caret line="286" column="145" lean-forward="true" selection-start-line="247" selection-start-column="18" selection-end-line="286" selection-end-column="145" />
+            <state relative-caret-position="988">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/transformer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RTHN_EE.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="219" column="109" selection-start-line="219" selection-start-column="109" selection-end-line="219" selection-end-column="109" />
+              <folding>
+                <element signature="e#103#121#0" expanded="true" />
+                <element signature="e#2677#9417#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RTHN_A.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
               <folding>
                 <element signature="e#103#121#0" expanded="true" />
               </folding>
@@ -103,28 +821,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorflow/python/platform/app.py">
+        <entry file="file://$PROJECT_DIR$/RTHN.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="124" selection-start-line="124" selection-end-line="124" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/transformer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/tf_funcs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="817">
-              <caret line="48" column="59" selection-start-line="48" selection-start-column="59" selection-end-line="48" selection-end-column="59" />
+            <state relative-caret-position="-437">
+              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -140,66 +840,71 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pred_y_op</find>
-      <find>x</find>
-      <find>load_data</find>
-      <find>build_model</find>
-      <find>doc_len</find>
-      <find>datacsv_2105</find>
-      <find>load_w2v</find>
-      <find>word_idx</find>
-      <find>y_clause_cause</find>
-      <find>embedding.txt</find>
-      <find>embedding</find>
-      <find>embedding_pos</find>
-      <find>senEncode_softmax</find>
-      <find>save</find>
-      <find>RNN</find>
-      <find>LSTM</find>
-      <find>main</find>
-      <find>acc_assist</find>
-      <find>loss_op</find>
-      <find>te_x</find>
-      <find>word_embedding</find>
-      <find>pos_embedding</find>
-      <find>word_distance</find>
-      <find>x_data</find>
-      <find>x.shape</find>
-      <find>print</find>
-      <find>run</find>
+      <find>word_embedding_data</find>
+      <find>acc_prf</find>
+      <find>word_em_data,</find>
+      <find>word_em_data</find>
       <find>placeholders</find>
-      <find>run_times</find>
-      <find>pred</find>
+      <find>pos_embedding_e</find>
+      <find>get_batch_data</find>
+      <find>word_dict</find>
+      <find>word_embedding</find>
+      <find>relative_pos_all_e</find>
+      <find>x</find>
+      <find>words</find>
+      <find>word_idx</find>
+      <find>n_clause</find>
+      <find>index</find>
+      <find>tmp_clause_len</find>
+      <find>params_search</find>
+      <find>ParameterGrid</find>
+      <find>params = {&quot;n_layers&quot;: [4, 5]}</find>
+      <find>n_layers</find>
+      <find>relative_pos</find>
+      <find>device_count</find>
+      <find>config</find>
+      <find>save</find>
+      <find>clauses</find>
+      <find>te_word_dis</find>
+      <find>print</find>
+      <find>clause_all</find>
+      <find>training_iter</find>
+      <find>self</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/ECC.py" />
         <option value="$PROJECT_DIR$/main_window.py" />
-        <option value="$PROJECT_DIR$/utils/tf_funcs.py" />
-        <option value="$PROJECT_DIR$/utils/prepare_data.py" />
         <option value="$PROJECT_DIR$/RRHN.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/RTHN.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/utils/11.py" />
+        <option value="$PROJECT_DIR$/utils/12.py" />
         <option value="$PROJECT_DIR$/RTHN_test.py" />
+        <option value="$PROJECT_DIR$/77.py" />
+        <option value="$PROJECT_DIR$/RTHN_E.py" />
+        <option value="$PROJECT_DIR$/utils/RTHN_EE.py" />
+        <option value="$PROJECT_DIR$/EE.py" />
+        <option value="$PROJECT_DIR$/utils/tf_funcs.py" />
+        <option value="$PROJECT_DIR$/main_e.py" />
+        <option value="$PROJECT_DIR$/utils/prepare_data.py" />
+        <option value="$PROJECT_DIR$/RTHN.py" />
+        <option value="$PROJECT_DIR$/RTHN_EE.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/RTHN_A.py" />
+        <option value="$PROJECT_DIR$/run_final_ee/checkpoint" />
       </list>
     </option>
   </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="width" value="980" />
-    <option name="height" value="1091" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="949" />
+    <option name="y" value="-11" />
+    <option name="width" value="983" />
+    <option name="height" value="1103" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -207,7 +912,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -215,15 +919,34 @@
               <item name="RTHN-master2" type="b2602c69:ProjectViewProjectNode" />
               <item name="RTHN-master2" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="RTHN-master2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../RTHN-master3" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="ChangesTree.GroupingKeys" value="directory" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings>
+        <option name="useSoftWraps" value="true" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\nlp\RTHN-master2\run_final" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -237,28 +960,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.RTHN_test">
-    <configuration name="RRHN" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="RTHN-master2" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RRHN.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.main">
     <configuration name="RTHN" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RTHN-master2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -280,7 +982,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="RTHN_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="RTHN_A" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RTHN-master2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -292,7 +994,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RTHN_test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RTHN_A.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -301,7 +1003,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="RTHN_EE (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="RTHN-master2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RTHN_EE.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python">
       <module name="RTHN-master2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -314,6 +1037,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_e" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="RTHN-master2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_e.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -345,11 +1089,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.RTHN_test" />
-        <item itemvalue="Python.RTHN" />
-        <item itemvalue="Python.RRHN" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.prepare_data" />
+        <item itemvalue="Python.RTHN_EE (1)" />
+        <item itemvalue="Python.main_e" />
+        <item itemvalue="Python.RTHN_A" />
+        <item itemvalue="Python.RTHN" />
       </list>
     </recent_temporary>
   </component>
@@ -364,48 +1108,428 @@
       <option name="presentableId" value="Default" />
       <updated>1585102524062</updated>
     </task>
+    <task id="LOCAL-00015" summary="1111">
+      <created>1587041934544</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1587041934544</updated>
+    </task>
+    <task id="LOCAL-00016" summary="eeee">
+      <created>1587196365044</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1587196365044</updated>
+    </task>
+    <task id="LOCAL-00017" summary="wwww">
+      <created>1587221691625</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1587221691625</updated>
+    </task>
+    <task id="LOCAL-00018" summary="eee">
+      <created>1587222464899</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1587222464899</updated>
+    </task>
+    <task id="LOCAL-00019" summary="1111">
+      <created>1587223275394</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1587223275394</updated>
+    </task>
+    <task id="LOCAL-00020" summary="444">
+      <created>1587290090974</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1587290090974</updated>
+    </task>
+    <task id="LOCAL-00021" summary="1111">
+      <created>1587293445800</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1587293445800</updated>
+    </task>
+    <task id="LOCAL-00022" summary="1111">
+      <created>1587300522572</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1587300522572</updated>
+    </task>
+    <task id="LOCAL-00023" summary="1111">
+      <created>1587300829729</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1587300829729</updated>
+    </task>
+    <task id="LOCAL-00024" summary="1111">
+      <created>1587301213706</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1587301213706</updated>
+    </task>
+    <task id="LOCAL-00025" summary="1111">
+      <created>1587301387197</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1587301387197</updated>
+    </task>
+    <task id="LOCAL-00026" summary="1111">
+      <created>1587303452484</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1587303452484</updated>
+    </task>
+    <task id="LOCAL-00027" summary="1111111">
+      <created>1587371311389</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1587371311389</updated>
+    </task>
+    <task id="LOCAL-00028" summary="1111">
+      <created>1587371890015</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1587371890015</updated>
+    </task>
+    <task id="LOCAL-00029" summary="111111111111">
+      <created>1587377692853</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1587377692853</updated>
+    </task>
+    <task id="LOCAL-00030" summary="1111">
+      <created>1587390774281</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1587390774281</updated>
+    </task>
+    <task id="LOCAL-00031" summary="1111111">
+      <created>1587391516986</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1587391516986</updated>
+    </task>
+    <task id="LOCAL-00032" summary="1111">
+      <created>1587392024813</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1587392024813</updated>
+    </task>
+    <task id="LOCAL-00033" summary="1111111">
+      <created>1587428222943</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1587428222943</updated>
+    </task>
+    <task id="LOCAL-00034" summary="1111">
+      <created>1587430550039</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1587430550039</updated>
+    </task>
+    <task id="LOCAL-00035" summary="1111">
+      <created>1587435324942</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1587435324942</updated>
+    </task>
+    <task id="LOCAL-00036" summary="1111">
+      <created>1587438578615</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1587438578615</updated>
+    </task>
+    <task id="LOCAL-00037" summary="1111">
+      <created>1587443899478</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1587443899478</updated>
+    </task>
+    <task id="LOCAL-00038" summary="1111">
+      <created>1587444333229</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1587444333229</updated>
+    </task>
+    <task id="LOCAL-00039" summary="1111">
+      <created>1587446083287</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1587446083287</updated>
+    </task>
+    <task id="LOCAL-00040" summary="1111">
+      <created>1587448799590</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1587448799590</updated>
+    </task>
+    <task id="LOCAL-00041" summary="1111">
+      <created>1587449102391</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1587449102391</updated>
+    </task>
+    <task id="LOCAL-00042" summary="1111">
+      <created>1587450587978</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1587450587978</updated>
+    </task>
+    <task id="LOCAL-00043" summary="11111111">
+      <created>1587488515959</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1587488515959</updated>
+    </task>
+    <task id="LOCAL-00044" summary="111111">
+      <created>1587528765647</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1587528765647</updated>
+    </task>
+    <task id="LOCAL-00045" summary="1111111111111">
+      <created>1587530295548</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1587530295548</updated>
+    </task>
+    <task id="LOCAL-00046" summary="1112">
+      <created>1587530547706</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1587530547706</updated>
+    </task>
+    <task id="LOCAL-00047" summary="111111">
+      <created>1587530830978</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1587530830978</updated>
+    </task>
+    <task id="LOCAL-00048" summary="1111">
+      <created>1587531022541</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1587531022541</updated>
+    </task>
+    <task id="LOCAL-00049" summary="1111">
+      <created>1587531311619</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1587531311619</updated>
+    </task>
+    <task id="LOCAL-00050" summary="1111">
+      <created>1587531571068</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1587531571069</updated>
+    </task>
+    <task id="LOCAL-00051" summary="11111111">
+      <created>1587532015385</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1587532015385</updated>
+    </task>
+    <task id="LOCAL-00052" summary="1111111">
+      <created>1587532151243</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1587532151243</updated>
+    </task>
+    <task id="LOCAL-00053" summary="1111111">
+      <created>1587532308456</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1587532308456</updated>
+    </task>
+    <task id="LOCAL-00054" summary="1111">
+      <created>1587532589815</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1587532589815</updated>
+    </task>
+    <task id="LOCAL-00055" summary="1111">
+      <created>1587532869195</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1587532869195</updated>
+    </task>
+    <task id="LOCAL-00056" summary="111111">
+      <created>1587535869092</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1587535869092</updated>
+    </task>
+    <task id="LOCAL-00057" summary="1111">
+      <created>1587538174105</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1587538174105</updated>
+    </task>
+    <task id="LOCAL-00058" summary="1111">
+      <created>1587538413480</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1587538413480</updated>
+    </task>
+    <task id="LOCAL-00059" summary="1111">
+      <created>1587538549743</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1587538549743</updated>
+    </task>
+    <task id="LOCAL-00060" summary="1111">
+      <created>1587539195558</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1587539195558</updated>
+    </task>
+    <task id="LOCAL-00061" summary="1111111">
+      <created>1587541197046</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1587541197046</updated>
+    </task>
+    <task id="LOCAL-00062" summary="1111">
+      <created>1587541606523</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1587541606523</updated>
+    </task>
+    <task id="LOCAL-00063" summary="1111">
+      <created>1587542521028</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1587542521028</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15170771" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1310564" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.14387211" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.05804312" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5647339" weight="0.049751244" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36944938" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32854578" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3285968" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.43526608" side_tool="true" visible="true" weight="0.53067994" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4988086" weight="0.13854352" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3268206" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.21669628" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3419773" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1310564" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.14387211" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.049751244" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5647339" visible="true" weight="0.049751244" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36944938" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32854578" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3285968" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.43526608" side_tool="true" weight="0.13676731" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4988086" weight="0.13854352" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3268206" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.21669628" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first" />
+    <MESSAGE value="main" />
+    <MESSAGE value="aaa" />
+    <MESSAGE value="eeee" />
+    <MESSAGE value="wwww" />
+    <MESSAGE value="eee" />
+    <MESSAGE value="444" />
+    <MESSAGE value="111111111111" />
+    <MESSAGE value="1111111111111" />
+    <MESSAGE value="1112" />
+    <MESSAGE value="11111111" />
+    <MESSAGE value="111111" />
+    <MESSAGE value="1111111" />
+    <MESSAGE value="1111" />
+    <option name="LAST_COMMIT_MESSAGE" value="1111" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -414,6 +1538,16 @@
           <url>file://$PROJECT_DIR$/RRHN.py</url>
           <line>193</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/RTHN.py</url>
+          <line>311</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorflow/python/framework/ops.py</url>
+          <line>2403</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -437,13 +1571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorflow/python/client/session.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="766" column="6" selection-start-line="766" selection-start-column="6" selection-end-line="766" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/numpy/core/_asarray.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -458,80 +1585,149 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/prepare_data.py">
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$PROJECT_DIR$/run_final/.gitignore" />
+    <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorflow/python/framework/importer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2299">
-          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        <state relative-caret-position="2679">
+          <caret line="159" selection-start-line="159" selection-end-line="159" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorflow/python/training/saver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24092">
+          <caret line="1303" column="57" selection-start-line="1303" selection-start-column="57" selection-end-line="1303" selection-end-column="57" />
           <folding>
-            <element signature="e#103#116#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/tf_funcs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="48" column="59" selection-start-line="48" selection-start-column="59" selection-end-line="48" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_window.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="44" column="43" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RRHN.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
-          <folding>
-            <element signature="e#74#92#0" expanded="true" />
+            <element signature="e#890#928#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorflow/python/platform/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="124" selection-start-line="124" selection-end-line="124" />
+        <state relative-caret-position="589">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/11.py" />
+    <entry file="file://$PROJECT_DIR$/utils/12.py" />
+    <entry file="file://$PROJECT_DIR$/data/embedding_pos_a.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/77.py" />
+    <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorflow/python/framework/op_def_library.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="562" selection-start-line="562" selection-end-line="562" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/RTHN_EE.py" />
+    <entry file="file://$PROJECT_DIR$/EE.py" />
+    <entry file="file://$PROJECT_DIR$/RTHN_E.py" />
+    <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorflow/python/client/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="1340" selection-start-line="1340" selection-end-line="1340" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorflow/python/framework/ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="3837" selection-start-line="3837" selection-end-line="3837" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RRHN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="138" column="65" selection-start-line="138" selection-start-column="65" selection-end-line="138" selection-end-column="65" />
+          <folding>
+            <element signature="e#74#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/anaconda/envs/python3.6/Lib/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1325">
+          <caret line="544" selection-start-line="544" selection-end-line="544" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tf_funcs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="988">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/transformer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/prepare_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="e#103#116#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_e.py" />
+    <entry file="file://$PROJECT_DIR$/main_window.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="110" column="19" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RTHN_A.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+          <folding>
+            <element signature="e#103#121#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RTHN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="155" column="54" selection-end-line="369" />
+        <state relative-caret-position="-437">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_final_ee/checkpoint">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RTHN_EE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="219" column="109" selection-start-line="219" selection-start-column="109" selection-end-line="219" selection-end-column="109" />
           <folding>
             <element signature="e#103#121#0" expanded="true" />
+            <element signature="e#2677#9417#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="67" column="26" lean-forward="true" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
+        <state relative-caret-position="75">
+          <caret line="138" column="44" lean-forward="true" selection-end-line="402" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RTHN_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3767">
-          <caret line="286" column="145" lean-forward="true" selection-start-line="247" selection-start-column="18" selection-end-line="286" selection-end-column="145" />
-          <folding>
-            <element signature="e#103#121#0" expanded="true" />
+            <element signature="e#5543#5775#0" />
           </folding>
         </state>
       </provider>

@@ -139,6 +139,32 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="clear_btn">
+      <property name="font">
+       <font>
+        <family>Adobe 宋体 Std L</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>重新输入</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="ecc_btn">
+      <property name="font">
+       <font>
+        <family>Adobe 宋体 Std L</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>原因提取</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -162,8 +188,8 @@
    <slot>New()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>73</x>
-     <y>236</y>
+     <x>79</x>
+     <y>527</y>
     </hint>
     <hint type="destinationlabel">
      <x>407</x>
@@ -171,9 +197,42 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>ecc_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Ecc()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>449</x>
+     <y>565</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clear_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>307</x>
+     <y>540</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>618</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>New()</slot>
   <slot>Ecc()</slot>
+  <slot>Clear()</slot>
  </slots>
 </ui>
