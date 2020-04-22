@@ -30,11 +30,11 @@ tf.app.flags.DEFINE_integer('n_class', 2, 'number of distinct class')
 # >>>>>>>>>>>>>>>>>>>> For Data <<<<<<<<<<<<<<<<<<<< #
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
-tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
+tf.app.flags.DEFINE_integer('training_iter', 7, 'number of train iter')
 # tf.app.flags.DEFINE_integer('training_iter', 7, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
-tf.app.flags.DEFINE_integer('batch_size', 16, 'number of example per batch')
+tf.app.flags.DEFINE_integer('batch_size', 8, 'number of example per batch')
 tf.app.flags.DEFINE_float('lr_assist', 0.005, 'learning rate of assist')
 tf.app.flags.DEFINE_float('lr_main', 0.001, 'learning rate')
 tf.app.flags.DEFINE_float('keep_prob1', 0.5, 'word embedding training dropout keep prob')
