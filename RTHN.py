@@ -47,7 +47,7 @@ tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside mai
 def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
     x = tf.nn.embedding_lookup(word_embedding, x)#选取wordembedding中x对应的元素
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
-    print("word_dis1:{}".format(word_dis))
+    print("word_dis:{}".format(word_dis))
     word_dis = tf.nn.embedding_lookup(pos_embedding, word_dis)
     sh2 = 2 * FLAGS.n_hidden
 
@@ -346,7 +346,8 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 
 def main(_):
     grid_search = {}
-    params = {"n_layers": [4, 5]}
+    # params = {"n_layers": [4, 5]}
+    params = {"n_layers": [4]}
 
     params_search = list(ParameterGrid(params))
 
