@@ -34,7 +34,7 @@ tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
 # tf.app.flags.DEFINE_integer('training_iter', 7, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
-tf.app.flags.DEFINE_integer('batch_size', 4, 'number of example per batch')
+tf.app.flags.DEFINE_integer('batch_size', 16, 'number of example per batch')
 tf.app.flags.DEFINE_float('lr_assist', 0.005, 'learning rate of assist')
 tf.app.flags.DEFINE_float('lr_main', 0.001, 'learning rate')
 tf.app.flags.DEFINE_float('keep_prob1', 0.5, 'word embedding training dropout keep prob')
@@ -304,7 +304,7 @@ def run():
                             [optimizer_assist_list[layer], loss_assist_list[layer], pred_y_assist_op_list[layer], true_y_op, pred_assist_list[layer], doc_len],
                             feed_dict=dict(zip(placeholders, train)))
                         acc_assist, p_assist, r_assist, f1_assist = func.acc_prf(pred_y, true_y, doc_len_batch)
-                        if step % 10 == 0:
+                        if step % 20 == 0:
                             print('cause GL{}: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(layer + 1, i + 1, step, loss, acc_assist))
                         step = step + 1
 
@@ -319,7 +319,7 @@ def run():
                         feed_dict=dict(zip(placeholders, train)))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, true_pos, doc_len_batch)
-                    if step % 10 == 0:
+                    if step % 20 == 0:
                         print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                         print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
                     # print("begin save!")
