@@ -186,7 +186,7 @@ def run():
     print("***********localtime: ", localtime)
     #func.load_data()：return x, y_position, y, sen_len, doc_len, relative_pos, relative_pos_a,  embedding, embedding_pos, embedding_pos_a
     #需要将word_distance改为自己计算的结果
-    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_embedding, pos_embedding, pos_embedding_a, pos_embedding_e = func.load_data()
+    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_em_data, pos_embedding, pos_embedding_a, pos_embedding_e = func.load_data()
 
     print("x_data.shape:{}\n".format(x_data.shape))
     print("y_position_data.shape:{}\n".format(y_position_data.shape))
@@ -195,12 +195,12 @@ def run():
     print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
     print("word_distance.shape:{}\n".format(word_distance.shape))
     print("word_distance_e.shape:{}\n".format(word_distance_e.shape))
-    print("word_embedding.shape:{}\n".format(word_embedding.shape))
+    print("word_em_data.shape:{}\n".format(word_em_data.shape))
     print("pos_embedding_a.shape:{}\n".format(pos_embedding_a.shape))
     print("pos_embedding_e.shape:{}\n".format(pos_embedding_e.shape))
     # print("pos_embedding:{}\n".format(pos_embedding[1]))
 
-    word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
+    # word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
     pos_embedding_e = tf.constant(pos_embedding_e, dtype=tf.float32, name='pos_embedding_e')
     print('build model...')
     start_time = time.time()
@@ -214,8 +214,8 @@ def run():
     word_dis = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len], name = "word_dis")
     keep_prob1 = tf.placeholder(tf.float32, name = "keep_prob1")
     keep_prob2 = tf.placeholder(tf.float32, name = "keep_prob2")
-    # word_embedding = tf.placeholder(tf.float32, [None, FLAGS.embedding_dim], name= "word_embedding")
-    placeholders = [x, y_position, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
+    word_embedding = tf.placeholder(tf.float32, [None, FLAGS.embedding_dim], name= "word_embedding")
+    placeholders = [x, y_position, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, word_embedding]
 
     pred_pos, pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding_e, keep_prob1, keep_prob2)
     print(pred)
@@ -299,7 +299,7 @@ def run():
                     step = 1
                     # train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
                     for train, _ in get_batch_data(tr_x, tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
-                        # train.append(word_em_data)
+                        train.append(word_em_data)
                         _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
                             [optimizer_assist_list[layer], loss_assist_list[layer], pred_y_assist_op_list[layer], true_y_op, pred_assist_list[layer], doc_len],
                             feed_dict=dict(zip(placeholders, train)))
@@ -313,7 +313,7 @@ def run():
                 step = 1
                 #train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
                 for train, _ in get_batch_data(tr_x,  tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
-                    # train.append( word_em_data )
+                    train.append( word_em_data )
                     _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch = sess.run(
                         [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
@@ -329,7 +329,7 @@ def run():
                 saver.save(sess, "./run_final_ee/model.ckpt", global_step = epoch)
 
                 '''*********Test********'''
-                test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
+                test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.,word_em_data]
                 loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob = sess.run(
                     [loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos], feed_dict=dict(zip(placeholders, test)))
 
