@@ -202,6 +202,7 @@ def run():
     prob_list_pr, y_label = [], []
     # Training Code Block
     print_training_info()
+
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
 
