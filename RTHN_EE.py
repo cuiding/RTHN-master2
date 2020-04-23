@@ -34,7 +34,7 @@ tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
 # tf.app.flags.DEFINE_integer('training_iter', 7, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
-tf.app.flags.DEFINE_integer('batch_size', 8, 'number of example per batch')
+tf.app.flags.DEFINE_integer('batch_size', 4, 'number of example per batch')
 tf.app.flags.DEFINE_float('lr_assist', 0.005, 'learning rate of assist')
 tf.app.flags.DEFINE_float('lr_main', 0.001, 'learning rate')
 tf.app.flags.DEFINE_float('keep_prob1', 0.5, 'word embedding training dropout keep prob')
@@ -294,7 +294,7 @@ def run():
                 #     training_iter = FLAGS.training_iter #(15)
                 # else:
                 #     training_iter = FLAGS.training_iter - 5 #(10)
-                training_iter = 3
+                training_iter = 2
                 for i in range(training_iter):
                     step = 1
                     # train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
@@ -325,8 +325,8 @@ def run():
                     # print("begin save!")
                     # saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
                     step = step + 1
-                # print("begin save!")
-                # saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
+                print("begin save!")
+                saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
 
                 '''*********Test********'''
                 test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
