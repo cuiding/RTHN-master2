@@ -7,7 +7,6 @@
 
 import numpy as np
 import pickle as pk
-# import torch
 import transformer as trans
 import tensorflow as tf
 import sys, os, time, codecs, pdb
@@ -44,8 +43,10 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
-tf.app.flags.DEFINE_float('cause', 1.000, 'lambda1')
-tf.app.flags.DEFINE_float('pos', 1.00, 'lambda2')
+# tf.app.flags.DEFINE_float('cause', 1.000, 'lambda1')
+# tf.app.flags.DEFINE_float('pos', 1.00, 'lambda2')
+tf.app.flags.DEFINE_float('cause', 1.500, 'lambda1')
+tf.app.flags.DEFINE_float('pos', 0.50, 'lambda2')
 
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
@@ -264,7 +265,7 @@ def run():
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
 
-    saver = tf.train.Saver(max_to_keep=4)
+    saver = tf.train.Saver(max_to_keep = 7)
 
     with tf.Session(config=tf_config) as sess:
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
