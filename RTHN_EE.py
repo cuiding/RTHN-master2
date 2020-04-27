@@ -33,7 +33,7 @@ tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
 # tf.app.flags.DEFINE_integer('training_iter', 7, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
-tf.app.flags.DEFINE_integer('batch_size', 16, 'number of example per batch')
+tf.app.flags.DEFINE_integer('batch_size', 32, 'number of example per batch')
 tf.app.flags.DEFINE_float('lr_assist', 0.005, 'learning rate of assist')
 tf.app.flags.DEFINE_float('lr_main', 0.001, 'learning rate')
 tf.app.flags.DEFINE_float('keep_prob1', 0.5, 'word embedding training dropout keep prob')
@@ -45,8 +45,8 @@ tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
 # tf.app.flags.DEFINE_float('cause', 1.000, 'lambda1')
 # tf.app.flags.DEFINE_float('pos', 1.00, 'lambda2')
-tf.app.flags.DEFINE_float('cause', 1.500, 'lambda1')
-tf.app.flags.DEFINE_float('pos', 0.50, 'lambda2')
+tf.app.flags.DEFINE_float('cause', 0.5, 'lambda1')
+tf.app.flags.DEFINE_float('pos', 0.5, 'lambda2')
 
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
@@ -84,35 +84,35 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         pred_pos = tf.reshape(pred_pos, [-1, FLAGS.max_doc_len, FLAGS.n_class])
 
     # 形成相对位置向量
-    print("word_dis:{}".format(word_dis))
+    # print("word_dis:{}".format(word_dis))
     word_dis = tf.reshape(word_dis[:, :, 0], [-1, FLAGS.max_doc_len]) # shape=(?, 75)
-    print("word_dis:{}".format(word_dis))
+    # print("word_dis:{}".format(word_dis))
 
     pred_y_pos_op = tf.argmax(pred_pos, 2)  # shape=(?, 75)
     cla_ind = tf.argmax(pred_y_pos_op, 1)# shape=(?,)
     cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
     cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
-    print("cla_ind.shape:{}".format(cla_ind))
+    # print("cla_ind.shape:{}".format(cla_ind))
     m_75 = 75 * tf.ones_like(cla_ind)
     cla_ind =  tf.subtract(cla_ind , m_75)
     cla_ind_add_1 = tf.multiply(cla_ind , word_dis)
-    print("cla_ind_add_1.shape:{}".format(cla_ind_add_1))
+    # print("cla_ind_add_1.shape:{}".format(cla_ind_add_1))
 
     i = tf.constant([x for x in range(0,FLAGS.max_doc_len)], dtype=tf.int32)
-    print("i:{}".format(i))
+    # print("i:{}".format(i))
     i = tf.reshape(i, [1, 75])
-    print("改变之后i:{}".format(i))
+    # print("改变之后i:{}".format(i))
     cla_ind_add_2 = tf.multiply(i, word_dis)# shape=(?, 75)
-    print("cla_ind_add_2.shape:{}".format(cla_ind_add_2))
+    # print("cla_ind_add_2.shape:{}".format(cla_ind_add_2))
     # pos = tf.subtract(tf.matmul(tf.ones_like(cla_ind), i) , cla_ind_add)
     # pos = tf.ones_like(pos)
 
     pos = tf.subtract(cla_ind_add_2 , cla_ind_add_1)
-    print("结果:{}".format(pos))
+    # print("结果:{}".format(pos))
 
-    print("word_dis:{}".format(word_dis))
+    # print("word_dis:{}".format(word_dis))
     word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
-    print("word_dis最终:{}".format(word_dis))
+    # print("word_dis最终:{}".format(word_dis))
 
     senEncode = get_s(inputs, name='cause_word_encode')
     # print("senEncode:{}".format(senEncode))
@@ -176,7 +176,7 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         senEncode_main = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'block_main')
     pred, reg = senEncode_softmax(senEncode_main, 'softmax_w', 'softmax_b', out_units, doc_len)
     reg += tf.nn.l2_loss(w_pos) + tf.nn.l2_loss(b_pos)
-    return pred_pos, pred, reg, pred_assist_list, reg_assist_list
+    return  pos, pred_pos, pred, reg, pred_assist_list, reg_assist_list
 
 
 def run():
@@ -189,16 +189,16 @@ def run():
     #需要将word_distance改为自己计算的结果
     x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_em_data, pos_embedding, pos_embedding_a, pos_embedding_e = func.load_data()
 
-    print("x_data.shape:{}\n".format(x_data.shape))
-    print("y_position_data.shape:{}\n".format(y_position_data.shape))
-    print("y_data.shape:{}\n".format(y_data.shape))
-    print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
-    print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
-    print("word_distance.shape:{}\n".format(word_distance.shape))
-    print("word_distance_e.shape:{}\n".format(word_distance_e.shape))
-    print("word_em_data.shape:{}\n".format(word_em_data.shape))
-    print("pos_embedding_a.shape:{}\n".format(pos_embedding_a.shape))
-    print("pos_embedding_e.shape:{}\n".format(pos_embedding_e.shape))
+    # print("x_data.shape:{}\n".format(x_data.shape))
+    # print("y_position_data.shape:{}\n".format(y_position_data.shape))
+    # print("y_data.shape:{}\n".format(y_data.shape))
+    # print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
+    # print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
+    # print("word_distance.shape:{}\n".format(word_distance.shape))
+    # print("word_distance_e.shape:{}\n".format(word_distance_e.shape))
+    # print("word_em_data.shape:{}\n".format(word_em_data.shape))
+    # print("pos_embedding_a.shape:{}\n".format(pos_embedding_a.shape))
+    # print("pos_embedding_e.shape:{}\n".format(pos_embedding_e.shape))
     # print("pos_embedding:{}\n".format(pos_embedding[1]))
 
     # word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
@@ -218,8 +218,8 @@ def run():
     word_embedding = tf.placeholder(tf.float32, [None, FLAGS.embedding_dim], name= "word_embedding")
     placeholders = [x, y_position, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, word_embedding]
 
-    pred_pos, pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding_e, keep_prob1, keep_prob2)
-    print(pred)
+    pos, pred_pos, pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding_e, keep_prob1, keep_prob2)
+    print(pos)
 
     with tf.name_scope('loss'):
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
@@ -291,10 +291,11 @@ def run():
 
             '''*********GP*********'''
             for layer in range(FLAGS.n_layers - 1):
-                if layer == 0:
-                    training_iter = FLAGS.training_iter #(15)
-                else:
-                    training_iter = FLAGS.training_iter - 5 #(10)
+                # if layer == 0:
+                #     training_iter = FLAGS.training_iter #(15)
+                # else:
+                #     training_iter = FLAGS.training_iter - 5 #(10)
+                training_iter = 2
                 for i in range(training_iter):
                     step = 1
                     # train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
@@ -314,9 +315,10 @@ def run():
                 #train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
                 for train, _ in get_batch_data(tr_x,  tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
                     train.append( word_em_data )
-                    _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch = sess.run(
-                        [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len],
+                    _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch,  pos_data= sess.run(
+                        [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len, pos],
                         feed_dict=dict(zip(placeholders, train)))
+                    print("pos_data:{}".format(pos_data))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, true_pos, doc_len_batch)
                     if step % 20 == 0:
