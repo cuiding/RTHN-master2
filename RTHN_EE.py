@@ -84,38 +84,24 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         pred_pos = tf.reshape(pred_pos, [-1, FLAGS.max_doc_len, FLAGS.n_class])
 
     # 形成相对位置向量
-    # print("word_dis:{}".format(word_dis))
     word_dis = tf.reshape(word_dis[:, :, 0], [-1, FLAGS.max_doc_len]) # shape=(?, 75)
-    # print("word_dis:{}".format(word_dis))
-
     pred_y_pos_op = tf.argmax(pred_pos, 2)  # shape=(?, 75)
     cla_ind = tf.argmax(pred_y_pos_op, 1)# shape=(?,)
     cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
     cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
-    # print("cla_ind.shape:{}".format(cla_ind))
-    m_75 = 75 * tf.ones_like(cla_ind)
+    m_69 = 69 * tf.ones_like(cla_ind)
     cla_ind =  tf.subtract(cla_ind , m_75)
     cla_ind_add_1 = tf.multiply(cla_ind , word_dis)
-    # print("cla_ind_add_1.shape:{}".format(cla_ind_add_1))
-
     i = tf.constant([x for x in range(0,FLAGS.max_doc_len)], dtype=tf.int32)
-    # print("i:{}".format(i))
     i = tf.reshape(i, [1, 75])
-    # print("改变之后i:{}".format(i))
     cla_ind_add_2 = tf.multiply(i, word_dis)# shape=(?, 75)
-    # print("cla_ind_add_2.shape:{}".format(cla_ind_add_2))
-    # pos = tf.subtract(tf.matmul(tf.ones_like(cla_ind), i) , cla_ind_add)
-    # pos = tf.ones_like(pos)
-
     pos = tf.subtract(cla_ind_add_2 , cla_ind_add_1)
-    # print("结果:{}".format(pos))
 
-    # print("word_dis:{}".format(word_dis))
+
     word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
-    # print("word_dis最终:{}".format(word_dis))
 
     senEncode = get_s(inputs, name='cause_word_encode')
-    # print("senEncode:{}".format(senEncode))
+    senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
@@ -290,11 +276,11 @@ def run():
 
             '''*********GP*********'''
             for layer in range(FLAGS.n_layers - 1):
-                # if layer == 0:
-                #     training_iter = FLAGS.training_iter #(15)
-                # else:
-                #     training_iter = FLAGS.training_iter - 5 #(10)
-                training_iter = 2
+                if layer == 0:
+                    training_iter = FLAGS.training_iter #(15)
+                else:
+                    training_iter = FLAGS.training_iter - 5 #(10)
+                # training_iter = 2
                 for i in range(training_iter):
                     step = 1
                     # train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
