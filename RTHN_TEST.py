@@ -319,11 +319,9 @@ def run():
                     if step % 20 == 0:
                         print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                         print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
-                    # print("begin save!")
-                    # saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
                     step = step + 1
-                print("begin save!")
-                saver.save(sess, "./run_ee_test/model.ckpt", global_step = epoch)
+                # print("begin save!")
+                # saver.save(sess, "./run_ee_test/model.ckpt", global_step = epoch)
 
                 '''*********Test********'''
                 test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.,word_em_data]
@@ -444,7 +442,7 @@ def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
     # params = {"n_layers": [4], "cause_rate": [0.6,0.7]}
-    params = {"n_layers": [4], "cause_rate": [0.6]}
+    params = {"n_layers": [4], "cause_rate": [0.5]}
 
     params_search = list(ParameterGrid(params))
     print("params_search:{}".format(params_search))
