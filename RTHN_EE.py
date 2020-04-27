@@ -219,7 +219,6 @@ def run():
     placeholders = [x, y_position, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, word_embedding]
 
     pos, pred_pos, pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding_e, keep_prob1, keep_prob2)
-    print(pos)
 
     with tf.name_scope('loss'):
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
@@ -318,7 +317,7 @@ def run():
                     _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch,  pos_data= sess.run(
                         [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len, pos],
                         feed_dict=dict(zip(placeholders, train)))
-                    print("pos_data:{}".format(pos_data))
+                    print("pos_data[0]:{}".format(pos_data[0]))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, true_pos, doc_len_batch)
                     if step % 20 == 0:
