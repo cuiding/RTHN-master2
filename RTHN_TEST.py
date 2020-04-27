@@ -13,7 +13,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = "1,0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2, 1"
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -442,7 +442,7 @@ def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
     # params = {"n_layers": [4], "cause_rate": [0.6,0.7]}
-    params = {"n_layers": [4], "cause_rate": [1.5]}
+    params = {"n_layers": [4], "cause_rate": [0.5]}
 
     params_search = list(ParameterGrid(params))
     print("params_search:{}".format(params_search))
