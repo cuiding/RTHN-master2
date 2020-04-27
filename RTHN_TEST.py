@@ -442,7 +442,7 @@ def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
     # params = {"n_layers": [4], "cause_rate": [0.6,0.7]}
-    params = {"n_layers": [4], "cause_rate": [0.5]}
+    params = {"n_layers": [4], "cause_rate": [0.7]}
 
     params_search = list(ParameterGrid(params))
     print("params_search:{}".format(params_search))
