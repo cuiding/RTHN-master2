@@ -66,10 +66,10 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         senEncode = func.att_var(wordEncode, sen_len, w1, b1, w2)
     senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, sh2])
 
-    print("word_dis2:{}".format(word_dis))
+    # print("word_dis2:{}".format(word_dis))
     word_dis = tf.reshape(word_dis[:, :, 0, :], [-1, FLAGS.max_doc_len, FLAGS.embedding_dim_pos])
-    print("word_dis3:{}".format(word_dis))
-    print("senEncode:{}".format(senEncode))
+    # print("word_dis3:{}".format(word_dis))
+    # print("senEncode:{}".format(senEncode))
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
@@ -299,6 +299,12 @@ def run():
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
         print("f1_score in 10 fold: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
+
+        tenboard_dir = './tensorboard/RTHN'
+        graph = tf.get_default_graph()
+        writer = tf.summary.FileWriter(tenboard_dir, graph)
+        writer.add_graph(sess.graph)
+        writer.close()
 
         return p, r, f1
 
