@@ -100,8 +100,10 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
 
     word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
 
-    senEncode = get_s(inputs, name='cause_word_encode')
-    senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
+    # senEncode = get_s(inputs, name='cause_word_encode')
+    # senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
+    # senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
+
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
