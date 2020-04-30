@@ -100,11 +100,11 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
 
     word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
 
-    # senEncode = get_s(inputs, name='cause_word_encode')
-    # senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
-    # senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
-
+    senEncode = get_s(inputs, name='cause_word_encode')
+    senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
+
+    # senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
     out_units = 2 * FLAGS.n_hidden
@@ -408,10 +408,7 @@ def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
     s = tf.nn.dropout(s, keep_prob=FLAGS.keep_prob2)
     w = func.get_weight_varible(w_varible, [n_feature, FLAGS.n_class])
     b = func.get_weight_varible(b_varible, [FLAGS.n_class])
-    # print("s:{}".format(s))
-    # print("w:{}".format(w))
     pred = tf.matmul(s, w) + b
-    # print("matmul(s, w):{}".format(pred))
     pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
     pred = tf.nn.softmax(pred)
     pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class])
