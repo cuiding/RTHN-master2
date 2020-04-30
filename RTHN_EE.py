@@ -90,7 +90,7 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
     cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
     cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
     m_69 = 69 * tf.ones_like(cla_ind)
-    cla_ind =  tf.subtract(cla_ind , m_75)
+    cla_ind =  tf.subtract(cla_ind , m_69)
     cla_ind_add_1 = tf.multiply(cla_ind , word_dis)
     i = tf.constant([x for x in range(0,FLAGS.max_doc_len)], dtype=tf.int32)
     i = tf.reshape(i, [1, 75])
