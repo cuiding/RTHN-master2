@@ -43,11 +43,8 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
-# tf.app.flags.DEFINE_float('cause', 1.000, 'lambda1')
-# tf.app.flags.DEFINE_float('pos', 1.00, 'lambda2')
-tf.app.flags.DEFINE_float('cause', 0.5, 'lambda1')
-tf.app.flags.DEFINE_float('pos', 0.5, 'lambda2')
-
+tf.app.flags.DEFINE_float('cause', 1.000, 'lambda1')
+tf.app.flags.DEFINE_float('pos', 1.00, 'lambda2')
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
 def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
@@ -60,14 +57,14 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
 
     def get_s(inputs, name):
         with tf.name_scope('word_encode'):
-            wordEncode = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer'  + name)
-        wordEncode = tf.reshape(wordEncode, [-1, FLAGS.max_sen_len, sh2])
+            inputs = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer'  + name)
+        inputs = tf.reshape(inputs, [-1, FLAGS.max_sen_len, sh2])
 
-        with tf.name_scope('attention'):
+        with tf.name_scope('word_attention'):
             w1 = func.get_weight_varible('word_att_w1'+ name, [sh2, sh2])
             b1 = func.get_weight_varible('word_att_b1'+ name, [sh2])
             w2 = func.get_weight_varible('word_att_w2'+ name, [sh2, 1])
-            senEncode = func.att_var(wordEncode, sen_len, w1, b1, w2)
+            senEncode = func.att_var(inputs, sen_len, w1, b1, w2)
         senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, sh2])
         return senEncode
 
@@ -84,23 +81,22 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         pred_pos = tf.reshape(pred_pos, [-1, FLAGS.max_doc_len, FLAGS.n_class])
 
     # 形成相对位置向量
-    word_dis = tf.reshape(word_dis[:, :, 0], [-1, FLAGS.max_doc_len]) # shape=(?, 75)
-    pred_y_pos_op = tf.argmax(pred_pos, 2)  # shape=(?, 75)
-    cla_ind = tf.argmax(pred_y_pos_op, 1)# shape=(?,)
-    cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
-    cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
-    m_69 = 69 * tf.ones_like(cla_ind)
-    cla_ind =  tf.subtract(cla_ind , m_69)
-    cla_ind_add_1 = tf.multiply(cla_ind , word_dis)
-    i = tf.constant([x for x in range(0,FLAGS.max_doc_len)], dtype=tf.int32)
-    i = tf.reshape(i, [1, 75])
-    cla_ind_add_2 = tf.multiply(i, word_dis)# shape=(?, 75)
-    pos = tf.subtract(cla_ind_add_2 , cla_ind_add_1)
-
-    word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
+    with tf.name_scope('topos'):
+        word_dis = tf.reshape(word_dis[:, :, 0], [-1, FLAGS.max_doc_len]) # shape=(?, 75)
+        pred_y_pos_op = tf.argmax(pred_pos, 2)  # shape=(?, 75)
+        cla_ind = tf.argmax(pred_y_pos_op, 1)# shape=(?,)
+        cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
+        cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
+        m_69 = 69 * tf.ones_like(cla_ind)
+        cla_ind =  tf.subtract(cla_ind , m_69)
+        cla_ind_add_1 = tf.multiply(cla_ind , word_dis)
+        i = tf.constant([x for x in range(0,FLAGS.max_doc_len)], dtype=tf.int32)
+        i = tf.reshape(i, [1, 75])
+        cla_ind_add_2 = tf.multiply(i, word_dis)# shape=(?, 75)
+        pos = tf.subtract(cla_ind_add_2 , cla_ind_add_1)
+        word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
 
     senEncode = get_s(inputs, name='cause_word_encode')
-    senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
