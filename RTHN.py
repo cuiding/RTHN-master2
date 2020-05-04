@@ -208,7 +208,13 @@ def run():
 
     saver = tf.train.Saver(max_to_keep=4)
 
+    tenboard_dir = './tensorboard/RTHN'
+    graph = tf.get_default_graph()
+    writer = tf.summary.FileWriter(tenboard_dir, graph)
+
     with tf.Session(config=tf_config) as sess:
+        writer.add_graph(sess.graph)
+
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
         p_list, r_list, f1_list = [], [], []
@@ -300,12 +306,7 @@ def run():
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
         print("f1_score in 10 fold: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
 
-        tenboard_dir = './tensorboard/RTHN'
-        graph = tf.get_default_graph()
-        writer = tf.summary.FileWriter(tenboard_dir, graph)
-        writer.add_graph(sess.graph)
         writer.close()
-
         return p, r, f1
 
 def print_training_info():

@@ -97,14 +97,11 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
     cla_ind_add_2 = tf.multiply(i, word_dis)# shape=(?, 75)
     pos = tf.subtract(cla_ind_add_2 , cla_ind_add_1)
 
-
     word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
 
     senEncode = get_s(inputs, name='cause_word_encode')
     senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
-
-    # senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
     out_units = 2 * FLAGS.n_hidden
@@ -252,9 +249,15 @@ def run():
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
 
-    saver = tf.train.Saver(max_to_keep = 7)
+    # saver = tf.train.Saver(max_to_keep = 7)
+
+    tenboard_dir = './tensorboard/RTHN'
+    graph = tf.get_default_graph()
+    writer = tf.summary.FileWriter(tenboard_dir, graph)
 
     with tf.Session(config=tf_config) as sess:
+        writer.add_graph(sess.graph)
+
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
         p_list, r_list, f1_list = [], [], []
@@ -314,8 +317,8 @@ def run():
                     # print("begin save!")
                     # saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
                     step = step + 1
-                print("begin save!")
-                saver.save(sess, "./run_final_ee/model.ckpt", global_step = epoch)
+                # print("begin save!")
+                # saver.save(sess, "./run_final_ee/model.ckpt", global_step = epoch)
 
                 '''*********Test********'''
                 test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.,word_em_data]
@@ -388,6 +391,7 @@ def run():
         p_pos, r_pos, f1_pos = map(lambda x: np.array(x).mean(), [p_pos_list, r_pos_list, f1_pos_list])
         print("emotion f1_score in 10 fold: {}\naverage : p:{} r:{} f1:{}\n".format(np.array(f1_pos_list).reshape(-1, 1), round(p_pos, 4), round(r_pos, 4), round(f1_pos, 4)))
 
+        writer.close()
         return p, r, f1, p_pos, r_pos, f1_pos
 
 def print_training_info():
