@@ -81,20 +81,19 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         pred_pos = tf.reshape(pred_pos, [-1, FLAGS.max_doc_len, FLAGS.n_class])
 
     # 形成相对位置向量
-    with tf.name_scope('topos'):
-        word_dis = tf.reshape(word_dis[:, :, 0], [-1, FLAGS.max_doc_len]) # shape=(?, 75)
-        pred_y_pos_op = tf.argmax(pred_pos, 2)  # shape=(?, 75)
-        cla_ind = tf.argmax(pred_y_pos_op, 1)# shape=(?,)
-        cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
-        cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
-        m_69 = 69 * tf.ones_like(cla_ind)
-        cla_ind =  tf.subtract(cla_ind , m_69)
-        cla_ind_add_1 = tf.multiply(cla_ind , word_dis)
-        i = tf.constant([x for x in range(0,FLAGS.max_doc_len)], dtype=tf.int32)
-        i = tf.reshape(i, [1, 75])
-        cla_ind_add_2 = tf.multiply(i, word_dis)# shape=(?, 75)
-        pos = tf.subtract(cla_ind_add_2 , cla_ind_add_1)
-        word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
+    word_dis = tf.reshape(word_dis[:, :, 0], [-1, FLAGS.max_doc_len]) # shape=(?, 75)
+    pred_y_pos_op = tf.argmax(pred_pos, 2)  # shape=(?, 75)
+    cla_ind = tf.argmax(pred_y_pos_op, 1)# shape=(?,)
+    cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
+    cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
+    m_69 = 69 * tf.ones_like(cla_ind)
+    cla_ind =  tf.subtract(cla_ind , m_69)
+    cla_ind_add_1 = tf.multiply(cla_ind , word_dis)
+    i = tf.constant([x for x in range(0,FLAGS.max_doc_len)], dtype=tf.int32)
+    i = tf.reshape(i, [1, 75])
+    cla_ind_add_2 = tf.multiply(i, word_dis)# shape=(?, 75)
+    pos = tf.subtract(cla_ind_add_2 , cla_ind_add_1)
+    word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
 
     senEncode = get_s(inputs, name='cause_word_encode')
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
@@ -441,7 +440,7 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [4]}
+    params = {"n_layers": [3]}
 
     params_search = list(ParameterGrid(params))
 
