@@ -68,8 +68,8 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, sh2])
         return senEncode
 
-    senEncode = get_s(inputs, name='pos_word_encode')
-    s = RNN(senEncode, doc_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'pos_sentence_layer')
+    s = get_s(inputs, name='pos_word_encode')
+    s = RNN(s, doc_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'pos_sentence_layer')
 
     with tf.name_scope('sequence_prediction'):
         s1 = tf.reshape(s, [-1, 2 * FLAGS.n_hidden])
@@ -132,6 +132,8 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         senEncode = trans_func(senEncode_assist, senEncode, n_feature, out_units, 'layer' + str(i))
 
         pred_assist, reg_assist = senEncode_softmax(senEncode, 'softmax_assist_w' + str(i), 'softmax_assist_b' + str(i), out_units, doc_len)
+        reg_assist += tf.nn.l2_loss(w_pos) + tf.nn.l2_loss(b_pos)
+
         pred_assist_label = tf.cast(tf.reshape(tf.argmax(pred_assist, axis=2), [-1, 1, FLAGS.max_doc_len]), tf.float32)
         # masked the prediction at the current position
         pred_assist_label = pred_assist_label * pred_two - pred_ones
@@ -201,6 +203,7 @@ def run():
 
     pos, pred_pos, pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding_e, keep_prob1, keep_prob2)
 
+    # print('pred_pos {}'.format(pred_pos.shape))
     with tf.name_scope('loss'):
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
         loss_pos = - tf.reduce_sum(y_position * tf.log(pred_pos)) / valid_num
