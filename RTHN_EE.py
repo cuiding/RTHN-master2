@@ -13,7 +13,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '5, 4'
+os.environ["CUDA_VISIBLE_DEVICES"] = '4, 5'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -43,8 +43,8 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
-tf.app.flags.DEFINE_float('cause', 1.000, 'lambda1')
-tf.app.flags.DEFINE_float('pos', 1.00, 'lambda2')
+tf.app.flags.DEFINE_float('cause', 1.5, 'lambda1')
+tf.app.flags.DEFINE_float('pos', 0.5, 'lambda2')
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
 def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
@@ -440,7 +440,7 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [3]}
+    params = {"n_layers": [4]}
 
     params_search = list(ParameterGrid(params))
 
