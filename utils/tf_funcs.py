@@ -92,6 +92,22 @@ def biLSTM(inputs, length, n_hidden, scope):
 
     return tf.concat(outputs, 2)
 
+def biGRU(inputs, length, n_hidden, scope):
+    '''
+    input shape:[batch_size, max_len, embedding_dim]
+    length shape:[batch_size]
+    return shape:[batch_size, max_len, n_hidden*2]
+    '''
+    outputs, state = tf.nn.bidirectional_dynamic_rnn(
+        cell_fw=tf.contrib.rnn.GRUCell(n_hidden),
+        cell_bw=tf.contrib.rnn.GRUCell(n_hidden),
+        inputs=inputs,
+        sequence_length=length,
+        dtype=tf.float32,
+        scope=scope
+    )
+
+    return tf.concat(outputs, 2)
 
 def softmax_by_length(inputs, length):
     '''
