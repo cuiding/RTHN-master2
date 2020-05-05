@@ -13,7 +13,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '2,3'
+os.environ["CUDA_VISIBLE_DEVICES"] = '3, 4'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -96,8 +96,8 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         pos = tf.subtract(cla_ind_add_2 , cla_ind_add_1)
         word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
 
-    senEncode = get_s(inputs, name='cause_word_encode')
-    senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
+        senEncode = get_s(inputs, name='cause_word_encode')
+        senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
     out_units = 2 * FLAGS.n_hidden
@@ -109,56 +109,59 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
     pred_assist_list, reg_assist_list, pred_assist_label_list = [], [], []
     if FLAGS.n_layers > 1:
         '''*******GL1******'''
-        senEncode = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'layer1')
-        pred_assist, reg_assist = senEncode_softmax(senEncode, 'softmax_assist_w1', 'softmax_assist_b1', out_units, doc_len)
+        with tf.name_scope('GL1'):
+            senEncode = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'layer1')
+            pred_assist, reg_assist = senEncode_softmax(senEncode, 'softmax_assist_w1', 'softmax_assist_b1', out_units, doc_len)
 
-        pred_assist_label = tf.cast(tf.reshape(tf.argmax(pred_assist, axis=2), [-1, 1, FLAGS.max_doc_len]), tf.float32)
-        # masked the prediction at the current position
-        pred_assist_label = pred_assist_label * pred_two - pred_ones
-        pred_assist_label = (pred_assist_label + pred_zeros) * matrix
-        # feedforward
-        w_for = func.get_weight_varible('w_for1', [FLAGS.max_doc_len, FLAGS.max_doc_len])
-        b_for = func.get_weight_varible('b_for1', [FLAGS.max_doc_len])
-        pred_assist_label = tf.tanh(tf.matmul(tf.reshape(pred_assist_label, [-1, FLAGS.max_doc_len]), w_for) + b_for)
-        pred_assist_label = tf.reshape(pred_assist_label, [batch, FLAGS.max_doc_len, FLAGS.max_doc_len])
+            pred_assist_label = tf.cast(tf.reshape(tf.argmax(pred_assist, axis=2), [-1, 1, FLAGS.max_doc_len]), tf.float32)
+            # masked the prediction at the current position
+            pred_assist_label = pred_assist_label * pred_two - pred_ones
+            pred_assist_label = (pred_assist_label + pred_zeros) * matrix
+            # feedforward
+            w_for = func.get_weight_varible('w_for1', [FLAGS.max_doc_len, FLAGS.max_doc_len])
+            b_for = func.get_weight_varible('b_for1', [FLAGS.max_doc_len])
+            pred_assist_label = tf.tanh(tf.matmul(tf.reshape(pred_assist_label, [-1, FLAGS.max_doc_len]), w_for) + b_for)
+            pred_assist_label = tf.reshape(pred_assist_label, [batch, FLAGS.max_doc_len, FLAGS.max_doc_len])
 
-        pred_assist_label_list.append(pred_assist_label)
-        pred_assist_list.append(pred_assist)
-        reg_assist_list.append(reg_assist)
+            pred_assist_label_list.append(pred_assist_label)
+            pred_assist_list.append(pred_assist)
+            reg_assist_list.append(reg_assist)
     '''*******GL n******'''
     for i in range(2, FLAGS.n_layers):
-        senEncode_assist = tf.concat([senEncode, pred_assist_label], axis=2)
-        n_feature = out_units + FLAGS.max_doc_len
-        senEncode = trans_func(senEncode_assist, senEncode, n_feature, out_units, 'layer' + str(i))
+        with tf.name_scope('GLn'):
+            senEncode_assist = tf.concat([senEncode, pred_assist_label], axis=2)
+            n_feature = out_units + FLAGS.max_doc_len
+            senEncode = trans_func(senEncode_assist, senEncode, n_feature, out_units, 'layer' + str(i))
 
-        pred_assist, reg_assist = senEncode_softmax(senEncode, 'softmax_assist_w' + str(i), 'softmax_assist_b' + str(i), out_units, doc_len)
-        reg_assist += tf.nn.l2_loss(w_pos) + tf.nn.l2_loss(b_pos)
+            pred_assist, reg_assist = senEncode_softmax(senEncode, 'softmax_assist_w' + str(i), 'softmax_assist_b' + str(i), out_units, doc_len)
+            reg_assist += tf.nn.l2_loss(w_pos) + tf.nn.l2_loss(b_pos)
 
-        pred_assist_label = tf.cast(tf.reshape(tf.argmax(pred_assist, axis=2), [-1, 1, FLAGS.max_doc_len]), tf.float32)
-        # masked the prediction at the current position
-        pred_assist_label = pred_assist_label * pred_two - pred_ones
-        pred_assist_label = (pred_assist_label + pred_zeros) * matrix
-        # feedforward
-        w_for = func.get_weight_varible('w_for' + str(i), [FLAGS.max_doc_len, FLAGS.max_doc_len])
-        b_for = func.get_weight_varible('b_for' + str(i), [FLAGS.max_doc_len])
-        pred_assist_label = tf.tanh(tf.matmul(tf.reshape(pred_assist_label, [-1, FLAGS.max_doc_len]), w_for) + b_for)
-        pred_assist_label = tf.reshape(pred_assist_label, [batch, FLAGS.max_doc_len, FLAGS.max_doc_len])
+            pred_assist_label = tf.cast(tf.reshape(tf.argmax(pred_assist, axis=2), [-1, 1, FLAGS.max_doc_len]), tf.float32)
+            # masked the prediction at the current position
+            pred_assist_label = pred_assist_label * pred_two - pred_ones
+            pred_assist_label = (pred_assist_label + pred_zeros) * matrix
+            # feedforward
+            w_for = func.get_weight_varible('w_for' + str(i), [FLAGS.max_doc_len, FLAGS.max_doc_len])
+            b_for = func.get_weight_varible('b_for' + str(i), [FLAGS.max_doc_len])
+            pred_assist_label = tf.tanh(tf.matmul(tf.reshape(pred_assist_label, [-1, FLAGS.max_doc_len]), w_for) + b_for)
+            pred_assist_label = tf.reshape(pred_assist_label, [batch, FLAGS.max_doc_len, FLAGS.max_doc_len])
 
-        pred_assist_label_list.append(pred_assist_label)
-        pred_assist_label = tf.divide(tf.reduce_sum(pred_assist_label_list, axis=0), i)
+            pred_assist_label_list.append(pred_assist_label)
+            pred_assist_label = tf.divide(tf.reduce_sum(pred_assist_label_list, axis=0), i)
 
-        pred_assist_list.append(pred_assist)
-        reg_assist_list.append(reg_assist)
+            pred_assist_list.append(pred_assist)
+            reg_assist_list.append(reg_assist)
 
     '''*******Main******'''
-    if FLAGS.n_layers > 1:
-        senEncode_dis_GL = tf.concat([senEncode, pred_assist_label], axis=2)
-        n_feature = out_units + FLAGS.max_doc_len
-        senEncode_main = trans_func(senEncode_dis_GL, senEncode, n_feature, out_units, 'block_main')
-    else:
-        senEncode_main = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'block_main')
-    pred, reg = senEncode_softmax(senEncode_main, 'softmax_w', 'softmax_b', out_units, doc_len)
-    reg += tf.nn.l2_loss(w_pos) + tf.nn.l2_loss(b_pos)
+    with tf.name_scope('main'):
+        if FLAGS.n_layers > 1:
+            senEncode_dis_GL = tf.concat([senEncode, pred_assist_label], axis=2)
+            n_feature = out_units + FLAGS.max_doc_len
+            senEncode_main = trans_func(senEncode_dis_GL, senEncode, n_feature, out_units, 'block_main')
+        else:
+            senEncode_main = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'block_main')
+        pred, reg = senEncode_softmax(senEncode_main, 'softmax_w', 'softmax_b', out_units, doc_len)
+        reg += tf.nn.l2_loss(w_pos) + tf.nn.l2_loss(b_pos)
     return  pos, pred_pos, pred, reg, pred_assist_list, reg_assist_list
 
 
@@ -250,7 +253,7 @@ def run():
 
     # saver = tf.train.Saver(max_to_keep = 7)
 
-    tenboard_dir = './tensorboard/RTHN'
+    tenboard_dir = './tensorboard/RTHN_EE'
     graph = tf.get_default_graph()
     writer = tf.summary.FileWriter(tenboard_dir, graph)
 
