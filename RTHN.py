@@ -45,16 +45,16 @@ tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside mai
 
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
-def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
+def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biGRU):
     x = tf.nn.embedding_lookup(word_embedding, x)#选取wordembedding中x对应的元素
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
-    print("word_dis:{}".format(word_dis))
+    # print("word_dis:{}".format(word_dis))
     word_dis = tf.nn.embedding_lookup(pos_embedding, word_dis)
     sh2 = 2 * FLAGS.n_hidden
 
     inputs = tf.nn.dropout(inputs, keep_prob=keep_prob1)
     sen_len = tf.reshape(sen_len, [-1])
-    print("sen_len:{}".format(sen_len))
+    # print("sen_len:{}".format(sen_len))
     with tf.name_scope('word_encode'):
         wordEncode = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer')
     wordEncode = tf.reshape(wordEncode, [-1, FLAGS.max_sen_len, sh2])
