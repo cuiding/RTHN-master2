@@ -299,8 +299,8 @@ def run():
                             [optimizer_assist_list[layer], loss_assist_list[layer], pred_y_assist_op_list[layer], true_y_op, pred_assist_list[layer], doc_len],
                             feed_dict=dict(zip(placeholders, train)))
                         acc_assist, p_assist, r_assist, f1_assist = func.acc_prf(pred_y, true_y, doc_len_batch)
-                        if step % 20 == 0:
-                            print('cause GL{}: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(layer + 1, i + 1, step, loss, acc_assist))
+                        # if step % 20 == 0:
+                        #     print('cause GL{}: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(layer + 1, i + 1, step, loss, acc_assist))
                         step = step + 1
 
             '''*********Train********'''
@@ -315,11 +315,9 @@ def run():
                     # print("pos_data[0]:{}".format(pos_data[0]))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, true_pos, doc_len_batch)
-                    if step % 20 == 0:
-                        print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
-                        print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
-                    # print("begin save!")
-                    # saver.save(sess, "./run_final_ee/model.ckpt", global_step=step)
+                    # if step % 20 == 0:
+                    #     print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                    #     print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
                     step = step + 1
                 # print("begin save!")
                 # saver.save(sess, "./run_final_ee/model.ckpt", global_step = epoch)
@@ -353,20 +351,20 @@ def run():
 
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
-                print('\ncause test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
-                    epoch + 1, loss, acc, p, r, f1, max_f1))
+                # print('\ncause test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                #     epoch + 1, loss, acc, p, r, f1, max_f1))
                 if f1_pos > max_f1_pos:
                     max_acc_pos, max_p_pos, max_r_pos, max_f1_pos = acc_pos, p_pos, r_pos, f1_pos
-                print('\nemotion test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
-                    epoch + 1, loss, acc_pos, p_pos, r_pos, f1_pos, max_f1_pos))
+                # print('\nemotion test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                #     epoch + 1, loss, acc_pos, p_pos, r_pos, f1_pos, max_f1_pos))
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
             _, maxIndex = func.maxS(FF1_list)
             _, maxIndex_pos = func.maxS(FF1_pos_list)
-            print("cause extract maxIndex:", maxIndex)
-            print("emotion extract maxIndex:", maxIndex_pos)
-            print('Optimization Finished!\n')
+            # print("cause extract maxIndex:", maxIndex)
+            # print("emotion extract maxIndex:", maxIndex_pos)
+            # print('Optimization Finished!\n')
             pred_prob = pre_list_prob[maxIndex]
             pred_pos_prob = pre_pos_list_prob[maxIndex_pos]
 
@@ -387,7 +385,7 @@ def run():
             p_pos_list.append(max_p_pos)
             r_pos_list.append(max_r_pos)
             f1_pos_list.append(max_f1_pos)
-        print("running time: ", str((end_time - start_time) / 60.))
+        # print("running time: ", str((end_time - start_time) / 60.))
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
         print("cause f1_score in 10 fold: {}\naverage : p:{} r:{} f1:{}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
@@ -440,7 +438,7 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [3]}
+    params = {"n_layers": [3,4], "cause_rate": [1, 1.3, 1.5, 1.7]}
 
     params_search = list(ParameterGrid(params))
 
@@ -449,6 +447,7 @@ def main(_):
         print(param)
         for key, value in param.items():
             setattr(FLAGS, key, value)
+        setattr(FLAGS, "pos_rate", 2 - FLAGS.cause_rate)
         p_list, r_list, f1_list = [], [], []
         p_pos_list, r_pos_list, f1_pos_list = [], [], []
         for i in range(FLAGS.run_times):
