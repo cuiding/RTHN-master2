@@ -43,8 +43,8 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
-tf.app.flags.DEFINE_float('cause', 1.5, 'lambda1')
-tf.app.flags.DEFINE_float('pos', 0.5, 'lambda2')
+tf.app.flags.DEFINE_float('cause_rate', 1.5, 'lambda1')
+tf.app.flags.DEFINE_float('pos_rate', 0.5, 'lambda2')
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
 def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
@@ -208,13 +208,13 @@ def run():
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
         loss_pos = - tf.reduce_sum(y_position * tf.log(pred_pos)) / valid_num
         loss_cause = - tf.reduce_sum(y * tf.log(pred)) / valid_num
-        loss_op = loss_cause * FLAGS.cause + loss_pos * FLAGS.pos + reg * FLAGS.l2_reg
+        loss_op = loss_cause * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg * FLAGS.l2_reg
         loss_assist_list = []
         for i in range(FLAGS.n_layers - 1):
             if i == 0:
                 loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num
                 loss_pos = - tf.reduce_sum(y_position * tf.log(pred_pos)) / valid_num
-                loss_assist = loss_assist * FLAGS.cause + loss_pos * FLAGS.pos + reg_assist_list[i] * FLAGS.l2_reg
+                loss_assist = loss_assist * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg_assist_list[i] * FLAGS.l2_reg
             else:
                 loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num + reg_assist_list[i] * FLAGS.l2_reg
             loss_assist_list.append(loss_assist)
