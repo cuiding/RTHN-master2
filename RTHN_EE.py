@@ -440,7 +440,7 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [4]}
+    params = {"n_layers": [3]}
 
     params_search = list(ParameterGrid(params))
 
