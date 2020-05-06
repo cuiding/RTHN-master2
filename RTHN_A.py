@@ -13,7 +13,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '0'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0, 5'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -38,7 +38,7 @@ tf.app.flags.DEFINE_float('lr_main', 0.001, 'learning rate')
 tf.app.flags.DEFINE_float('keep_prob1', 0.5, 'word embedding training dropout keep prob')
 tf.app.flags.DEFINE_float('keep_prob2', 1.0, 'softmax layer dropout keep prob')
 tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
-tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
+tf.app.flags.DEFINE_integer('run_times', 2, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
 
