@@ -262,8 +262,8 @@ def run():
                     if step % 5 == 0:
                         print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                     step = step + 1
-                print("begin save!")
-                saver.save(sess, "./run_final/model.ckpt", global_step=step)
+                # print("begin save!")
+                # saver.save(sess, "./run_final/model.ckpt", global_step=step)
 
                 '''*********Test********'''
                 test = [te_x, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
