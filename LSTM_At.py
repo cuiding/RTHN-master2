@@ -177,9 +177,9 @@ def print_training_info():
     print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
 
 
-def get_batch_data(x, word_dis, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, test=False):
+def get_batch_data(x, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, test=False):
     for index in func.batch_index(len(y), batch_size, test):
-        feed_list = [x[index], word_dis[index], sen_len[index], doc_len[index], keep_prob1, keep_prob2, y[index]]
+        feed_list = [x[index],sen_len[index], doc_len[index], keep_prob1, keep_prob2, y[index]]
         yield feed_list, len(index)
 
 
