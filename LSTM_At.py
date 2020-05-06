@@ -135,7 +135,7 @@ def run():
                     step = step + 1
 
                 # ************test************
-                test = [te_x, te_word_dis, te_sen_len, te_doc_len, 1., 1., te_y]
+                test = [te_x, te_sen_len, te_doc_len, 1., 1., te_y]
                 loss, pred_y, true_y, pred_prob = sess.run(
                     [loss_op, pred_y_op, true_y_op, pred], feed_dict=dict(zip(placeholders, test)))
                 true_list.append(true_y)
