@@ -35,12 +35,12 @@ def load_data():
 
 def acc_prf(pred_y, true_y, doc_len):
     tmp1, tmp2 = [], []
-    print("pred_y.shape[0]:{}  pred_y.shape[1]:{}  true_y.shape[0]:{}  true_y.shape[1]:{}".format(pred_y.shape[0], pred_y.shape[1], true_y.shape[0], true_y.shape[1]))
+    # print("pred_y.shape[0]:{}  pred_y.shape[1]:{}  true_y.shape[0]:{}  true_y.shape[1]:{}".format(pred_y.shape[0], pred_y.shape[1], true_y.shape[0], true_y.shape[1]))
     for i in range(pred_y.shape[0]):
-        print("doc_len[{}]:{}".format(i, doc_len[i]))
+        # print("doc_len[{}]:{}".format(i, doc_len[i]))
         for j in range(doc_len[i]):
-            print("pred_y[{}][{}]:{}".format(i, j, pred_y[i][j]))
-            print("true_y[{}][{}]:{}".format(i, j, true_y[i][j]))
+            # print("pred_y[{}][{}]:{}".format(i, j, pred_y[i][j]))
+            # print("true_y[{}][{}]:{}".format(i, j, true_y[i][j]))
             tmp1.append(pred_y[i][j])
             tmp2.append(true_y[i][j])
     y_pred, y_true = np.array(tmp1), np.array(tmp2)
@@ -48,6 +48,13 @@ def acc_prf(pred_y, true_y, doc_len):
     p = precision_score(y_true, y_pred, average='binary')
     r = recall_score(y_true, y_pred, average='binary')
     f1 = f1_score(y_true, y_pred, average='binary')
+    if acc==0 & p==0 & r==0 & f1:
+        print("pred_y.shape[0]:{}  pred_y.shape[1]:{}  true_y.shape[0]:{}  true_y.shape[1]:{}".format(pred_y.shape[0], pred_y.shape[1], true_y.shape[0], true_y.shape[1]))
+        for i in range(pred_y.shape[0]):
+            print("doc_len[{}]:{}".format(i, doc_len[i]))
+            for j in range(doc_len[i]):
+                print("pred_y[{}][{}]:{}".format(i, j, pred_y[i][j]))
+                print("true_y[{}][{}]:{}".format(i, j, true_y[i][j]))
     return acc, p, r, f1
 
 #func.batch_index(len(y), batch_size, test)
