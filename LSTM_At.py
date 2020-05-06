@@ -184,8 +184,8 @@ def run():
 
 def print_training_info():
     print('\n\n>>>>>>>>>>>>>>>>>>>>TRAINING INFO:\n')
-    print('batch-{}, learning_rate-{}, keep_prob1-{}, num_heads-{}, n_layers-{}'.format(
-        FLAGS.batch_size, FLAGS.lr_main, FLAGS.keep_prob1, FLAGS.num_heads, FLAGS.n_layers))
+    print('batch-{}, learning_rate-{}, keep_prob1-{}'.format(
+        FLAGS.batch_size, FLAGS.lr_main, FLAGS.keep_prob1))
     print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
 
 
