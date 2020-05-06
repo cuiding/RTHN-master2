@@ -29,7 +29,8 @@ tf.app.flags.DEFINE_integer('n_class', 2, 'number of distinct class')
 # >>>>>>>>>>>>>>>>>>>> For Data <<<<<<<<<<<<<<<<<<<< #
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
-tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
+# tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
+f.app.flags.DEFINE_integer('training_iter', 5, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
 tf.app.flags.DEFINE_integer('batch_size', 16, 'number of example per batch')
@@ -238,7 +239,7 @@ def run():
                 #     training_iter = FLAGS.training_iter #(15)
                 # else:
                 #     training_iter = FLAGS.training_iter - 5 #(10)
-                training_iter = 5
+                training_iter = FLAGS.training_iter
                 for i in range(training_iter):
                     step = 1
                     # train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
