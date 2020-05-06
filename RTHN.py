@@ -234,10 +234,11 @@ def run():
 
             '''*********GP*********'''
             for layer in range(FLAGS.n_layers - 1):
-                if layer == 0:
-                    training_iter = FLAGS.training_iter #(15)
-                else:
-                    training_iter = FLAGS.training_iter - 5 #(10)
+                # if layer == 0:
+                #     training_iter = FLAGS.training_iter #(15)
+                # else:
+                #     training_iter = FLAGS.training_iter - 5 #(10)
+                training_iter = 5
                 for i in range(training_iter):
                     step = 1
                     # train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
