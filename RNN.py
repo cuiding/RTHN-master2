@@ -46,7 +46,8 @@ def build_model(word_embedding, x, sen_len, doc_len, keep_prob1, keep_prob2, RNN
         lstm_wordEncode = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer')
     lstm_wordEncode = tf.reshape(lstm_wordEncode, [-1, FLAGS.max_sen_len, 2 * FLAGS.n_hidden])
 
-    s_senEncode = RNN(lstm_wordEncode, doc_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'sentence_layer')
+    s_senEncode = tf.reshape(lstm_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
+    s_senEncode = RNN(s_senEncode, doc_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'sentence_layer')
     n_feature = 2 * FLAGS.n_hidden
 
     with tf.name_scope('softmax'):
