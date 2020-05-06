@@ -108,9 +108,7 @@ def run():
         kf, fold, SID = KFold(n_splits=10), 1, 0
         Id = []
         p_list, r_list, f1_list = [], [], []
-        true_result_all, pre_result_all = [], []
         start_time = time.time()
-        all0_sum, multi1_sum, pred_multi_cause_sum = [], [], []
         for train, test in kf.split(x_data):
             tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis = map(lambda x: x[train],
                 [x_data, y_data, sen_len_data, doc_len_data, word_distance])
