@@ -48,7 +48,7 @@ def acc_prf(pred_y, true_y, doc_len):
     p = precision_score(y_true, y_pred, average='binary')
     r = recall_score(y_true, y_pred, average='binary')
     f1 = f1_score(y_true, y_pred, average='binary')
-    if acc==0 & p==0 & r==0 & f1:
+    if acc==0 and p==0 and r==0 and f1:
         print("pred_y.shape[0]:{}  pred_y.shape[1]:{}  true_y.shape[0]:{}  true_y.shape[1]:{}".format(pred_y.shape[0], pred_y.shape[1], true_y.shape[0], true_y.shape[1]))
         for i in range(pred_y.shape[0]):
             print("doc_len[{}]:{}".format(i, doc_len[i]))
