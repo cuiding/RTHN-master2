@@ -9,7 +9,7 @@ import tensorflow as tf
 from sklearn.model_selection import KFold
 import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
-os.environ["CUDA_VISIBLE_DEVICES"] = '0, 5'
+os.environ["CUDA_VISIBLE_DEVICES"] = '5, 0'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
