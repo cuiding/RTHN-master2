@@ -37,7 +37,7 @@ tf.app.flags.DEFINE_float('keep_prob2', 1.0, 'softmax layer dropout keep prob')
 tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 
 
-def build_model(word_embedding, x, sen_len, doc_len, keep_prob1, keep_prob2, RNN=func.biGRU):
+def build_model(word_embedding, x, sen_len, doc_len, keep_prob1, keep_prob2, RNN=func.biLSTM):
     x = tf.nn.embedding_lookup(word_embedding, x)
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
     inputs = tf.nn.dropout(inputs, keep_prob=keep_prob1)
