@@ -34,7 +34,7 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 # tf.app.flags.DEFINE_integer('run_times', 10, 'run times of this model')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 
-def build_model(x, sen_len, doc_len, word_dis, word_embedding, keep_prob1, keep_prob2, RNN=func.biGRU):
+def build_model(x, sen_len, doc_len, word_dis, word_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
     x = tf.nn.embedding_lookup(word_embedding, x)
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
     inputs = tf.nn.dropout(inputs, keep_prob=keep_prob1)
