@@ -137,14 +137,14 @@ def run():
     #需要将word_distance改为自己计算的结果
     x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_embedding, pos_embedding, pos_embedding_a,  pos_embedding_e = func.load_data()
 
-    print("x_data.shape:{}\n".format(x_data.shape))
-    print("y_data.shape:{}\n".format(y_data.shape))
-    print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
-    print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
-    print("word_distance.shape:{}\n".format(word_distance.shape))
-    print("word_embedding.shape:{}\n".format(word_embedding.shape))
-    print("pos_embedding.shape:{}\n".format(pos_embedding.shape))
-    print("pos_embedding:{}\n".format(pos_embedding[1]))
+    # print("x_data.shape:{}\n".format(x_data.shape))
+    # print("y_data.shape:{}\n".format(y_data.shape))
+    # print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
+    # print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
+    # print("word_distance.shape:{}\n".format(word_distance.shape))
+    # print("word_embedding.shape:{}\n".format(word_embedding.shape))
+    # print("pos_embedding.shape:{}\n".format(pos_embedding.shape))
+    # print("pos_embedding:{}\n".format(pos_embedding[1]))
 
     word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
     pos_embedding = tf.constant(pos_embedding, dtype=tf.float32, name='pos_embedding')
@@ -163,7 +163,7 @@ def run():
     placeholders = [x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
 
     pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2)
-    print(pred)
+    # print(pred)
 
     with tf.name_scope('loss'):
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
@@ -185,8 +185,8 @@ def run():
 
     true_y_op = tf.argmax(y, 2,name = "true_y_op")
     pred_y_op = tf.argmax(pred, 2,  name = "pred_y_op")
-    print("true_y_op:{}".format(true_y_op))
-    print("pred_y_op:{}".format(pred_y_op))
+    # print("true_y_op:{}".format(true_y_op))
+    # print("pred_y_op:{}".format(pred_y_op))
     pred_y_assist_op_list = []
     for i in range(FLAGS.n_layers - 1):
         pred_y_assist_op = tf.argmax(pred_assist_list[i], 2)
@@ -201,14 +201,14 @@ def run():
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
 
-    saver = tf.train.Saver(max_to_keep=4)
-
-    tenboard_dir = './tensorboard/RTHN'
-    graph = tf.get_default_graph()
-    writer = tf.summary.FileWriter(tenboard_dir, graph)
+    # saver = tf.train.Saver(max_to_keep=4)
+    #
+    # tenboard_dir = './tensorboard/RTHN'
+    # graph = tf.get_default_graph()
+    # writer = tf.summary.FileWriter(tenboard_dir, graph)
 
     with tf.Session(config=tf_config) as sess:
-        writer.add_graph(sess.graph)
+        # writer.add_graph(sess.graph)
 
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
@@ -241,8 +241,8 @@ def run():
                             [optimizer_assist_list[layer], loss_assist_list[layer], pred_y_assist_op_list[layer], true_y_op, pred_assist_list[layer], doc_len],
                             feed_dict=dict(zip(placeholders, train)))
                         acc_assist, p_assist, r_assist, f1_assist = func.acc_prf(pred_y, true_y, doc_len_batch)
-                        if step % 10 == 0:
-                            print('GL{}: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(layer + 1, i + 1, step, loss, acc_assist))
+                        # if step % 10 == 0:
+                        #     print('GL{}: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(layer + 1, i + 1, step, loss, acc_assist))
                         step = step + 1
 
             '''*********Train********'''
@@ -254,7 +254,7 @@ def run():
                         [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                    if step % 5 == 0:
+                    if step % 10 == 0 and p ==0:
                         print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                     step = step + 1
                 # print("begin save!")
@@ -278,14 +278,15 @@ def run():
                 FF1_list.append(f1)
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
-                print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                if p == 0 and  r == 0 and  f1 == 0:
+                    print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
                     epoch + 1, loss, acc, p, r, f1, max_f1))
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
             _, maxIndex = func.maxS(FF1_list)
-            print("maxIndex:", maxIndex)
-            print('Optimization Finished!\n')
+            # print("maxIndex:", maxIndex)
+            # print('Optimization Finished!\n')
             pred_prob = pre_list_prob[maxIndex]
 
             for i in range(pred_y.shape[0]):
@@ -301,7 +302,7 @@ def run():
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
         print("f1_score in 10 fold: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
 
-        writer.close()
+        # writer.close()
         return p, r, f1
 
 def print_training_info():
@@ -322,10 +323,7 @@ def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
     s = tf.nn.dropout(s, keep_prob=FLAGS.keep_prob2)
     w = func.get_weight_varible(w_varible, [n_feature, FLAGS.n_class])
     b = func.get_weight_varible(b_varible, [FLAGS.n_class])
-    print("s:{}".format(s))
-    print("w:{}".format(w))
     pred = tf.matmul(s, w) + b
-    print("matmul(s, w):{}".format(pred))
     pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
     pred = tf.nn.softmax(pred)
     pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name='pred')
