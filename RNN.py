@@ -44,9 +44,10 @@ def build_model(word_embedding, x, sen_len, doc_len, keep_prob1, keep_prob2, RNN
     sen_len = tf.reshape(sen_len, [-1])
     with tf.name_scope('word_encode'):
         lstm_wordEncode = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer')
-    lstm_wordEncode = tf.reshape(lstm_wordEncode, [-1, FLAGS.max_sen_len, 2 * FLAGS.n_hidden])
 
-    s_senEncode = tf.reshape(lstm_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
+    s_wordEncode = tf.reshape(lstm_wordEncode,[-1,  2 * FLAGS.n_hidden])
+    s_senEncode = tf.reshape(s_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
+
     s_senEncode = RNN(s_senEncode, doc_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'sentence_layer')
     n_feature = 2 * FLAGS.n_hidden
 
