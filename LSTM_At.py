@@ -125,7 +125,7 @@ def run():
             for epoch in range(FLAGS.training_iter):
                 step = 1
                 # ************train************
-                for train, _ in get_batch_data(tr_x, tr_word_dis, tr_sen_len, tr_doc_len, FLAGS.keep_prob1, FLAGS.keep_prob2, tr_y, FLAGS.batch_size):
+                for train, _ in get_batch_data(tr_x, tr_sen_len, tr_doc_len, FLAGS.keep_prob1, FLAGS.keep_prob2, tr_y, FLAGS.batch_size):
                     _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
                         [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
@@ -179,7 +179,7 @@ def print_training_info():
 
 def get_batch_data(x, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, test=False):
     for index in func.batch_index(len(y), batch_size, test):
-        feed_list = [x[index],sen_len[index], doc_len[index], keep_prob1, keep_prob2, y[index]]
+        feed_list = [x[index], sen_len[index], doc_len[index], keep_prob1, keep_prob2, y[index]]
         yield feed_list, len(index)
 
 
