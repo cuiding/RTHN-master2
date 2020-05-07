@@ -185,8 +185,6 @@ def run():
 
     true_y_op = tf.argmax(y, 2,name = "true_y_op")
     pred_y_op = tf.argmax(pred, 2,  name = "pred_y_op")
-    # print("true_y_op:{}".format(true_y_op))
-    # print("pred_y_op:{}".format(pred_y_op))
     pred_y_assist_op_list = []
     for i in range(FLAGS.n_layers - 1):
         pred_y_assist_op = tf.argmax(pred_assist_list[i], 2)
