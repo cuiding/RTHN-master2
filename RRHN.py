@@ -9,7 +9,9 @@ import tensorflow as tf
 from sklearn.model_selection import KFold
 import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
-os.environ["CUDA_VISIBLE_DEVICES"] = '0, 5'
+from sklearn.model_selection import KFold
+from sklearn.model_selection import ParameterGrid
+os.environ["CUDA_VISIBLE_DEVICES"] = '5, 0'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -186,7 +188,31 @@ def get_batch_data(x, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, t
 
 
 def main(_):
-    p, r, f1 = run()
+    grid_search = {}
+    params = {"clause_layer": [2,3,4,5]}
+
+    params_search = list(ParameterGrid(params))
+    for i, param in enumerate(params_search):
+        print("*************params_search_{}*************".format(i + 1))
+        print(param)
+        for key, value in param.items():
+            setattr(FLAGS, key, value)
+        p_list, r_list, f1_list = [], [], []
+        for i in range(FLAGS.run_times):
+            print("*************run(){}*************".format(i + 1))
+            p, r, f1 = run()
+            p_list.append(p)
+            r_list.append(r)
+            f1_list.append(f1)
+
+        for i in range(FLAGS.run_times):
+            print(round(p_list[i], 4), round(r_list[i], 4), round(f1_list[i], 4))
+        print("avg_prf: ", np.mean(p_list), np.mean(r_list), np.mean(f1_list))
+
+        grid_search[str(param)] = {"PRF": [round(np.mean(p_list), 4), round(np.mean(r_list), 4), round(np.mean(f1_list), 4)]}
+
+    for key, value in grid_search.items():
+        print("Main: ", key, value)
 
 
 if __name__ == '__main__':
