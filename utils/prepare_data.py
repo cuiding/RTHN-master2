@@ -51,24 +51,28 @@ def load_w2v(embedding_dim, embedding_dim_pos, train_file_path, embedding_path):
 
     embedding_pos = [list(np.zeros(embedding_dim_pos))]
     embedding_pos_a = [list(np.zeros(embedding_dim_pos))]
-    embedding_pos_e = [list(np.zeros(embedding_dim_pos))]
     embedding_pos.extend([list(np.random.normal(
         loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(-68, 34)])
-    embedding_pos_e.extend([list(np.random.normal(
-        loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(-68, 34)])
+
     embedding_pos_a.extend([list(np.random.normal(
-        loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(1, max_doc_len)])
-    # embedding.extend([list(np.random.normal(loc=0.0, scale=0.1, size=embedding_dim)) for i in range(-68,34)])
+        loc=0.0, scale=0.1, size=embedding_dim_pos)) for i in range(0, max_doc_len - 1)])
+
+    embedding_pos_ap = np.zeros([max_doc_len, embedding_dim])
+    for pos in range(max_doc_len):
+        for i in range(embedding_dim // 2):
+            embedding_pos_ap[pos, 2 * i] = np.sin(pos / np.power(10000, 2 * i / embedding_dim))
+            embedding_pos_ap[pos, 2 * i + 1] = np.cos(pos / np.power(10000, 2 * i / embedding_dim))
+
     # embedding, embedding_pos, embedding_pos_e, embedding_pos_a = np.array(embedding), np.array(embedding_pos), np.array(embedding_pos_e), np.array(embedding_pos_a)
-    embedding, embedding_pos, embedding_pos_a, embedding_pos_e = np.array(embedding), np.array(embedding_pos), np.array(embedding_pos_a), np.array(embedding_pos_e)
-    # print(embedding_pos_e)
+    embedding, embedding_pos, embedding_pos_a, embedding_pos_ap = np.array(embedding), np.array(embedding_pos), np.array(embedding_pos_a), np.array(embedding_pos_ap)
+
     pk.dump(embedding, open(path + 'embedding.txt', 'wb'))
     pk.dump(embedding_pos, open(path + 'embedding_pos.txt', 'wb'))
     pk.dump(embedding_pos_a, open(path + 'embedding_pos_a.txt', 'wb'))
-    pk.dump(embedding_pos_e, open(path + 'embedding_pos_e.txt', 'wb'))
+    pk.dump(embedding_pos_ap, open(path + 'embedding_pos_ap.txt', 'wb'))
 
-    print("embedding.shape: {} embedding_pos.shape: {} embedding_pos_a.shape: {}  embedding_pos_e.shape: {}".format(
-        embedding.shape, embedding_pos.shape, embedding_pos_a.shape, embedding_pos_e.shape))
+    print("embedding.shape: {} embedding_pos.shape: {} embedding_pos_a.shape: {}  embedding_pos_ap.shape: {}".format(
+        embedding.shape, embedding_pos.shape, embedding_pos_a.shape, embedding_pos_ap.shape))
     print("load embedding done!\n")
     return word_idx, embedding, embedding_pos
 
@@ -125,7 +129,7 @@ def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen
             clause[i] = int(word_idx[word])
             # print("clause[{}]:{}".format(i,clause[i]))
             relative_pos_clause[i] = word_pos
-            relative_pos_clause_a[i] = clause_idx
+            relative_pos_clause_a[i] = clause_idx - 1
             relative_pos_clause_e[i] = 1
         # print("clause.shape:{}".format(len(clause)))clause:每个子句中词的编号
         relative_pos_all.append(np.array(relative_pos_clause))
@@ -161,12 +165,13 @@ def load_data(input_file, word_idx, max_doc_len=max_doc_len, max_sen_len=max_sen
     print('relative_pos.shape {}\nrelative_pos_a.shape {}\nrelative_pos_e.shape {}\nx.shape {} \ny_position.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
         relative_pos.shape, relative_pos_a.shape, relative_pos_e.shape, x.shape, y_position.shape, y.shape, sen_len.shape, doc_len.shape
     ))
+    # print('y_position {}'.format(y_position[0]))
     # print('relative_pos {}'.format(relative_pos[0][0]))
     # print('relative_pos {}'.format(relative_pos[0][1]))
     # word_dis = np.reshape(relative_pos_e[:, :, 0], [-1, max_doc_len])
     # print('word_dis {}'.format(word_dis[0]))
     # print('word_dis {}'.format(word_dis[1]))
-    # print('load data done!\n')
+    print('load data done!\n')
     return x, y, sen_len, doc_len
 
 #load_w2v: return word_idx, embedding, embedding_pos

@@ -170,7 +170,7 @@ def run():
     print("***********localtime: ", localtime)
     #func.load_data()：return x, y_position, y, sen_len, doc_len, relative_pos, relative_pos_a,  embedding, embedding_pos, embedding_pos_a
     #需要将word_distance改为自己计算的结果
-    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_em_data, pos_embedding, pos_embedding_a, pos_embedding_e = func.load_data()
+    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_em_data, pos_embedding, pos_embedding_a, pos_embedding_ap = func.load_data()
 
     # print("x_data.shape:{}\n".format(x_data.shape))
     # print("y_position_data.shape:{}\n".format(y_position_data.shape))
@@ -178,14 +178,14 @@ def run():
     # print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
     # print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
     # print("word_distance.shape:{}\n".format(word_distance.shape))
-    # print("word_distance_e.shape:{}\n".format(word_distance_e.shape))
+    # print("word_distance_ap.shape:{}\n".format(word_distance_e.shape))
     # print("word_em_data.shape:{}\n".format(word_em_data.shape))
     # print("pos_embedding_a.shape:{}\n".format(pos_embedding_a.shape))
-    # print("pos_embedding_e.shape:{}\n".format(pos_embedding_e.shape))
+    # print("pos_embedding_ap.shape:{}\n".format(pos_embedding_ap.shape))
     # print("pos_embedding:{}\n".format(pos_embedding[1]))
 
     # word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
-    pos_embedding_e = tf.constant(pos_embedding_e, dtype=tf.float32, name='pos_embedding_e')
+    pos_embedding = tf.constant(pos_embedding, dtype=tf.float32, name='pos_embedding')
     print('build model...')
     start_time = time.time()
 
@@ -201,7 +201,7 @@ def run():
     word_embedding = tf.placeholder(tf.float32, [None, FLAGS.embedding_dim], name= "word_embedding")
     placeholders = [x, y_position, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, word_embedding]
 
-    pos, pred_pos, pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding_e, keep_prob1, keep_prob2)
+    pos, pred_pos, pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2)
 
     # print('pred_pos {}'.format(pred_pos.shape))
     with tf.name_scope('loss'):

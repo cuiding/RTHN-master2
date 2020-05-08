@@ -74,7 +74,7 @@ def run():
     tf.reset_default_graph()
     localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("***********localtime: ", localtime)
-    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_embedding, pos_embedding, pos_embedding_a,  pos_embedding_e = func.load_data()
+    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_embedding, pos_embedding, pos_embedding_a,  pos_embedding_ap = func.load_data()
 
     word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
     print('build model...')

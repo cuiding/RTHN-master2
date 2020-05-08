@@ -61,10 +61,7 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         senEncode = func.att_var(wordEncode, sen_len, w1, b1, w2)
     senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, sh2])
 
-    # print("word_dis2:{}".format(word_dis))
     word_dis = tf.reshape(word_dis[:, :, 0, :], [-1, FLAGS.max_doc_len, FLAGS.embedding_dim_pos])
-    # print("word_dis3:{}".format(word_dis))
-    # print("senEncode:{}".format(senEncode))
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
@@ -100,6 +97,7 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         senEncode = trans_func(senEncode_assist, senEncode, n_feature, out_units, 'layer' + str(i))
 
         pred_assist, reg_assist = senEncode_softmax(senEncode, 'softmax_assist_w' + str(i), 'softmax_assist_b' + str(i), out_units, doc_len)
+
         pred_assist_label = tf.cast(tf.reshape(tf.argmax(pred_assist, axis=2), [-1, 1, FLAGS.max_doc_len]), tf.float32)
         # masked the prediction at the current position
         pred_assist_label = pred_assist_label * pred_two - pred_ones
@@ -135,7 +133,7 @@ def run():
     print("***********localtime: ", localtime)
     #func.load_data()：return x, y, sen_len, doc_len, relative_pos, embedding, embedding_pos
     #需要将word_distance改为自己计算的结果
-    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_embedding, pos_embedding, pos_embedding_a,  pos_embedding_e = func.load_data()
+    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_embedding, pos_embedding, pos_embedding_a,  pos_embedding_ap = func.load_data()
 
     # print("x_data.shape:{}\n".format(x_data.shape))
     # print("y_data.shape:{}\n".format(y_data.shape))

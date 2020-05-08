@@ -6,9 +6,12 @@
 
 import numpy as np
 import tensorflow as tf
+import transformer as trans
 from sklearn.model_selection import KFold
 import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
+from sklearn.model_selection import KFold
+from sklearn.model_selection import ParameterGrid
 os.environ["CUDA_VISIBLE_DEVICES"] = '5, 0'
 
 FLAGS = tf.app.flags.FLAGS
@@ -16,7 +19,6 @@ FLAGS = tf.app.flags.FLAGS
 # embedding parameters ##
 tf.app.flags.DEFINE_string('w2v_file', '../data/w2v_200.txt', 'embedding file')
 tf.app.flags.DEFINE_integer('embedding_dim', 200, 'dimension of word embedding')
-tf.app.flags.DEFINE_integer('embedding_dim_pos', 50, 'dimension of position embedding')
 # input struct ##
 tf.app.flags.DEFINE_integer('max_doc_len', 75, 'max number of tokens per documents')
 tf.app.flags.DEFINE_integer('max_sen_len', 45, 'max number of tokens per sentence')
@@ -28,7 +30,10 @@ tf.app.flags.DEFINE_string('train_file_path', '../data/clause_keywords.csv', 'tr
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
 tf.app.flags.DEFINE_integer('training_iter', 10, 'number of train iter')
+tf.app.flags.DEFINE_integer('n_layers', 2, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
+tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
+tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 # not easy to tune , a good posture of using data to train model is very important
 tf.app.flags.DEFINE_integer('batch_size', 32, 'number of example per batch')
 tf.app.flags.DEFINE_float('learning_rate', 0.005, 'learning rate')
@@ -37,29 +42,33 @@ tf.app.flags.DEFINE_float('keep_prob2', 1.0, 'softmax layer dropout keep prob')
 tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 
 
-def build_model(word_embedding, x, sen_len, doc_len, keep_prob1, keep_prob2, RNN=func.biLSTM):
+def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, keep_prob1, keep_prob2, RNN = func.biLSTM):
     x = tf.nn.embedding_lookup(word_embedding, x)
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
     inputs = tf.nn.dropout(inputs, keep_prob=keep_prob1)
+    word_dis = tf.nn.embedding_lookup(pos_embedding, word_dis)
+    word_dis = tf.reshape(word_dis[:, :, 0, :], [-1, FLAGS.max_doc_len, FLAGS.embedding_dim])
     sen_len = tf.reshape(sen_len, [-1])
     with tf.name_scope('word_encode'):
         lstm_wordEncode = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer')
     lstm_wordEncode = tf.reshape(lstm_wordEncode, [-1, FLAGS.max_sen_len, 2 * FLAGS.n_hidden])
-    # with tf.name_scope('word_attention'):
-    #     sh2 = 2 * FLAGS.n_hidden
-    #     w1 = func.get_weight_varible('word_att_w1', [sh2, sh2])
-    #     b1 = func.get_weight_varible('word_att_b1', [sh2])
-    #     w2 = func.get_weight_varible('word_att_w2', [sh2, 1])
-    #     s_wordEncode = func.att_var(lstm_wordEncode, sen_len, w1, b1, w2)
-    # s_senEncode = tf.reshape(s_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
+    with tf.name_scope('word_attention'):
+        sh2 = 2 * FLAGS.n_hidden
+        w1 = func.get_weight_varible('word_att_w1', [sh2, sh2])
+        b1 = func.get_weight_varible('word_att_b1', [sh2])
+        w2 = func.get_weight_varible('word_att_w2', [sh2, 1])
+        s_wordEncode = func.att_var(lstm_wordEncode, sen_len, w1, b1, w2)
+    senEncode = tf.reshape(s_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
 
-    s_senEncode =  tf.reshape(lstm_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
-
-    s_senEncode = RNN(s_senEncode, doc_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'sentence_layer')
     n_feature = 2 * FLAGS.n_hidden
+    out_units = 2 * FLAGS.n_hidden
+
+    for i in range(1, FLAGS.n_layers):
+        senEncode = senEncode + word_dis
+        senEncode = trans_func(senEncode, senEncode, n_feature, out_units, 'layer' + str(i))
 
     with tf.name_scope('softmax'):
-        s = tf.reshape(s_senEncode, [-1, n_feature])
+        s = tf.reshape(senEncode, [-1, n_feature])
         s = tf.nn.dropout(s, keep_prob=keep_prob2)
         w = func.get_weight_varible('softmax_w', [n_feature, FLAGS.n_class])
         b = func.get_weight_varible('softmax_b', [FLAGS.n_class])
@@ -79,18 +88,20 @@ def run():
     x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_embedding, pos_embedding, pos_embedding_a,  pos_embedding_ap = func.load_data()
 
     word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
+    pos_embedding_ap = tf.constant(pos_embedding_ap, dtype=tf.float32, name='pos_embedding_ap')
     print('build model...')
 
     x = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len],name = "x")
     sen_len = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len],name = "sen_len")
     doc_len = tf.placeholder(tf.int32, [None],name = "doc_len")
+    word_dis_a = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len], name = "word_dis_a")
     keep_prob1 = tf.placeholder(tf.float32, name = "keep_prob1")
     keep_prob2 = tf.placeholder(tf.float32, name = "keep_prob2")
     y = tf.placeholder(tf.float32, [None, FLAGS.max_doc_len, FLAGS.n_class], name = "y")
-    placeholders = [x, sen_len, doc_len, keep_prob1, keep_prob2, y]
+    placeholders = [x, sen_len, doc_len, word_dis_a, keep_prob1, keep_prob2, y]
 
     with tf.name_scope('loss'):
-        pred, reg = build_model(word_embedding, x, sen_len, doc_len, keep_prob1, keep_prob2)
+        pred, reg = build_model(word_embedding, pos_embedding_ap, word_dis_a, x, sen_len, doc_len, keep_prob1, keep_prob2)
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
         loss_op = - tf.reduce_sum(y * tf.log(pred)) / valid_num + reg * FLAGS.l2_reg
 
@@ -113,9 +124,9 @@ def run():
         start_time = time.time()
         for train, test in kf.split(x_data):
             tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis = map(lambda x: x[train],
-                [x_data, y_data, sen_len_data, doc_len_data, word_distance])
+                [x_data, y_data, sen_len_data, doc_len_data, word_distance_a])
             te_x, te_y, te_sen_len, te_doc_len, te_word_dis = map(lambda x: x[test],
-                [x_data, y_data, sen_len_data, doc_len_data, word_distance])
+                [x_data, y_data, sen_len_data, doc_len_data, word_distance_a])
 
             precision_list, recall_list, FF1_list = [], [], []
             pre_list, true_list, pre_list_prob = [], [], []
@@ -127,7 +138,7 @@ def run():
             for epoch in range(FLAGS.training_iter):
                 step = 1
                 # ************train************
-                for train, _ in get_batch_data(tr_x, tr_sen_len, tr_doc_len, FLAGS.keep_prob1, FLAGS.keep_prob2, tr_y, FLAGS.batch_size):
+                for train, _ in get_batch_data(tr_x, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, tr_y, FLAGS.batch_size):
                     _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
                         [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
@@ -137,7 +148,7 @@ def run():
                     step = step + 1
 
                 # ************test************
-                test = [te_x, te_sen_len, te_doc_len, 1., 1., te_y]
+                test = [te_x, te_sen_len, te_doc_len, te_word_dis, 1., 1., te_y]
                 loss, pred_y, true_y, pred_prob = sess.run(
                     [loss_op, pred_y_op, true_y_op, pred], feed_dict=dict(zip(placeholders, test)))
                 true_list.append(true_y)
@@ -179,14 +190,50 @@ def print_training_info():
     print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
 
 
-def get_batch_data(x, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, test=False):
+def get_batch_data(x, sen_len, doc_len,  word_dis, keep_prob1, keep_prob2, y, batch_size, test=False):
     for index in func.batch_index(len(y), batch_size, test):
-        feed_list = [x[index], sen_len[index], doc_len[index], keep_prob1, keep_prob2, y[index]]
+        feed_list = [x[index], sen_len[index], doc_len[index],  word_dis[index], keep_prob1, keep_prob2, y[index]]
         yield feed_list, len(index)
+
+def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
+    senEncode_assist = trans.multihead_attention(queries=senEncode_dis,
+                                            keys=senEncode_dis,
+                                            values=senEncode,
+                                            units_query=n_feature,
+                                            num_heads=FLAGS.num_heads,
+                                            dropout_rate=0,
+                                            is_training=True,
+                                            scope=scope_var)
+    senEncode_assist = trans.feedforward_1(senEncode_assist, n_feature, out_units)
+    return senEncode_assist
 
 
 def main(_):
-    p, r, f1 = run()
+    grid_search = {}
+    params = {"n_layers": [2,3,4,5]}
+
+    params_search = list(ParameterGrid(params))
+    for i, param in enumerate(params_search):
+        print("*************params_search_{}*************".format(i + 1))
+        print(param)
+        for key, value in param.items():
+            setattr(FLAGS, key, value)
+        p_list, r_list, f1_list = [], [], []
+        for i in range(FLAGS.run_times):
+            print("*************run(){}*************".format(i + 1))
+            p, r, f1 = run()
+            p_list.append(p)
+            r_list.append(r)
+            f1_list.append(f1)
+
+        for i in range(FLAGS.run_times):
+            print(round(p_list[i], 4), round(r_list[i], 4), round(f1_list[i], 4))
+        print("avg_prf: ", np.mean(p_list), np.mean(r_list), np.mean(f1_list))
+
+        grid_search[str(param)] = {"PRF": [round(np.mean(p_list), 4), round(np.mean(r_list), 4), round(np.mean(f1_list), 4)]}
+
+    for key, value in grid_search.items():
+        print("Main: ", key, value)
 
 
 if __name__ == '__main__':
