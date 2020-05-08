@@ -48,13 +48,13 @@ def acc_prf(pred_y, true_y, doc_len):
     p = precision_score(y_true, y_pred, average='binary')
     r = recall_score(y_true, y_pred, average='binary')
     f1 = f1_score(y_true, y_pred, average='binary')
-    if acc==0 and p==0 and r==0 and f1:
-        print("pred_y.shape[0]:{}  pred_y.shape[1]:{}  true_y.shape[0]:{}  true_y.shape[1]:{}".format(pred_y.shape[0], pred_y.shape[1], true_y.shape[0], true_y.shape[1]))
-        for i in range(pred_y.shape[0]):
-            print("doc_len[{}]:{}".format(i, doc_len[i]))
-            for j in range(doc_len[i]):
-                print("pred_y[{}][{}]:{}".format(i, j, pred_y[i][j]))
-                print("true_y[{}][{}]:{}".format(i, j, true_y[i][j]))
+    # if p==0 and r==0 and f1==0:
+    #     print("pred_y.shape[0]:{}  pred_y.shape[1]:{}  true_y.shape[0]:{}  true_y.shape[1]:{}".format(pred_y.shape[0], pred_y.shape[1], true_y.shape[0], true_y.shape[1]))
+    #     for i in range(pred_y.shape[0]):
+    #         print("doc_len[{}]:{}".format(i, doc_len[i]))
+    #         for j in range(doc_len[i]):
+    #             print("pred_y[{}][{}]:{}".format(i, j, pred_y[i][j]))
+    #             print("true_y[{}][{}]:{}".format(i, j, true_y[i][j]))
     return acc, p, r, f1
 
 #func.batch_index(len(y), batch_size, test)
@@ -140,6 +140,7 @@ def att_var(inputs, length, w1, b1, w2):
     u = tf.tanh(tf.matmul(tmp, w1) + b1)
     alpha = tf.reshape(tf.matmul(u, w2), [-1, 1, max_len])
     alpha = softmax_by_length(alpha, length)
+    print("alpha {}".format(alpha.shape))
     return tf.reshape(tf.matmul(alpha, inputs), [-1, n_hidden])
 
 
