@@ -12,7 +12,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '5, 0'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0,5'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -210,7 +210,7 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 
 def main(_):
     grid_search = {}
-    params = {"n_layers": [2,3,4,5]}
+    params = {"n_layers": [2]}
 
     params_search = list(ParameterGrid(params))
     for i, param in enumerate(params_search):
