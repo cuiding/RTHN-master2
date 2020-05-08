@@ -32,6 +32,7 @@ tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 tf.app.flags.DEFINE_integer('training_iter', 10, 'number of train iter')
 tf.app.flags.DEFINE_integer('clause_layer', 2, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
+tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 # not easy to tune , a good posture of using data to train model is very important
 tf.app.flags.DEFINE_integer('batch_size', 32, 'number of example per batch')
 tf.app.flags.DEFINE_float('learning_rate', 0.005, 'learning rate')
