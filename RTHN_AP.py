@@ -58,14 +58,13 @@ def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, ke
         b1 = func.get_weight_varible('word_att_b1', [sh2])
         w2 = func.get_weight_varible('word_att_w2', [sh2, 1])
         s_wordEncode = func.att_var(lstm_wordEncode, sen_len, w1, b1, w2)
-    senEncode = tf.reshape(s_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
+    s_senEncode = tf.reshape(s_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
 
     n_feature = 2 * FLAGS.n_hidden
     out_units = 2 * FLAGS.n_hidden
-
     for i in range(1, FLAGS.n_layers):
-        senEncode = senEncode + word_dis
-        senEncode = trans_func(senEncode, senEncode, n_feature, out_units, 'layer' + str(i))
+        senEncode = s_senEncode + word_dis
+        senEncode = trans_func(s_senEncode, senEncode, n_feature, out_units, 'layer' + str(i))
 
     with tf.name_scope('softmax'):
         s = tf.reshape(senEncode, [-1, n_feature])
@@ -76,7 +75,7 @@ def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, ke
         pred = tf.nn.softmax(pred)
         pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name = "pred")
     reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
-    return pred, reg
+    return pred, reg, s_senEncode, word_dis
 
 
 def run():
@@ -101,7 +100,8 @@ def run():
     placeholders = [x, sen_len, doc_len, word_dis_a, keep_prob1, keep_prob2, y]
 
     with tf.name_scope('loss'):
-        pred, reg = build_model(word_embedding, pos_embedding_ap, word_dis_a, x, sen_len, doc_len, keep_prob1, keep_prob2)
+        pred, reg, s_senEncode, word_dis = build_model(word_embedding, pos_embedding_ap, word_dis_a, x, sen_len, doc_len, keep_prob1, keep_prob2)
+        print("s_senEncode  {}  word_dis  {}".format(s_senEncode.shape, word_dis.shape))
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
         loss_op = - tf.reduce_sum(y * tf.log(pred)) / valid_num + reg * FLAGS.l2_reg
 
@@ -190,7 +190,7 @@ def print_training_info():
     print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
 
 
-def get_batch_data(x, sen_len, doc_len,  word_dis, keep_prob1, keep_prob2, y, batch_size, test=False):
+def get_batch_data(x, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, y, batch_size, test=False):
     for index in func.batch_index(len(y), batch_size, test):
         feed_list = [x[index], sen_len[index], doc_len[index],  word_dis[index], keep_prob1, keep_prob2, y[index]]
         yield feed_list, len(index)
