@@ -9,7 +9,6 @@ import tensorflow as tf
 from sklearn.model_selection import KFold
 import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
-os.environ["CUDA_VISIBLE_DEVICES"] = '0, 5'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -28,7 +27,7 @@ tf.app.flags.DEFINE_string('train_file_path', '../data/clause_keywords.csv', 'tr
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
 tf.app.flags.DEFINE_integer('training_iter', 10, 'number of train iter')
-tf.app.flags.DEFINE_integer('clause_layer', 2, 'number of train iter')
+tf.app.flags.DEFINE_integer('clause_layer', 1, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
 tf.app.flags.DEFINE_integer('batch_size', 32, 'number of example per batch')
@@ -38,9 +37,12 @@ tf.app.flags.DEFINE_float('keep_prob2', 1.0, 'softmax layer dropout keep prob')
 tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 
 
-def build_model(word_embedding, x, sen_len, doc_len, keep_prob1, keep_prob2, RNN=func.biLSTM):
+def build_model(word_embedding, pos_embedding, x, word_dis, sen_len, doc_len, keep_prob1, keep_prob2, RNN=func.biLSTM):
     x = tf.nn.embedding_lookup(word_embedding, x)
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
+    word_dis = tf.nn.embedding_lookup(pos_embedding, word_dis)
+    word_dis = tf.reshape(word_dis, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim_pos])
+    inputs = tf.concat([inputs, word_dis], axis=2)  # [-1, max_sen_len, dim + dim_pos]
     inputs = tf.nn.dropout(inputs, keep_prob=keep_prob1)
     sen_len = tf.reshape(sen_len, [-1])
     with tf.name_scope('word_encode'):
@@ -76,21 +78,23 @@ def run():
     tf.reset_default_graph()
     localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("***********localtime: ", localtime)
-    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_embedding, pos_embedding, pos_embedding_a,  pos_embedding_e = func.load_data()
+    x_data, y_data, sen_len_data, doc_len_data, word_distance, word_embedding, pos_embedding = func.load_data()
 
     word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
+    pos_embedding = tf.constant(pos_embedding, dtype=tf.float32, name='pos_embedding')
     print('build model...')
 
     x = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len],name = "x")
+    word_dis = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len], name = "word_dis")
     sen_len = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len],name = "sen_len")
     doc_len = tf.placeholder(tf.int32, [None],name = "doc_len")
     keep_prob1 = tf.placeholder(tf.float32, name = "keep_prob1")
     keep_prob2 = tf.placeholder(tf.float32, name = "keep_prob2")
     y = tf.placeholder(tf.float32, [None, FLAGS.max_doc_len, FLAGS.n_class], name = "y")
-    placeholders = [x, sen_len, doc_len, keep_prob1, keep_prob2, y]
+    placeholders = [x, word_dis, sen_len, doc_len, keep_prob1, keep_prob2, y]
 
     with tf.name_scope('loss'):
-        pred, reg = build_model(word_embedding, x, sen_len, doc_len, keep_prob1, keep_prob2)
+        pred, reg = build_model(word_embedding, pos_embedding, x, word_dis, sen_len, doc_len, keep_prob1, keep_prob2)
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
         loss_op = - tf.reduce_sum(y * tf.log(pred)) / valid_num + reg * FLAGS.l2_reg
 
@@ -110,7 +114,9 @@ def run():
         kf, fold, SID = KFold(n_splits=10), 1, 0
         Id = []
         p_list, r_list, f1_list = [], [], []
+        true_result_all, pre_result_all = [], []
         start_time = time.time()
+        all0_sum, multi1_sum, pred_multi_cause_sum = [], [], []
         for train, test in kf.split(x_data):
             tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis = map(lambda x: x[train],
                 [x_data, y_data, sen_len_data, doc_len_data, word_distance])
@@ -127,7 +133,7 @@ def run():
             for epoch in range(FLAGS.training_iter):
                 step = 1
                 # ************train************
-                for train, _ in get_batch_data(tr_x, tr_sen_len, tr_doc_len, FLAGS.keep_prob1, FLAGS.keep_prob2, tr_y, FLAGS.batch_size):
+                for train, _ in get_batch_data(tr_x, tr_word_dis, tr_sen_len, tr_doc_len, FLAGS.keep_prob1, FLAGS.keep_prob2, tr_y, FLAGS.batch_size):
                     _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
                         [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
@@ -137,7 +143,7 @@ def run():
                     step = step + 1
 
                 # ************test************
-                test = [te_x, te_sen_len, te_doc_len, 1., 1., te_y]
+                test = [te_x, te_word_dis, te_sen_len, te_doc_len, 1., 1., te_y]
                 loss, pred_y, true_y, pred_prob = sess.run(
                     [loss_op, pred_y_op, true_y_op, pred], feed_dict=dict(zip(placeholders, test)))
                 true_list.append(true_y)
@@ -179,9 +185,9 @@ def print_training_info():
     print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
 
 
-def get_batch_data(x, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, test=False):
+def get_batch_data(x, word_dis, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, test=False):
     for index in func.batch_index(len(y), batch_size, test):
-        feed_list = [x[index], sen_len[index], doc_len[index], keep_prob1, keep_prob2, y[index]]
+        feed_list = [x[index], word_dis[index], sen_len[index], doc_len[index], keep_prob1, keep_prob2, y[index]]
         yield feed_list, len(index)
 
 
