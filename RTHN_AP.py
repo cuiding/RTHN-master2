@@ -58,13 +58,13 @@ def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, ke
         b1 = func.get_weight_varible('word_att_b1', [sh2])
         w2 = func.get_weight_varible('word_att_w2', [sh2, 1])
         s_wordEncode = func.att_var(lstm_wordEncode, sen_len, w1, b1, w2)
-    s_senEncode = tf.reshape(s_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
+    senEncode = tf.reshape(s_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
 
     n_feature = 2 * FLAGS.n_hidden
     out_units = 2 * FLAGS.n_hidden
     for i in range(1, FLAGS.n_layers):
-        senEncode_dis = s_senEncode + word_dis
-        senEncode = trans_func(senEncode_dis, s_senEncode, n_feature, out_units, 'layer' + str(i))
+        senEncode_dis = senEncode + word_dis
+        senEncode = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'layer' + str(i))
 
     with tf.name_scope('softmax'):
         s = tf.reshape(senEncode, [-1, n_feature])
