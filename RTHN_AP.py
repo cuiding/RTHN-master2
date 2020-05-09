@@ -63,8 +63,8 @@ def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, ke
     n_feature = 2 * FLAGS.n_hidden
     out_units = 2 * FLAGS.n_hidden
     for i in range(1, FLAGS.n_layers):
-        senEncode = s_senEncode + word_dis
-        senEncode = trans_func(s_senEncode, senEncode, n_feature, out_units, 'layer' + str(i))
+        senEncode_dis = s_senEncode + word_dis
+        senEncode = trans_func(senEncode_dis, s_senEncode, n_feature, out_units, 'layer' + str(i))
 
     with tf.name_scope('softmax'):
         s = tf.reshape(senEncode, [-1, n_feature])
