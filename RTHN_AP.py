@@ -99,8 +99,6 @@ def run():
     placeholders = [x, sen_len, doc_len, word_dis_a, keep_prob1, keep_prob2, y]
 
     with tf.name_scope('loss'):
-        # def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, keep_prob1, keep_prob2,
-        #                 RNN=func.biLSTM):
         pred, reg = build_model(word_embedding, pos_embedding_ap, word_dis_a, x, sen_len, doc_len, keep_prob1, keep_prob2)
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
         loss_op = - tf.reduce_sum(y * tf.log(pred)) / valid_num + reg * FLAGS.l2_reg
@@ -142,10 +140,9 @@ def run():
                     _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
                         [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
-                    # print("s_senEncode  {}  word_dis  {}".format(s_senEncode.shape, word_dis.shape))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                    if step % 5 == 0:
-                        print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                    # if step % 5 == 0:
+                    #     print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                     step = step + 1
 
                 # ************test************
