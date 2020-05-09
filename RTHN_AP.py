@@ -12,7 +12,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '0,5'
+os.environ["CUDA_VISIBLE_DEVICES"] = '5, 0'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -63,7 +63,7 @@ def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, ke
     n_feature = 2 * FLAGS.n_hidden
     out_units = 2 * FLAGS.n_hidden
     for i in range(1, FLAGS.n_layers):
-        senEncode = tf.add(s_senEncode ,word_dis)
+        senEncode = s_senEncode + word_dis
         senEncode = trans_func(s_senEncode, senEncode, n_feature, out_units, 'layer' + str(i))
 
     with tf.name_scope('softmax'):
@@ -76,7 +76,6 @@ def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, ke
         pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name = "pred")
     reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
     return pred, reg, s_senEncode, word_dis
-
 
 def run():
     if FLAGS.log_file_name:
@@ -100,6 +99,8 @@ def run():
     placeholders = [x, sen_len, doc_len, word_dis_a, keep_prob1, keep_prob2, y]
 
     with tf.name_scope('loss'):
+        # def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, keep_prob1, keep_prob2,
+        #                 RNN=func.biLSTM):
         pred, reg, s_senEncode, word_dis = build_model(word_embedding, pos_embedding_ap, word_dis_a, x, sen_len, doc_len, keep_prob1, keep_prob2)
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
         loss_op = - tf.reduce_sum(y * tf.log(pred)) / valid_num + reg * FLAGS.l2_reg
@@ -192,7 +193,7 @@ def print_training_info():
 
 def get_batch_data(x, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, y, batch_size, test=False):
     for index in func.batch_index(len(y), batch_size, test):
-        feed_list = [x[index], sen_len[index], doc_len[index],  word_dis[index], keep_prob1, keep_prob2, y[index]]
+        feed_list = [x[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2, y[index]]
         yield feed_list, len(index)
 
 def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
