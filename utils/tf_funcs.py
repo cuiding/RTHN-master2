@@ -28,9 +28,9 @@ def load_data():
     embedding = pk.load(open(path + 'embedding.txt', 'rb'))
     embedding_pos = pk.load(open(path + 'embedding_pos.txt', 'rb'))
     embedding_pos_a = pk.load(open(path + 'embedding_pos_a.txt', 'rb'))
-    embedding_pos_e = pk.load(open(path + 'embedding_pos_e.txt', 'rb'))
-    print('x.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\nrelative_pos.shape {}\nrelative_pos_a.shape {}\nrelative_pos_e.shape {}\nembedding_pos.shape {}\nembedding_pos_a.shape {}\nembedding_pos_e.shape {}'.format(x.shape, y.shape, sen_len.shape, doc_len.shape, relative_pos.shape, relative_pos_a.shape, relative_pos_e.shape, embedding_pos.shape,embedding_pos_a.shape,embedding_pos_e.shape))
-    return x, y_position, y, sen_len, doc_len, relative_pos,relative_pos_a, relative_pos_e, embedding, embedding_pos, embedding_pos_a, embedding_pos_e
+    embedding_pos_ap = pk.load(open(path + 'embedding_pos_ap.txt', 'rb'))
+    print('x.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\nrelative_pos.shape {}\nrelative_pos_a.shape {}\nrelative_pos_e.shape {}\nembedding_pos.shape {}\nembedding_pos_a.shape {}\nembedding_pos_ap.shape {}'.format(x.shape, y.shape, sen_len.shape, doc_len.shape, relative_pos.shape, relative_pos_a.shape, relative_pos_e.shape, embedding_pos.shape,embedding_pos_a.shape,embedding_pos_ap.shape))
+    return x, y_position, y, sen_len, doc_len, relative_pos,relative_pos_a, relative_pos_e, embedding, embedding_pos, embedding_pos_a, embedding_pos_ap
 
 
 def acc_prf(pred_y, true_y, doc_len):
