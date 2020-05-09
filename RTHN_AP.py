@@ -75,7 +75,7 @@ def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, ke
         pred = tf.nn.softmax(pred)
         pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name = "pred")
     reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
-    return pred, reg, s_senEncode, word_dis
+    return pred, reg
 
 def run():
     if FLAGS.log_file_name:
@@ -101,7 +101,7 @@ def run():
     with tf.name_scope('loss'):
         # def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, keep_prob1, keep_prob2,
         #                 RNN=func.biLSTM):
-        pred, reg, s_senEncode, word_dis = build_model(word_embedding, pos_embedding_ap, word_dis_a, x, sen_len, doc_len, keep_prob1, keep_prob2)
+        pred, reg = build_model(word_embedding, pos_embedding_ap, word_dis_a, x, sen_len, doc_len, keep_prob1, keep_prob2)
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
         loss_op = - tf.reduce_sum(y * tf.log(pred)) / valid_num + reg * FLAGS.l2_reg
 
