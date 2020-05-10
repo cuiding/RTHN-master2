@@ -13,7 +13,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '5, 4'
+os.environ["CUDA_VISIBLE_DEVICES"] = '2, 0'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -256,12 +256,12 @@ def run():
 
     # saver = tf.train.Saver(max_to_keep = 7)
 
-    tenboard_dir = './tensorboard/RTHN_EE'
-    graph = tf.get_default_graph()
-    writer = tf.summary.FileWriter(tenboard_dir, graph)
+    # tenboard_dir = './tensorboard/RTHN_EE'
+    # graph = tf.get_default_graph()
+    # writer = tf.summary.FileWriter(tenboard_dir, graph)
 
     with tf.Session(config=tf_config) as sess:
-        writer.add_graph(sess.graph)
+        # writer.add_graph(sess.graph)
 
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
@@ -394,7 +394,7 @@ def run():
         p_pos, r_pos, f1_pos = map(lambda x: np.array(x).mean(), [p_pos_list, r_pos_list, f1_pos_list])
         print("emotion f1_score in 10 fold: {}\naverage : p:{} r:{} f1:{}\n".format(np.array(f1_pos_list).reshape(-1, 1), round(p_pos, 4), round(r_pos, 4), round(f1_pos, 4)))
 
-        writer.close()
+        # writer.close()
         return p, r, f1, p_pos, r_pos, f1_pos
 
 def print_training_info():
