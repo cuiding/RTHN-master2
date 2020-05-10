@@ -13,7 +13,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = "1, 0"
+os.environ["CUDA_VISIBLE_DEVICES"] = '5, 0'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -43,8 +43,8 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
-tf.app.flags.DEFINE_float('cause_rate', 1.000, 'lambda1')
-tf.app.flags.DEFINE_float('pos_rate', 1.00, 'lambda2')
+tf.app.flags.DEFINE_float('cause_rate', 1.5, 'lambda1')
+tf.app.flags.DEFINE_float('pos_rate', 0.5, 'lambda2')
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
 def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
@@ -53,23 +53,22 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
     sh2 = 2 * FLAGS.n_hidden
     inputs = tf.nn.dropout(inputs, keep_prob=keep_prob1)
     sen_len = tf.reshape(sen_len, [-1])
-    # print("sen_len:{}
 
     def get_s(inputs, name):
         with tf.name_scope('word_encode'):
-            wordEncode = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer'  + name)
-        wordEncode = tf.reshape(wordEncode, [-1, FLAGS.max_sen_len, sh2])
+            inputs = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer'  + name)
+        inputs = tf.reshape(inputs, [-1, FLAGS.max_sen_len, sh2])
 
-        with tf.name_scope('attention'):
+        with tf.name_scope('word_attention'):
             w1 = func.get_weight_varible('word_att_w1'+ name, [sh2, sh2])
             b1 = func.get_weight_varible('word_att_b1'+ name, [sh2])
             w2 = func.get_weight_varible('word_att_w2'+ name, [sh2, 1])
-            senEncode = func.att_var(wordEncode, sen_len, w1, b1, w2)
+            senEncode = func.att_var(inputs, sen_len, w1, b1, w2)
         senEncode = tf.reshape(senEncode, [-1, FLAGS.max_doc_len, sh2])
         return senEncode
 
-    senEncode = get_s(inputs, name='pos_word_encode')
-    s = RNN(senEncode, doc_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'pos_sentence_layer')
+    s = get_s(inputs, name='pos_word_encode')
+    s = RNN(s, doc_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'pos_sentence_layer')
 
     with tf.name_scope('sequence_prediction'):
         s1 = tf.reshape(s, [-1, 2 * FLAGS.n_hidden])
@@ -81,38 +80,21 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         pred_pos = tf.reshape(pred_pos, [-1, FLAGS.max_doc_len, FLAGS.n_class])
 
     # 形成相对位置向量
-    print("word_dis:{}".format(word_dis))
     word_dis = tf.reshape(word_dis[:, :, 0], [-1, FLAGS.max_doc_len]) # shape=(?, 75)
-    print("word_dis:{}".format(word_dis))
-
     pred_y_pos_op = tf.argmax(pred_pos, 2)  # shape=(?, 75)
     cla_ind = tf.argmax(pred_y_pos_op, 1)# shape=(?,)
     cla_ind = tf.reshape(tf.to_int32(cla_ind), [-1, 1])
     cla_ind = tf.tile(cla_ind, [1,75])# shape=(?, 75)
-    print("cla_ind.shape:{}".format(cla_ind))
-    m_75 = 75 * tf.ones_like(cla_ind)
-    cla_ind =  tf.subtract(cla_ind , m_75)
+    m_69 = 69 * tf.ones_like(cla_ind)
+    cla_ind =  tf.subtract(cla_ind , m_69)
     cla_ind_add_1 = tf.multiply(cla_ind , word_dis)
-    print("cla_ind_add_1.shape:{}".format(cla_ind_add_1))
-
     i = tf.constant([x for x in range(0,FLAGS.max_doc_len)], dtype=tf.int32)
-    print("i:{}".format(i))
     i = tf.reshape(i, [1, 75])
-    print("改变之后i:{}".format(i))
     cla_ind_add_2 = tf.multiply(i, word_dis)# shape=(?, 75)
-    print("cla_ind_add_2.shape:{}".format(cla_ind_add_2))
-    # pos = tf.subtract(tf.matmul(tf.ones_like(cla_ind), i) , cla_ind_add)
-    # pos = tf.ones_like(pos)
-
     pos = tf.subtract(cla_ind_add_2 , cla_ind_add_1)
-    print("结果:{}".format(pos))
-
-    print("word_dis:{}".format(word_dis))
     word_dis = tf.nn.embedding_lookup(pos_embedding, pos)  # 选取pos_embedding中word_dis对应的元素
-    print("word_dis最终:{}".format(word_dis))
 
     senEncode = get_s(inputs, name='cause_word_encode')
-    # print("senEncode:{}".format(senEncode))
     senEncode_dis = tf.concat([senEncode, word_dis], axis=2)  # 距离拼在子句上
 
     n_feature = 2 * FLAGS.n_hidden + FLAGS.embedding_dim_pos
@@ -127,6 +109,7 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         '''*******GL1******'''
         senEncode = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'layer1')
         pred_assist, reg_assist = senEncode_softmax(senEncode, 'softmax_assist_w1', 'softmax_assist_b1', out_units, doc_len)
+        reg_assist += tf.nn.l2_loss(w_pos) + tf.nn.l2_loss(b_pos)
 
         pred_assist_label = tf.cast(tf.reshape(tf.argmax(pred_assist, axis=2), [-1, 1, FLAGS.max_doc_len]), tf.float32)
         # masked the prediction at the current position
@@ -148,6 +131,7 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         senEncode = trans_func(senEncode_assist, senEncode, n_feature, out_units, 'layer' + str(i))
 
         pred_assist, reg_assist = senEncode_softmax(senEncode, 'softmax_assist_w' + str(i), 'softmax_assist_b' + str(i), out_units, doc_len)
+
         pred_assist_label = tf.cast(tf.reshape(tf.argmax(pred_assist, axis=2), [-1, 1, FLAGS.max_doc_len]), tf.float32)
         # masked the prediction at the current position
         pred_assist_label = pred_assist_label * pred_two - pred_ones
@@ -165,15 +149,16 @@ def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, ke
         reg_assist_list.append(reg_assist)
 
     '''*******Main******'''
-    if FLAGS.n_layers > 1:
-        senEncode_dis_GL = tf.concat([senEncode, pred_assist_label], axis=2)
-        n_feature = out_units + FLAGS.max_doc_len
-        senEncode_main = trans_func(senEncode_dis_GL, senEncode, n_feature, out_units, 'block_main')
-    else:
-        senEncode_main = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'block_main')
-    pred, reg = senEncode_softmax(senEncode_main, 'softmax_w', 'softmax_b', out_units, doc_len)
-    reg += tf.nn.l2_loss(w_pos) + tf.nn.l2_loss(b_pos)
-    return pred_pos, pred, reg, pred_assist_list, reg_assist_list
+    with tf.name_scope('main'):
+        if FLAGS.n_layers > 1:
+            senEncode_dis_GL = tf.concat([senEncode, pred_assist_label], axis=2)
+            n_feature = out_units + FLAGS.max_doc_len
+            senEncode_main = trans_func(senEncode_dis_GL, senEncode, n_feature, out_units, 'block_main')
+        else:
+            senEncode_main = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'block_main')
+        pred, reg = senEncode_softmax(senEncode_main, 'softmax_w', 'softmax_b', out_units, doc_len)
+        reg += tf.nn.l2_loss(w_pos) + tf.nn.l2_loss(b_pos)
+    return  pos, pred_pos, pred, reg, pred_assist_list, reg_assist_list
 
 
 def run():
@@ -184,22 +169,22 @@ def run():
     print("***********localtime: ", localtime)
     #func.load_data()：return x, y_position, y, sen_len, doc_len, relative_pos, relative_pos_a,  embedding, embedding_pos, embedding_pos_a
     #需要将word_distance改为自己计算的结果
-    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_em_data, pos_embedding, pos_embedding_a, pos_embedding_e = func.load_data()
+    x_data, y_position_data, y_data, sen_len_data, doc_len_data, word_distance, word_distance_a, word_distance_e, word_em_data, pos_embedding, pos_embedding_a, pos_embedding_ap = func.load_data()
 
-    print("x_data.shape:{}\n".format(x_data.shape))
-    print("y_position_data.shape:{}\n".format(y_position_data.shape))
-    print("y_data.shape:{}\n".format(y_data.shape))
-    print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
-    print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
-    print("word_distance.shape:{}\n".format(word_distance.shape))
-    print("word_distance_e.shape:{}\n".format(word_distance_e.shape))
-    print("word_em_data.shape:{}\n".format(word_em_data.shape))
-    print("pos_embedding_a.shape:{}\n".format(pos_embedding_a.shape))
-    print("pos_embedding_e.shape:{}\n".format(pos_embedding_e.shape))
+    # print("x_data.shape:{}\n".format(x_data.shape))
+    # print("y_position_data.shape:{}\n".format(y_position_data.shape))
+    # print("y_data.shape:{}\n".format(y_data.shape))
+    # print("sen_len_data.shape:{}\n".format(sen_len_data.shape))
+    # print("doc_len_data.shape:{}\n".format(doc_len_data.shape))
+    # print("word_distance.shape:{}\n".format(word_distance.shape))
+    # print("word_distance_ap.shape:{}\n".format(word_distance_e.shape))
+    # print("word_em_data.shape:{}\n".format(word_em_data.shape))
+    # print("pos_embedding_a.shape:{}\n".format(pos_embedding_a.shape))
+    # print("pos_embedding_ap.shape:{}\n".format(pos_embedding_ap.shape))
     # print("pos_embedding:{}\n".format(pos_embedding[1]))
 
     # word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
-    pos_embedding_e = tf.constant(pos_embedding_e, dtype=tf.float32, name='pos_embedding_e')
+    pos_embedding = tf.constant(pos_embedding, dtype=tf.float32, name='pos_embedding')
     print('build model...')
     start_time = time.time()
 
@@ -215,9 +200,9 @@ def run():
     word_embedding = tf.placeholder(tf.float32, [None, FLAGS.embedding_dim], name= "word_embedding")
     placeholders = [x, y_position, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, word_embedding]
 
-    pred_pos, pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding_e, keep_prob1, keep_prob2)
-    print(pred)
+    pos, pred_pos, pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2)
 
+    # print('pred_pos {}'.format(pred_pos.shape))
     with tf.name_scope('loss'):
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
         loss_pos = - tf.reduce_sum(y_position * tf.log(pred_pos)) / valid_num
@@ -225,7 +210,12 @@ def run():
         loss_op = loss_cause * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg * FLAGS.l2_reg
         loss_assist_list = []
         for i in range(FLAGS.n_layers - 1):
-            loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num + reg_assist_list[i] * FLAGS.l2_reg
+            if i == 0:
+                loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num
+                loss_pos = - tf.reduce_sum(y_position * tf.log(pred_pos)) / valid_num
+                loss_assist = loss_assist * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg_assist_list[i] * FLAGS.l2_reg
+            else:
+                loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num + reg_assist_list[i] * FLAGS.l2_reg
             loss_assist_list.append(loss_assist)
 
     with tf.name_scope('train'):
@@ -262,9 +252,15 @@ def run():
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
 
-    saver = tf.train.Saver(max_to_keep = 7)
+    # saver = tf.train.Saver(max_to_keep = 7)
+
+    tenboard_dir = './tensorboard/RTHN_EE'
+    graph = tf.get_default_graph()
+    writer = tf.summary.FileWriter(tenboard_dir, graph)
 
     with tf.Session(config=tf_config) as sess:
+        writer.add_graph(sess.graph)
+
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
         p_list, r_list, f1_list = [], [], []
@@ -292,6 +288,7 @@ def run():
                     training_iter = FLAGS.training_iter #(15)
                 else:
                     training_iter = FLAGS.training_iter - 5 #(10)
+                # training_iter = 2
                 for i in range(training_iter):
                     step = 1
                     # train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
@@ -301,8 +298,8 @@ def run():
                             [optimizer_assist_list[layer], loss_assist_list[layer], pred_y_assist_op_list[layer], true_y_op, pred_assist_list[layer], doc_len],
                             feed_dict=dict(zip(placeholders, train)))
                         acc_assist, p_assist, r_assist, f1_assist = func.acc_prf(pred_y, true_y, doc_len_batch)
-                        if step % 20 == 0:
-                            print('cause GL{}: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(layer + 1, i + 1, step, loss, acc_assist))
+                        # if step % 20 == 0:
+                        #     print('cause GL{}: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(layer + 1, i + 1, step, loss, acc_assist))
                         step = step + 1
 
             '''*********Train********'''
@@ -311,17 +308,18 @@ def run():
                 #train：feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
                 for train, _ in get_batch_data(tr_x,  tr_pos, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
                     train.append( word_em_data )
-                    _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch = sess.run(
+                    _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch= sess.run(
                         [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
+                    # print("pos_data[0]:{}".format(pos_data[0]))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, true_pos, doc_len_batch)
-                    if step % 20 == 0:
-                        print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
-                        print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
+                    # if step % 20 == 0:
+                    #     print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                    #     print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
                     step = step + 1
                 # print("begin save!")
-                # saver.save(sess, "./run_ee_test/model.ckpt", global_step = epoch)
+                # saver.save(sess, "./run_final_ee/model.ckpt", global_step = epoch)
 
                 '''*********Test********'''
                 test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.,word_em_data]
@@ -352,20 +350,20 @@ def run():
 
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
-                print('\ncause test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
-                    epoch + 1, loss, acc, p, r, f1, max_f1))
+                # print('\ncause test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                #     epoch + 1, loss, acc, p, r, f1, max_f1))
                 if f1_pos > max_f1_pos:
                     max_acc_pos, max_p_pos, max_r_pos, max_f1_pos = acc_pos, p_pos, r_pos, f1_pos
-                print('\nemotion test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
-                    epoch + 1, loss, acc_pos, p_pos, r_pos, f1_pos, max_f1_pos))
+                # print('\nemotion test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                #     epoch + 1, loss, acc_pos, p_pos, r_pos, f1_pos, max_f1_pos))
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
             _, maxIndex = func.maxS(FF1_list)
             _, maxIndex_pos = func.maxS(FF1_pos_list)
-            print("cause extract maxIndex:", maxIndex)
-            print("emotion extract maxIndex:", maxIndex_pos)
-            print('Optimization Finished!\n')
+            # print("cause extract maxIndex:", maxIndex)
+            # print("emotion extract maxIndex:", maxIndex_pos)
+            # print('Optimization Finished!\n')
             pred_prob = pre_list_prob[maxIndex]
             pred_pos_prob = pre_pos_list_prob[maxIndex_pos]
 
@@ -386,7 +384,7 @@ def run():
             p_pos_list.append(max_p_pos)
             r_pos_list.append(max_r_pos)
             f1_pos_list.append(max_f1_pos)
-        print("running time: ", str((end_time - start_time) / 60.))
+        # print("running time: ", str((end_time - start_time) / 60.))
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
         print("cause f1_score in 10 fold: {}\naverage : p:{} r:{} f1:{}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
@@ -394,12 +392,13 @@ def run():
         p_pos, r_pos, f1_pos = map(lambda x: np.array(x).mean(), [p_pos_list, r_pos_list, f1_pos_list])
         print("emotion f1_score in 10 fold: {}\naverage : p:{} r:{} f1:{}\n".format(np.array(f1_pos_list).reshape(-1, 1), round(p_pos, 4), round(r_pos, 4), round(f1_pos, 4)))
 
+        writer.close()
         return p, r, f1, p_pos, r_pos, f1_pos
 
 def print_training_info():
     print('\n\n>>>>>>>>>>>>>>>>>>>>TRAINING INFO:\n')
-    print('batch-{}, learning_rate-{}, keep_prob1-{}, num_heads-{}, n_layers-{}, cause_rate-{}, pos_rate-{}'.format(
-        FLAGS.batch_size, FLAGS.lr_main, FLAGS.keep_prob1, FLAGS.num_heads, FLAGS.n_layers, FLAGS.cause_rate, FLAGS.pos_rate))
+    print('batch-{}, learning_rate-{}, keep_prob1-{}, num_heads-{}, n_layers-{}'.format(
+        FLAGS.batch_size, FLAGS.lr_main, FLAGS.keep_prob1, FLAGS.num_heads, FLAGS.n_layers))
     print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
 
 
@@ -414,10 +413,7 @@ def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
     s = tf.nn.dropout(s, keep_prob=FLAGS.keep_prob2)
     w = func.get_weight_varible(w_varible, [n_feature, FLAGS.n_class])
     b = func.get_weight_varible(b_varible, [FLAGS.n_class])
-    # print("s:{}".format(s))
-    # print("w:{}".format(w))
     pred = tf.matmul(s, w) + b
-    # print("matmul(s, w):{}".format(pred))
     pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
     pred = tf.nn.softmax(pred)
     pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class])
@@ -441,18 +437,16 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
-    # params = {"n_layers": [4], "cause_rate": [0.6,0.7]}
-    params = {"n_layers": [2], "cause_rate": [0.5]}
+    params = {"n_layers": [3,4], "cause_rate": [1, 1.3, 1.5, 1.7]}
 
     params_search = list(ParameterGrid(params))
-    print("params_search:{}".format(params_search))
 
     for i, param in enumerate(params_search):
         print("*************params_search_{}*************".format(i + 1))
         print(param)
         for key, value in param.items():
             setattr(FLAGS, key, value)
-        setattr(FLAGS, "pos_rate", 1 - FLAGS.cause_rate)
+        setattr(FLAGS, "pos_rate", 2 - FLAGS.cause_rate)
         p_list, r_list, f1_list = [], [], []
         p_pos_list, r_pos_list, f1_pos_list = [], [], []
         for i in range(FLAGS.run_times):
@@ -475,8 +469,8 @@ def main(_):
             print(round(p_pos_list[i], 4), round(r_pos_list[i], 4), round(f1_pos_list[i], 4))
         print("emotion avg_prf: ", np.mean(p_pos_list), np.mean(r_pos_list), np.mean(f1_pos_list))
 
-        # grid_search[str(param)] = {"emotion PRF": [round(np.mean(p_pos_list), 4), round(np.mean(r_pos_list), 4), round(np.mean(f1_pos_list), 4)]}
         grid_search[str(param)] = {"cause PRF": [round(np.mean(p_list), 4), round(np.mean(r_list), 4), round(np.mean(f1_list), 4)]}
+        grid_search[str(param)] = {"emotion PRF": [round(np.mean(p_pos_list), 4), round(np.mean(r_pos_list), 4), round(np.mean(f1_pos_list), 4)]}
 
     for key, value in grid_search.items():
         print("Main: ", key, value)
