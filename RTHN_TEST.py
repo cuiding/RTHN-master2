@@ -210,12 +210,9 @@ def run():
         loss_op = loss_cause * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg * FLAGS.l2_reg
         loss_assist_list = []
         for i in range(FLAGS.n_layers - 1):
-            if i == 0:
-                loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num
-                loss_pos = - tf.reduce_sum(y_position * tf.log(pred_pos)) / valid_num
-                loss_assist = loss_assist * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg_assist_list[i] * FLAGS.l2_reg
-            else:
-                loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num + reg_assist_list[i] * FLAGS.l2_reg
+            loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num
+            loss_pos = - tf.reduce_sum(y_position * tf.log(pred_pos)) / valid_num
+            loss_assist = loss_assist * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg_assist_list[i] * FLAGS.l2_reg
             loss_assist_list.append(loss_assist)
 
     with tf.name_scope('train'):
@@ -254,12 +251,12 @@ def run():
 
     # saver = tf.train.Saver(max_to_keep = 7)
 
-    tenboard_dir = './tensorboard/RTHN_EE'
-    graph = tf.get_default_graph()
-    writer = tf.summary.FileWriter(tenboard_dir, graph)
+    # tenboard_dir = './tensorboard/RTHN_EE'
+    # graph = tf.get_default_graph()
+    # writer = tf.summary.FileWriter(tenboard_dir, graph)
 
     with tf.Session(config=tf_config) as sess:
-        writer.add_graph(sess.graph)
+        # writer.add_graph(sess.graph)
 
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
@@ -311,7 +308,6 @@ def run():
                     _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch= sess.run(
                         [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
-                    # print("pos_data[0]:{}".format(pos_data[0]))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, true_pos, doc_len_batch)
                     if step % 20 == 0:
@@ -350,12 +346,12 @@ def run():
 
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
-                # print('\ncause test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
-                #     epoch + 1, loss, acc, p, r, f1, max_f1))
+                print('\ncause test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                    epoch + 1, loss, acc, p, r, f1, max_f1))
                 if f1_pos > max_f1_pos:
                     max_acc_pos, max_p_pos, max_r_pos, max_f1_pos = acc_pos, p_pos, r_pos, f1_pos
-                # print('\nemotion test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
-                #     epoch + 1, loss, acc_pos, p_pos, r_pos, f1_pos, max_f1_pos))
+                print('\nemotion test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                    epoch + 1, loss, acc_pos, p_pos, r_pos, f1_pos, max_f1_pos))
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
@@ -392,7 +388,7 @@ def run():
         p_pos, r_pos, f1_pos = map(lambda x: np.array(x).mean(), [p_pos_list, r_pos_list, f1_pos_list])
         print("emotion f1_score in 10 fold: {}\naverage : p:{} r:{} f1:{}\n".format(np.array(f1_pos_list).reshape(-1, 1), round(p_pos, 4), round(r_pos, 4), round(f1_pos, 4)))
 
-        writer.close()
+        # writer.close()
         return p, r, f1, p_pos, r_pos, f1_pos
 
 def print_training_info():

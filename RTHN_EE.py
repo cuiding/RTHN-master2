@@ -13,7 +13,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '5, 0'
+os.environ["CUDA_VISIBLE_DEVICES"] = '5, 4'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -210,10 +210,14 @@ def run():
         loss_cause = - tf.reduce_sum(y * tf.log(pred)) / valid_num
         loss_op = loss_cause * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg * FLAGS.l2_reg
         loss_assist_list = []
+
         for i in range(FLAGS.n_layers - 1):
-            loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num
-            loss_pos = - tf.reduce_sum(y_position * tf.log(pred_pos)) / valid_num
-            loss_assist = loss_assist * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg_assist_list[i] * FLAGS.l2_reg
+            if i == 0:
+                loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num
+                loss_pos = - tf.reduce_sum(y_position * tf.log(pred_pos)) / valid_num
+                loss_assist = loss_assist * FLAGS.cause_rate + loss_pos * FLAGS.pos_rate + reg_assist_list[i] * FLAGS.l2_reg
+            else:
+                loss_assist = - tf.reduce_sum(y * tf.log(pred_assist_list[i])) / valid_num + reg_assist_list[i] * FLAGS.l2_reg
             loss_assist_list.append(loss_assist)
 
     with tf.name_scope('train'):
@@ -435,7 +439,7 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [3], "cause_rate": [1]}
+    params = {"n_layers": [3,4], "cause_rate": [1, 1.3, 1.5, 1.7]}
 
     params_search = list(ParameterGrid(params))
 
