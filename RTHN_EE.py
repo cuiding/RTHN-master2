@@ -386,7 +386,7 @@ def run():
             p_pos_list.append(max_p_pos)
             r_pos_list.append(max_r_pos)
             f1_pos_list.append(max_f1_pos)
-        # print("running time: ", str((end_time - start_time) / 60.))
+        print("running time: ", str((end_time - start_time) / 60.))
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
         print("cause f1_score in 10 fold: {}\naverage : p:{} r:{} f1:{}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
@@ -439,7 +439,7 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 def main(_):
     grid_search = {}
     # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [3,4], "cause_rate": [1, 1.3, 1.5, 1.7]}
+    params = {"n_layers": [3,4], "cause_rate": [1.3, 1.5, 1.7]}
 
     params_search = list(ParameterGrid(params))
 
