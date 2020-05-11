@@ -13,6 +13,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
+os.environ["TF_CPP_MIN_LOG_LEVEL"]='3'
 os.environ["CUDA_VISIBLE_DEVICES"] = '2, 0'
 
 FLAGS = tf.app.flags.FLAGS
