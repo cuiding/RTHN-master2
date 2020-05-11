@@ -29,7 +29,7 @@ tf.app.flags.DEFINE_integer('n_class', 2, 'number of distinct class')
 tf.app.flags.DEFINE_string('train_file_path', '../data/clause_keywords.csv', 'training file')
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
-tf.app.flags.DEFINE_integer('training_iter', 10, 'number of train iter')
+tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
