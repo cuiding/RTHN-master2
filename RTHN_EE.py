@@ -442,7 +442,7 @@ def main(_):
     grid_search_cause = {}
     grid_search_emotion = {}
     # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [3,4], "cause_rate": [1.3, 1.5, 1.7]}
+    params = {"n_layers": [3,4], "cause_rate": [1, 1.3, 1.5, 1.7]}
 
     params_search = list(ParameterGrid(params))
 
