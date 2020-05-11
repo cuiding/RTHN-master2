@@ -140,8 +140,8 @@ def run():
                         [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                    if step % 5 == 0:
-                        print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                    # if step % 5 == 0:
+                    #     print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                     step = step + 1
 
                 # ************test************
