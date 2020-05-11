@@ -12,7 +12,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '5, 0'
+os.environ["CUDA_VISIBLE_DEVICES"] = '1, 0'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -72,9 +72,10 @@ def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, ke
         w = func.get_weight_varible('softmax_w', [n_feature, FLAGS.n_class])
         b = func.get_weight_varible('softmax_b', [FLAGS.n_class])
         pred = tf.matmul(s, w) + b
+        pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
         pred = tf.nn.softmax(pred)
         pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name = "pred")
-    reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
+        reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
     return pred, reg
 
 def run():
