@@ -439,7 +439,8 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 
 
 def main(_):
-    grid_search = {}
+    grid_search_cause = {}
+    grid_search_emotion = {}
     # params = {"n_layers": [4, 5]}
     params = {"n_layers": [3,4], "cause_rate": [1.3, 1.5, 1.7]}
 
@@ -473,12 +474,13 @@ def main(_):
             print(round(p_pos_list[i], 4), round(r_pos_list[i], 4), round(f1_pos_list[i], 4))
         print("emotion avg_prf: ", np.mean(p_pos_list), np.mean(r_pos_list), np.mean(f1_pos_list))
 
-        grid_search[str(param)] = {"cause PRF": [round(np.mean(p_list), 4), round(np.mean(r_list), 4), round(np.mean(f1_list), 4)]}
-        grid_search[str(param)] = {"emotion PRF": [round(np.mean(p_pos_list), 4), round(np.mean(r_pos_list), 4), round(np.mean(f1_pos_list), 4)]}
+        grid_search_cause[str(param)] = {"cause PRF": [round(np.mean(p_list), 4), round(np.mean(r_list), 4), round(np.mean(f1_list), 4)]}
+        grid_search_emotion[str(param)] = {"emotion PRF": [round(np.mean(p_pos_list), 4), round(np.mean(r_pos_list), 4),round(np.mean(f1_pos_list), 4)]}
 
-    for key, value in grid_search.items():
-        print("Main: ", key, value)
-
+    for key, value in grid_search_cause.items():
+        print("Main_cause: ", key, value)
+    for key, value in grid_search_emotion.items():
+        print("Main_emotion: ", key, value)
 
 
 if __name__ == '__main__':
