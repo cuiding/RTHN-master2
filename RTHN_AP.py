@@ -160,8 +160,8 @@ def run():
                 FF1_list.append(f1)
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
-                print('\nepoch {}: loss {:.4f} acc {:.4f}\n\nnorectify: p {:.4f} r {:.4f} f1 {:.4f} max_f1 {:.4f}'.format(
-                    epoch + 1, loss, acc, p, r, f1, max_f1))
+                # print('\nepoch {}: loss {:.4f} acc {:.4f}\n\nnorectify: p {:.4f} r {:.4f} f1 {:.4f} max_f1 {:.4f}'.format(
+                #     epoch + 1, loss, acc, p, r, f1, max_f1))
 
 
             Id.append(len(te_x))
