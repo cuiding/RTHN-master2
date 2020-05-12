@@ -40,7 +40,7 @@ tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside mai
 
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
-def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biGRU):
+def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
     x = tf.nn.embedding_lookup(word_embedding, x)#选取wordembedding中x对应的元素
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
     # print("word_dis:{}".format(word_dis))
@@ -217,7 +217,7 @@ def print_training_info():
     print('\n\n>>>>>>>>>>>>>>>>>>>>TRAINING INFO:\n')
     print('batch-{}, learning_rate-{}, keep_prob1-{}, num_heads-{}, n_layers-{}'.format(
         FLAGS.batch_size, FLAGS.lr_main, FLAGS.keep_prob1, FLAGS.num_heads, FLAGS.n_layers))
-    print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
+    print('training_iter-{}, RTHN_APE\n'.format(FLAGS.training_iter))
 
 
 def get_batch_data(x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, batch_size, test=False):

@@ -174,7 +174,7 @@ def print_training_info():
     print('\n\n>>>>>>>>>>>>>>>>>>>>TRAINING INFO:\n')
     print('batch-{}, lr-{},  kb1-{}, kb2-{}, l2_reg-{}'.format(
         FLAGS.batch_size, FLAGS.learning_rate, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.l2_reg))
-    print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
+    print('training_iter-{}, RTHN\n'.format(FLAGS.training_iter))
 
 
 def get_batch_data(x, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, test=False):

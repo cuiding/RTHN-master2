@@ -274,8 +274,7 @@ def run():
                 FF1_list.append(f1)
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
-                if p == 0 and  r == 0 and  f1 == 0:
-                    print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
                     epoch + 1, loss, acc, p, r, f1, max_f1))
 
             Id.append(len(te_x))
@@ -305,7 +304,7 @@ def print_training_info():
     print('\n\n>>>>>>>>>>>>>>>>>>>>TRAINING INFO:\n')
     print('batch-{}, learning_rate-{}, keep_prob1-{}, num_heads-{}, n_layers-{}'.format(
         FLAGS.batch_size, FLAGS.lr_main, FLAGS.keep_prob1, FLAGS.num_heads, FLAGS.n_layers))
-    print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
+    print('training_iter-{}, RTHN_o\n'.format(FLAGS.training_iter))
 
 
 def get_batch_data(x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, batch_size, test=False):
