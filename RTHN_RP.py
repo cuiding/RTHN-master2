@@ -163,8 +163,8 @@ def run():
                         [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                    if step % 10 == 0:
-                        print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                    # if step % 10 == 0:
+                    #     print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                     step = step + 1
                 # print("begin save!")
                 # saver.save(sess, "./run_final/model.ckpt", global_step=step)
@@ -187,8 +187,8 @@ def run():
                 FF1_list.append(f1)
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
-                print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
-                    epoch + 1, loss, acc, p, r, f1, max_f1))
+                # print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                #     epoch + 1, loss, acc, p, r, f1, max_f1))
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
@@ -208,7 +208,7 @@ def run():
         print("running time: ", str((end_time - start_time) / 60.))
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
-        print("f1_score in 10 fold: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
+        # print("f1_score in 10 fold: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
 
         # writer.close()
         return p, r, f1
