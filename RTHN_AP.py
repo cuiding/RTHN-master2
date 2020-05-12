@@ -12,7 +12,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '1, 0'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -66,16 +66,7 @@ def build_model(word_embedding, pos_embedding, word_dis, x, sen_len, doc_len, ke
         senEncode_dis = senEncode + word_dis
         senEncode = trans_func(senEncode_dis, senEncode, n_feature, out_units, 'layer' + str(i))
 
-    with tf.name_scope('softmax'):
-        s = tf.reshape(senEncode, [-1, n_feature])
-        s = tf.nn.dropout(s, keep_prob=keep_prob2)
-        w = func.get_weight_varible('softmax_w', [n_feature, FLAGS.n_class])
-        b = func.get_weight_varible('softmax_b', [FLAGS.n_class])
-        pred = tf.matmul(s, w) + b
-        pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
-        pred = tf.nn.softmax(pred)
-        pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name = "pred")
-        reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
+    pred, reg = senEncode_softmax(senEncode, 'softmax_w', 'softmax_b', out_units, doc_len)
     return pred, reg
 
 def run():
@@ -206,6 +197,17 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
     senEncode_assist = trans.feedforward_1(senEncode_assist, n_feature, out_units)
     return senEncode_assist
 
+def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
+    s = tf.reshape(s_senEncode, [-1, n_feature])
+    s = tf.nn.dropout(s, keep_prob=FLAGS.keep_prob2)
+    w = func.get_weight_varible(w_varible, [n_feature, FLAGS.n_class])
+    b = func.get_weight_varible(b_varible, [FLAGS.n_class])
+    pred = tf.matmul(s, w) + b
+    pred *= func.getmask(doc_len, FLAGS.max_doc_len, [-1, 1])
+    pred = tf.nn.softmax(pred)
+    pred = tf.reshape(pred, [-1, FLAGS.max_doc_len, FLAGS.n_class], name='pred')
+    reg = tf.nn.l2_loss(w) + tf.nn.l2_loss(b)
+    return pred, reg
 
 def main(_):
     grid_search = {}
