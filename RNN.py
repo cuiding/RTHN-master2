@@ -45,15 +45,13 @@ def build_model(word_embedding, x, sen_len, doc_len, keep_prob1, keep_prob2, RNN
     with tf.name_scope('word_encode'):
         lstm_wordEncode = RNN(inputs, sen_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'word_layer')
     lstm_wordEncode = tf.reshape(lstm_wordEncode, [-1, FLAGS.max_sen_len, 2 * FLAGS.n_hidden])
-    # with tf.name_scope('word_attention'):
-    #     sh2 = 2 * FLAGS.n_hidden
-    #     w1 = func.get_weight_varible('word_att_w1', [sh2, sh2])
-    #     b1 = func.get_weight_varible('word_att_b1', [sh2])
-    #     w2 = func.get_weight_varible('word_att_w2', [sh2, 1])
-    #     s_wordEncode = func.att_var(lstm_wordEncode, sen_len, w1, b1, w2)
-    # s_senEncode = tf.reshape(s_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
-
-    s_senEncode =  tf.reshape(lstm_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
+    with tf.name_scope('word_attention'):
+        sh2 = 2 * FLAGS.n_hidden
+        w1 = func.get_weight_varible('word_att_w1', [sh2, sh2])
+        b1 = func.get_weight_varible('word_att_b1', [sh2])
+        w2 = func.get_weight_varible('word_att_w2', [sh2, 1])
+        s_wordEncode = func.att_var(lstm_wordEncode, sen_len, w1, b1, w2)
+    s_senEncode = tf.reshape(s_wordEncode, [-1, FLAGS.max_doc_len, 2 * FLAGS.n_hidden])
 
     s_senEncode = RNN(s_senEncode, doc_len, n_hidden=FLAGS.n_hidden, scope=FLAGS.scope + 'sentence_layer')
     n_feature = 2 * FLAGS.n_hidden
