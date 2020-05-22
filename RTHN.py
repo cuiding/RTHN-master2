@@ -12,7 +12,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '0,1'
+os.environ["CUDA_VISIBLE_DEVICES"] = '6,0'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -209,7 +209,7 @@ def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
 
 def main(_):
     grid_search = {}
-    params = {"n_layers": [1,2,3,4,5]}
+    params = {"n_layers": [5,1,2,3,4,]}
 
     params_search = list(ParameterGrid(params))
     for i, param in enumerate(params_search):
