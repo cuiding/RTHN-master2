@@ -15,7 +15,7 @@ import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
 warnings.filterwarnings('ignore')
-os.environ["CUDA_VISIBLE_DEVICES"] = '2, 0'
+os.environ["CUDA_VISIBLE_DEVICES"] = '6, 0'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -442,7 +442,7 @@ def main(_):
     grid_search_cause = {}
     grid_search_emotion = {}
     # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [3,4], "cause_rate": [1, 1.3, 1.5, 1.7]}
+    params = {"n_layers": [1,2,5], "cause_rate": [1]}
 
     params_search = list(ParameterGrid(params))
 
