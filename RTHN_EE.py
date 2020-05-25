@@ -32,7 +32,6 @@ tf.app.flags.DEFINE_integer('n_class', 2, 'number of distinct class')
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
 tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
-# tf.app.flags.DEFINE_integer('training_iter', 7, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
 tf.app.flags.DEFINE_integer('batch_size', 32, 'number of example per batch')
@@ -256,7 +255,7 @@ def run():
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
 
-    # saver = tf.train.Saver(max_to_keep = 7)
+    saver = tf.train.Saver(max_to_keep = 7)
 
     # tenboard_dir = './tensorboard/RTHN_EE'
     # graph = tf.get_default_graph()
@@ -315,15 +314,12 @@ def run():
                     _, loss, pred_y_pos, true_pos, pred_y, true_y, pred_prob, pred_pos_prob, doc_len_batch= sess.run(
                         [optimizer, loss_op, pred_pos_op, true_pos_op, pred_y_op, true_y_op, pred, pred_pos, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
-                    # print("pos_data[0]:{}".format(pos_data[0]))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
                     acc_pos, p_pos, r_pos, f1_pos = func.acc_prf(pred_y_pos, true_pos, doc_len_batch)
                     # if step % 20 == 0:
                     #     print('cause: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                     #     print('emotion: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc_pos))
                     step = step + 1
-                # print("begin save!")
-                # saver.save(sess, "./run_final_ee/model.ckpt", global_step = epoch)
 
                 '''*********Test********'''
                 test = [te_x, te_pos, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.,word_em_data]
@@ -360,6 +356,9 @@ def run():
                     max_acc_pos, max_p_pos, max_r_pos, max_f1_pos = acc_pos, p_pos, r_pos, f1_pos
                 # print('\nemotion test: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
                 #     epoch + 1, loss, acc_pos, p_pos, r_pos, f1_pos, max_f1_pos))
+
+            print("begin save!")
+            saver.save(sess, "./run_final_ee/model.ckpt", global_step = epoch)
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
@@ -442,7 +441,7 @@ def main(_):
     grid_search_cause = {}
     grid_search_emotion = {}
     # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [2,3,4], "cause_rate": [1]}
+    params = {"n_layers": [3,4], "cause_rate": [1]}
 
     params_search = list(ParameterGrid(params))
 

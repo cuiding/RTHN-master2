@@ -34,6 +34,7 @@ class MainWindow(QtWidgets.QMainWindow,Ui_MainWindow):
         self.cause_edt.clear()
 
     def New(self):
+        self.cause_edt.clear()
         senID = random.randint(1, 2105)
         the_line = linecache.getline('./data/datacsv_2105.csv', senID)
         the_line = the_line.strip().split(',')
