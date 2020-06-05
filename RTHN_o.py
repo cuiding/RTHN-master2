@@ -208,13 +208,13 @@ def run():
 
         kf, fold, SID = KFold(n_splits=10), 1, 0 #十折交叉验证
         Id = []
-        p_list, r_list, f1_list = [], [], []
+        p_list, r_list, f1_list, loss_list = [], [], [], []
         for train, test in kf.split(x_data):
             tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis = map(lambda x: x[train],
                 [x_data, y_data, sen_len_data, doc_len_data, word_distance])
             te_x, te_y, te_sen_len, te_doc_len, te_word_dis = map(lambda x: x[test],
                 [x_data, y_data, sen_len_data, doc_len_data, word_distance])
-            precision_list, recall_list, FF1_list = [], [], []
+            precision_list, recall_list, FF1_list, l_list = [], [], [], []
             pre_list, true_list, pre_list_prob = [], [], []
 
             sess.run(tf.global_variables_initializer())
@@ -260,7 +260,6 @@ def run():
                 test = [te_x, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
                 loss, pred_y, true_y, pred_prob = sess.run(
                     [loss_op, pred_y_op, true_y_op, pred], feed_dict=dict(zip(placeholders, test)))
-
                 end_time = time.time()
 
                 true_list.append(true_y)
@@ -272,6 +271,7 @@ def run():
                 precision_list.append(p)
                 recall_list.append(r)
                 FF1_list.append(f1)
+                l_list.append(loss)
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
                 print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
@@ -292,6 +292,8 @@ def run():
             p_list.append(max_p)
             r_list.append(max_r)
             f1_list.append(max_f1)
+            loss_list.extend(l_list)
+        #np.array(loss_list).reshape(10,)
         print("running time: ", str((end_time - start_time) / 60.))
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
