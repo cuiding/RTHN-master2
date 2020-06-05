@@ -8,7 +8,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '0,5,6'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0,5,6,4'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
