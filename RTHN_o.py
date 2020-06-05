@@ -8,7 +8,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '2,1'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0,2'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -36,8 +36,7 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 # tf.app.flags.DEFINE_integer('run_times', 10, 'run times of this model')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
-tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
-
+tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')#这是总层数 子层数是n_layers-1
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
 def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
@@ -250,8 +249,8 @@ def run():
                         [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                    if step % 10 == 0 and p ==0:
-                        print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                    # if step % 10 == 0:
+                    #     print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                     step = step + 1
                 # print("begin save!")
                 # saver.save(sess, "./run_final/model.ckpt", global_step=step)
@@ -274,8 +273,8 @@ def run():
                 l_list.append(loss)
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
-                print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
-                    epoch + 1, loss, acc, p, r, f1, max_f1))
+                # print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
+                #     epoch + 1, loss, acc, p, r, f1, max_f1))
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
@@ -293,13 +292,13 @@ def run():
             r_list.append(max_r)
             f1_list.append(max_f1)
             loss_list.extend(l_list)
-            print("loss_list:{}".format(loss_list))
+            #print("loss_list:{}".format(loss_list))
 
-        print("loss_list.length:{}".format(len(loss_list)))
+        #print("loss_list.length:{}".format(len(loss_list)))
         los = np.array(loss_list).reshape(10, FLAGS.training_iter)
-        print("los.shape:{}".format(los.shape))
+        #print("los.shape:{}".format(los.shape))
         lo = np.mean(los, axis=0)
-        print("lo.shape:{}". format(lo.shape))
+        #print("lo.shape:{}". format(lo.shape))
         print("running time: ", str((end_time - start_time) / 60.))
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
