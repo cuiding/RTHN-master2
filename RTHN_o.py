@@ -279,8 +279,8 @@ def run():
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
             _, maxIndex = func.maxS(FF1_list)
-            # print("maxIndex:", maxIndex)
-            # print('Optimization Finished!\n')
+            print("maxIndex:", maxIndex)
+            print('Optimization Finished!\n')
             pred_prob = pre_list_prob[maxIndex]
 
             for i in range(pred_y.shape[0]):
