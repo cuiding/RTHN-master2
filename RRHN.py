@@ -11,7 +11,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '5, 0'
+os.environ["CUDA_VISIBLE_DEVICES"] = '2, 1'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -29,7 +29,7 @@ tf.app.flags.DEFINE_integer('n_class', 2, 'number of distinct class')
 tf.app.flags.DEFINE_string('train_file_path', '../data/clause_keywords.csv', 'training file')
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
-tf.app.flags.DEFINE_integer('training_iter', 10, 'number of train iter')
+tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
 tf.app.flags.DEFINE_integer('clause_layer', 2, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
@@ -112,7 +112,7 @@ def run():
     with tf.Session(config=tf_config) as sess:
         kf, fold, SID = KFold(n_splits=10), 1, 0
         Id = []
-        p_list, r_list, f1_list = [], [], []
+        p_list, r_list, f1_list, loss_list = [], [], [], []
         start_time = time.time()
         for train, test in kf.split(x_data):
             tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis = map(lambda x: x[train],
@@ -120,7 +120,7 @@ def run():
             te_x, te_y, te_sen_len, te_doc_len, te_word_dis = map(lambda x: x[test],
                 [x_data, y_data, sen_len_data, doc_len_data, word_distance])
 
-            precision_list, recall_list, FF1_list = [], [], []
+            precision_list, recall_list, FF1_list, l_list = [], [], [], []
             pre_list, true_list, pre_list_prob = [], [], []
             sess.run(tf.global_variables_initializer())
             print('############# fold {} ###############'.format(fold))
@@ -151,11 +151,11 @@ def run():
                 precision_list.append(p)
                 recall_list.append(r)
                 FF1_list.append(f1)
+                l_list.append(loss)
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
                 print('\nepoch {}: loss {:.4f} acc {:.4f}\n\nnorectify: p {:.4f} r {:.4f} f1 {:.4f} max_f1 {:.4f}'.format(
                     epoch + 1, loss, acc, p, r, f1, max_f1))
-
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
@@ -164,13 +164,17 @@ def run():
             p_list.append(max_p)
             r_list.append(max_r)
             f1_list.append(max_f1)
+            loss_list.extend(l_list)
+            print("loss_list:{}".format(loss_list))
 
+        los = np.array(loss_list).reshape(10, FLAGS.training_iter)
+        lo = np.mean(los, axis=1)
         end_time = time.time()
         print("running time: ", str((end_time - start_time) / 60.))
 
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
-        print("f1_score in 10 fold: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
+        print("f1_score in 10 fold: {}\nloss of training_iter: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), lo, round(p, 4), round(r, 4), round(f1, 4)))
 
         return p, r, f1
 
@@ -190,7 +194,7 @@ def get_batch_data(x, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, t
 
 def main(_):
     grid_search = {}
-    params = {"clause_layer": [2,3,4,5]}
+    params = {"clause_layer": [2]}
 
     params_search = list(ParameterGrid(params))
     for i, param in enumerate(params_search):
