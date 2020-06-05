@@ -167,8 +167,11 @@ def run():
             loss_list.extend(l_list)
             print("loss_list:{}".format(loss_list))
 
+        print("loss_list.length:{}".format(len(loss_list)))
         los = np.array(loss_list).reshape(10, FLAGS.training_iter)
-        lo = np.mean(los, axis=1)
+        print("los.shape:{}".format(los.shape))
+        lo = np.mean(los, axis=0)
+        print("lo.shape:{}".format(lo.shape))
         end_time = time.time()
         print("running time: ", str((end_time - start_time) / 60.))
 
