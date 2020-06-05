@@ -293,11 +293,17 @@ def run():
             r_list.append(max_r)
             f1_list.append(max_f1)
             loss_list.extend(l_list)
-        #np.array(loss_list).reshape(10,)
+            print("loss_list:{}".format(loss_list))
+
+        print("loss_list.length:{}".format(len(loss_list)))
+        los = np.array(loss_list).reshape(10, FLAGS.training_iter)
+        print("los.shape:{}".format(los.shape))
+        lo = np.mean(los, axis=0)
+        print("lo.shape:{}". format(lo.shape))
         print("running time: ", str((end_time - start_time) / 60.))
         print_training_info()
         p, r, f1 = map(lambda x: np.array(x).mean(), [p_list, r_list, f1_list])
-        print("f1_score in 10 fold: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), round(p, 4), round(r, 4), round(f1, 4)))
+        print("f1_score in 10 fold: {}\nloss of training_iter: {}\naverage : {} {} {}\n".format(np.array(f1_list).reshape(-1, 1), lo, round(p, 4), round(r, 4), round(f1, 4)))
 
         # writer.close()
         return p, r, f1
@@ -343,8 +349,7 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 
 def main(_):
     grid_search = {}
-    # params = {"n_layers": [4, 5]}
-    params = {"n_layers": [1,2,3,4,5]}
+    params = {"n_layers": [3]}
 
     params_search = list(ParameterGrid(params))
 
