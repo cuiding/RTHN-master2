@@ -11,7 +11,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0, 5'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -29,7 +29,7 @@ tf.app.flags.DEFINE_integer('n_class', 2, 'number of distinct class')
 tf.app.flags.DEFINE_string('train_file_path', '../data/clause_keywords.csv', 'training file')
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
-tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
+tf.app.flags.DEFINE_integer('training_iter', 10, 'number of train iter')
 tf.app.flags.DEFINE_integer('clause_layer', 2, 'number of train iter')#这是子层数
 tf.app.flags.DEFINE_string('scope', 'RRHN', 'RNN scope')
 tf.app.flags.DEFINE_integer('run_times', 2, 'run times of this model')
@@ -165,7 +165,7 @@ def run():
             r_list.append(max_r)
             f1_list.append(max_f1)
             loss_list.extend(l_list)
-            print("loss_list:{}".format(loss_list))
+            #print("loss_list:{}".format(loss_list))
 
         # print("loss_list.length:{}".format(len(loss_list)))
         los = np.array(loss_list).reshape(10, FLAGS.training_iter)
