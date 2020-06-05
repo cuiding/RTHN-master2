@@ -11,7 +11,7 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-os.environ["CUDA_VISIBLE_DEVICES"] = '2, 1'
+os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -30,9 +30,9 @@ tf.app.flags.DEFINE_string('train_file_path', '../data/clause_keywords.csv', 'tr
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
 tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
-tf.app.flags.DEFINE_integer('clause_layer', 2, 'number of train iter')
-tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
-tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
+tf.app.flags.DEFINE_integer('clause_layer', 2, 'number of train iter')#这是子层数
+tf.app.flags.DEFINE_string('scope', 'RRHN', 'RNN scope')
+tf.app.flags.DEFINE_integer('run_times', 2, 'run times of this model')
 # not easy to tune , a good posture of using data to train model is very important
 tf.app.flags.DEFINE_integer('batch_size', 32, 'number of example per batch')
 tf.app.flags.DEFINE_float('learning_rate', 0.005, 'learning rate')
@@ -135,8 +135,8 @@ def run():
                         [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                         feed_dict=dict(zip(placeholders, train)))
                     acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                    if step % 5 == 0:
-                        print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                    # if step % 5 == 0:
+                    #     print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
                     step = step + 1
 
                 # ************test************
@@ -154,8 +154,8 @@ def run():
                 l_list.append(loss)
                 if f1 > max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
-                print('\nepoch {}: loss {:.4f} acc {:.4f}\n\nnorectify: p {:.4f} r {:.4f} f1 {:.4f} max_f1 {:.4f}'.format(
-                    epoch + 1, loss, acc, p, r, f1, max_f1))
+                # print('\nepoch {}: loss {:.4f} acc {:.4f}\n\nnorectify: p {:.4f} r {:.4f} f1 {:.4f} max_f1 {:.4f}'.format(
+                #     epoch + 1, loss, acc, p, r, f1, max_f1))
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)
@@ -167,11 +167,11 @@ def run():
             loss_list.extend(l_list)
             print("loss_list:{}".format(loss_list))
 
-        print("loss_list.length:{}".format(len(loss_list)))
+        # print("loss_list.length:{}".format(len(loss_list)))
         los = np.array(loss_list).reshape(10, FLAGS.training_iter)
-        print("los.shape:{}".format(los.shape))
+        # print("los.shape:{}".format(los.shape))
         lo = np.mean(los, axis=0)
-        print("lo.shape:{}".format(lo.shape))
+        # print("lo.shape:{}".format(lo.shape))
         end_time = time.time()
         print("running time: ", str((end_time - start_time) / 60.))
 
@@ -197,7 +197,7 @@ def get_batch_data(x, sen_len, doc_len, keep_prob1, keep_prob2, y, batch_size, t
 
 def main(_):
     grid_search = {}
-    params = {"clause_layer": [2]}
+    params = {"clause_layer": [2,3,4,5]}
 
     params_search = list(ParameterGrid(params))
     for i, param in enumerate(params_search):
