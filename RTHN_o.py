@@ -8,8 +8,8 @@ import sys, os, time, codecs, pdb
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
-# os.environ["CUDA_VISIBLE_DEVICES"] = '0,5,6,4'
-os.environ["CUDA_VISIBLE_DEVICES"] = '0,3'
+os.environ["CUDA_VISIBLE_DEVICES"] = '5,4,0'
+# os.environ["CUDA_VISIBLE_DEVICES"] = '0,3'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
@@ -28,7 +28,7 @@ tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 tf.app.flags.DEFINE_integer('training_iter', 25, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
-tf.app.flags.DEFINE_integer('batch_size', 16, 'number of example per batch')
+tf.app.flags.DEFINE_integer('batch_size', 32, 'number of example per batch')
 tf.app.flags.DEFINE_float('lr_assist', 0.005, 'learning rate of assist')
 tf.app.flags.DEFINE_float('lr_main', 0.001, 'learning rate')
 tf.app.flags.DEFINE_float('keep_prob1', 0.5, 'word embedding training dropout keep prob')
