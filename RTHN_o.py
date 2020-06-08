@@ -37,7 +37,7 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 # tf.app.flags.DEFINE_integer('run_times', 10, 'run times of this model')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
-tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')#这是总层数 子层数是n_layers-1
+tf.app.flags.DEFINE_integer('n_layers', 4, 'the layers of transformer beside main')#这是总层数 子层数是n_layers-1
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
 def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
