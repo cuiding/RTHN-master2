@@ -43,7 +43,7 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 # tf.app.flags.DEFINE_integer('run_times', 10, 'run times of this model')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
-tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
+tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')#这是总层数，子层数是n_layers-1
 tf.app.flags.DEFINE_float('cause_rate', 1.5, 'lambda1')
 tf.app.flags.DEFINE_float('pos_rate', 0.5, 'lambda2')
 

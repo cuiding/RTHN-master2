@@ -24,7 +24,7 @@ tf.app.flags.DEFINE_integer('n_class', 2, 'number of distinct class')
 # >>>>>>>>>>>>>>>>>>>> For Data <<<<<<<<<<<<<<<<<<<< #
 tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
-tf.app.flags.DEFINE_integer('training_iter', 25, 'number of train iter')
+tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
 tf.app.flags.DEFINE_integer('batch_size', 16, 'number of example per batch')
@@ -36,7 +36,7 @@ tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
 # tf.app.flags.DEFINE_integer('run_times', 10, 'run times of this model')
 tf.app.flags.DEFINE_integer('run_times', 1, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
-tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
+tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')#这是总层数，子层数是n_layers-1
 
 
 #pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding,                                                          keep_prob1, keep_prob2)
@@ -254,7 +254,7 @@ def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
 
 def main(_):
     grid_search = {}
-    params = {"n_layers": [5,4,3,2,1]}
+    params = {"n_layers": [5,4,3,2]}
 
     params_search = list(ParameterGrid(params))
 
