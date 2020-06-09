@@ -15,7 +15,7 @@ import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
 warnings.filterwarnings('ignore')
-os.environ["CUDA_VISIBLE_DEVICES"] = '6, 0'
+os.environ["CUDA_VISIBLE_DEVICES"] = '1, 0'
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
